@@ -1,0 +1,10 @@
+.app{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;  
+    font-family: 'Recursive', sans-serif;
+    background-color: #f6f6f6;
+    background-color: cover;
+    width: 100%;
+    height: auto;
+}

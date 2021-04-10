@@ -1,0 +1,195 @@
+.Image1{
+    background-image: url(y0Kis9ZaQRA.jpg);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 50%;
+  }
+.divextra{
+  position:relative;
+  top: 500px;
+  left: 0;
+}
+.SelectBut1{
+  width:98%;
+  height: 30px;
+  border-radius: 3px;
+  border-color: #DFDFDF;
+}
+.SelectBut2{
+  width:150px;
+  height: 30px;
+  border-radius: 3px;
+  border-color: #DFDFDF;
+}
+.text_details{
+  text-align: left;
+  font-size: 16px;
+  margin: 10px;
+}
+.CardDetails{
+  position: relative;
+  width: 400px;
+  height: auto;
+  top: 0;
+  max-height: 1000px;
+  padding: 20px;
+  border-radius: 5px;
+  border-width: 10px;
+  backdrop-filter: 1px;
+  background-color: #FFEDED;
+  box-shadow: 0px 0px 50px 10px #FDE2E2;
+
+  background-color: white;
+  box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+  
+}
+.Select{
+  width: auto;
+  height: auto;
+}
+.mainProduct{
+  position:absolute;
+  padding-top: 100px;
+  width: 80%;
+}
+.mainHome{
+  position:absolute;
+  top:0px;
+  left: 0px;
+  background-image: url(Gradient2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.mainAbout{
+  position:absolute;
+  top:0px;
+  left: 0px;
+  background-image: url(Gradient3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+.but{
+  position:relative;
+  top: 10px;
+  left: 40%;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 37px;
+  width: auto;
+  border-radius: 30px;
+  border-color: #FA460D;
+  background-color: #FA460D;
+  color:white;
+}
+.but:hover{
+  box-shadow: 0px 0px 10px 10px #FA460D;
+  color: white;
+}
+.mainStore{
+  margin-top: 20px;
+  padding: 12px;
+  box-sizing: border-box;
+  height: auto;
+  background-color: #F6f6f6;
+  z-index:0;
+}
+.ratecomp:hover{
+  color:#FA460D;
+}
+.canvasP{
+  height: 80vh;
+}
+.mainCart{
+  top: 400px;
+}
+.CardDetails2{
+  position: relative;
+  width: auto;
+  height: auto;
+  top: 0;
+  max-height: 1000px;
+  padding: 20px;
+
+  margin: 10px;
+  border-radius: 5px;
+  border-width: 10px;
+  backdrop-filter: 1px;
+  background-color: #FFEDED;
+  box-shadow: 0px 0px 50px 10px #FDE2E2;
+
+  background-color: white;
+  box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+}
+.IconButton{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: 25%;
+}
+.IconButton:hover{
+  content: url('delete2.png');
+  margin-top: 25%; 
+  box-shadow: 0px 0px 20px 20px #FA460D;
+}
+.add{
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 37px;
+  width: 100px;
+  left: 2232px;
+  top: 2650px;
+  border-radius: 30px;
+  background-color: #FA460D;
+  color:white;
+  margin-top: 10px;
+  margin-left: 35%;
+}
+.add:hover{
+  background-color: white;
+  color: #FA460D;
+  border-color: #FA460D;
+  border-width: 10px;
+}
+.CloseBut{
+  position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(196, 196, 196, 0.6);
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: white;
+}
+.CloseBut:hover{
+    background: rgba(196, 196, 196, 0.2);
+    color: #FA460D;
+}
+.EmptyStore{
+  position: relative;
+  top: 50px;
+  max-width:30%;
+  height:auto;
+}
+.linkStore:visited {
+  color: #FA460D;
+}
+
+.linkStore:hover {
+  color: black;
+}
+
+linkStore:active {
+  color: #FA460D;
+} 

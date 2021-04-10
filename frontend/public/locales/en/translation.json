@@ -1,0 +1,109 @@
+{
+    "About":{
+        "1": "about digital clothes"
+    },
+    "Store":{
+        "1": "store"
+    },
+    "Test":{
+        "1": "test products"
+    },
+    "Lang":{
+        "1": "rus"
+    },
+    "DC":{
+        "1": "Digital clothes"
+    },
+    "RC":{
+        "1": "Real clothes"
+    },
+    "SelectFormat":{
+        "1": "Select format of clothes"
+    },
+    "SingIn":{
+        "1": "Sing In"
+    },
+    "Cart":{
+        "1": "Cart"
+    },
+    "Price":{
+        "1": "Price"
+    },
+    "Step1":{
+        "1": "Select clothes type"
+    },
+    "Step2":{
+        "1": "Discover details"
+    },
+    "Status":{
+        "1": "Status"
+    },
+    "Add":{
+        "1": "Add"
+    },
+    "Size":{
+        "1": "Size"
+    },
+    "Color":{
+        "1": "Color"
+    },
+    "Care":{
+        "1": "Care"
+    },
+    "Material":{
+        "1": "Material"
+    },
+    "Out of stock":{
+        "1": "Out of stock"
+    },
+    "In stock":{
+        "1": "In stock"
+    },
+    "Select clothes size":{
+        "1": "Select clothes size"
+    },
+    "Select clothes type":{
+        "1": "Select clothes type"
+    },
+    "Step3": {
+        "1": "Rate product"
+    },
+    "Step4": {
+        "1": "Write comment"
+    },
+    "Select quantity":{
+        "1": "Select quantity"
+    },
+    "Quantity":{
+        "1": "Quantity"
+    },
+    "Type":{
+        "1": "Type"
+    },
+    "Shopping cart":{
+        "1": "Shopping cart"
+    },
+    "Your cart is empty":{
+        "1": "Your cart is empty "
+    },
+    "Go back to store":{
+        "1": "Go back to store"
+    },
+    "unified":{
+        "1": "unified"
+    },
+    "Total number":{
+        "1": "Total number"
+    },
+    "Total price":{
+        "1": "Total price"
+    },
+    "Continue checkout":{
+        "1": "Continue checkout"
+    },
+    "Added":{
+        "1": "The product was successfully added to the cart!"
+    }
+    
+    
+}
