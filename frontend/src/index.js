@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from "react";
 import './i18n';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
@@ -10,7 +10,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <Provider store = {store}>
-        <App className="app"/>
+        <Suspense fallback={<div>Loading...</div>}>
+            <App className="app"/>
+        </Suspense>
     </Provider>,
 document.getElementById('root')
 );

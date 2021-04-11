@@ -10,10 +10,14 @@ import TestScreen from './screens/TestScreen'
 import ProductScreen from './screens/ProductScreen'
 import TestProductScreen from './screens/TestProductScreen'
 import CartScreen from './screens/CartScreen'
+import { Trans, useTranslation } from "react-i18next";
 
 function App() {
   return (
     <div className =  "App">
+      <Trans i18nKey="">
+        To get started, edit <code>src/App.js</code> and save to reload.
+      </Trans>
     <Suspense fallback={(<div>Loading</div>)}>
     <Router>
       <main className = "py-3">
