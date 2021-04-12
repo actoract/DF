@@ -12,6 +12,7 @@ import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
 import deleteBut1 from './delete1.png';
 import deleteBut2 from './delete2.png';
 import smile from './smile.png';
+import upload from './upload.png';
 import { message } from 'antd';
 
 const CartScreen = ({match, location, history}) => {
@@ -112,7 +113,24 @@ const CartScreen = ({match, location, history}) => {
                             <Col md = {2}>
                                 <strong>{t('Type.1')}: </strong>{item.type == "rc" ? t('RC.1') :  t('DC.1')}
                             </Col>
-                            <Col md = {2}>
+                            {item.type == "rc" ?
+                                <Col md = {2}>
+                                    <strong>{t('Quantity.1')}: </strong>
+                                    <Form.Control as='select' custom value={item.qty} onChange = {(e) => dispatch(changeCart(item.id, item.product, Number(e.target.value), item.type, item.size, item.countInStock))}>  
+                                        {[...Array(item.countInStock).keys()].map(x => (
+                                        <option key = {x + 1} value = {x + 1}>
+                                            {x + 1}
+                                        </option>
+                                        ))}
+                                    </Form.Control>
+                                </Col > :
+                                <Col md = {2}>
+                                    <p><strong>{t('Upload image.1')}: </strong> </p>
+                                    <div className = 'nav-but1-select' onClick = {handleCheckout}> {t('Select.1')}
+                                    </div> 
+                                </Col>
+                            }
+                             <Col md = {2}>
                                 {item.type == "rc" ?
                                     <Col>
                                         <strong>{t('Size.1')}: </strong>
@@ -129,21 +147,6 @@ const CartScreen = ({match, location, history}) => {
                                     </Col>
                                 }
                             </Col>
-                                {item.type == "rc" ?
-                                    <Col md = {2}>
-                                        <strong>{t('Quantity.1')}: </strong>
-                                        <Form.Control as='select' custom value={item.qty} onChange = {(e) => dispatch(changeCart(item.id, item.product, Number(e.target.value), item.type, item.size, item.countInStock))}>  
-                                            {[...Array(item.countInStock).keys()].map(x => (
-                                            <option key = {x + 1} value = {x + 1}>
-                                                {x + 1}
-                                            </option>
-                                            ))}
-                                        </Form.Control>
-                                    </Col > :
-                                    <Col md = {2}>
-                                        <strong>{t('Quantity.1')}: </strong> {item.qty}
-                                    </Col>
-                                }
                         </Row>
                     </div>
                 ))}

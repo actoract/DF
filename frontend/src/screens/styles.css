@@ -193,3 +193,25 @@
 linkStore:active {
   color: #FA460D;
 } 
+.Upload{
+  height: 10px;
+  width: auto
+}
+.nav-but1-select{
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 37px;
+  width: auto;
+  left: 2232px;
+  top: 2650px;
+  border-radius: 5px;
+  color:#FA460D;
+  border :1px solid #FA460D;
+  margin: 5px;
+}
+.nav-but1-select:hover{
+  color:white;
+  border :1px solid white;
+  background-color: #FA460D;
+}

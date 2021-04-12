@@ -103,6 +103,12 @@
     },
     "Added":{
         "1": "The product was successfully added to the cart!"
+    },
+    "Upload image":{
+        "1": "Upload image"
+    },
+    "Select":{
+        "1": "Select"
     }
     
     
