@@ -1,18 +1,10 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux'
-import Message from '../components/message'
 import {Link} from 'react-router-dom'
-import products from '../products'
-import {Row, Col, ListGroup, Image, Form, Card, Container} from 'react-bootstrap'
-import Product from '../components/products'
-import './styles.css'
-import Header from '../components/header'
+import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
-import deleteBut1 from './delete1.png';
-import deleteBut2 from './delete2.png';
 import smile from './smile.png';
-import upload from './upload.png';
 import { message } from 'antd';
 
 const CartScreen = ({match, location, history}) => {
@@ -47,7 +39,8 @@ const CartScreen = ({match, location, history}) => {
                 dispatch(changeCart(item.product, 
                     item.sizeStatus[key].countInStock, 
                     item.type, Number(e.target.value), 
-                    item.sizeStatus[key].countInStock))
+                    item.sizeStatus[key].countInStock,
+                    ""))
             }
         }
     }
@@ -67,7 +60,8 @@ const CartScreen = ({match, location, history}) => {
                         item.product, 
                         item.sizeStatus[key].countInStock, 
                         item.type, Number(e.target.value), 
-                        item.sizeStatus[key].countInStock))
+                        item.sizeStatus[key].countInStock,
+                        ""))
                 }
             }
         }
@@ -75,6 +69,25 @@ const CartScreen = ({match, location, history}) => {
    const handleCheckout = () => {
         history.push('/login?redirect=shipping')
    }
+   const uploadImage = (e, item) => {
+        e.preventDefault();
+        const { files } = e.target;
+        const myFileItemReader = new FileReader()
+        myFileItemReader.addEventListener("load", ()=>{
+        const file = myFileItemReader.result
+        if(file){
+            dispatch(changeCart(
+                item.id,
+                item.product, 
+                item.isizeStatus, 
+                item.type, 
+                item.size, 
+                item.countInStock,
+                window.URL.createObjectURL(files[0]))
+            )}
+        }, false)
+        myFileItemReader.readAsDataURL(files[0])
+    }
     return (
         <div className = "mainProduct">
             {cartItems.length === 0 ?  (
@@ -126,8 +139,14 @@ const CartScreen = ({match, location, history}) => {
                                 </Col > :
                                 <Col md = {2}>
                                     <p><strong>{t('Upload image.1')}: </strong> </p>
-                                    <div className = 'nav-but1-select' onClick = {handleCheckout}> {t('Select.1')}
+                                    <div className = 'button_for_everything' onClick = {uploadImage}> {t('Select.1')}
                                     </div> 
+                                    <input
+                                        type="file" 
+                                        accept=".png, .jpg, .jpeg"
+                                        name="photo"
+                                        onChange={e => uploadImage(e, item)}
+                                    />
                                 </Col>
                             }
                              <Col md = {2}>

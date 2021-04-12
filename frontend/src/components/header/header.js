@@ -23,7 +23,7 @@ function Header() {
                 <Link to = {`/test`} className = 'nav-links'>{t('Test.1')}</Link>
             </ul>
             <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
-            <Link to = {`/test`} className = 'nav-but2'>{t('SingIn.1')}</Link>
+            <Link to = {`/login`} className = 'nav-but2'>{t('SingIn.1')}</Link>
             <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
         </nav>
     )

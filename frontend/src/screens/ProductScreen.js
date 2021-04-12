@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense, useRef} from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from'react-redux'
-import {Link} from 'react-router-dom'
 import {Row, Col, ListGroup, Card, Form } from 'react-bootstrap'
 import "./styles.css"
 import ItemList from '../components/itemList'
@@ -12,8 +11,7 @@ import Loading from "../components/loading"
 import Message from "../components/message"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {productDetAction}  from '../actions/productsActions'
-import { Button } from 'bootstrap';
-import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
+import {addToCart} from '../actions/cartAction'
 import { message } from 'antd';
 
 extend({ OrbitControls }); 
@@ -120,15 +118,13 @@ const ProductScreen = ({history, match}) => {
             </Col>
             <Col md={6}>
           <div className = "CardDetails">
-            <h5><strong >{product.name.nameRus}/{product.name.nameEng}</strong></h5>
-            <div className = "text_details">1. {t('Step1.1')}</div>
-              
-
-              <Form.Control as='select' id ="1" custom value={product.type} type="text" placeholder={t("Select clothes type.1")} onChange = {handleChange}>   
+            <h5><strong >{product.name.nameRus}/{product.name.nameEng}</strong></h5>              
+            <Form.Label>1. {t('Step1.1')}</Form.Label>
+              <Form.Control as='select' id ="1" defaultValue="Choose..."   onChange = {handleChange}>  
+                <option value="default" key = "default">{t('Choose.1')}</option> 
                 <option value="dc" key = "dc">{t('DC.1')}</option>
                 <option value="rc" key = "rc">{t('RC.1')}</option>
               </Form.Control>
-
               <div className = "text_details">2. {t('Step2.1')}</div>
               <Card>
                 <ListGroup variant = 'flush'>
@@ -156,16 +152,14 @@ const ProductScreen = ({history, match}) => {
                           {t('Size.1')}
                         </Col>
                           <Col>
-                          <select   className = "SelectBut2" id = "2" onChange = {HandleSizeChange}>
-                            <option value=""  disabled hidden> 
-                              {t("Select clothes size.1")}
-                              </option> 
+                          <Form.Control as="select"   className = "SelectBut2" id = "2" onChange = {HandleSizeChange}>
+                              <option value="default" key = "default">{t('Choose.1')}</option> 
                               {Object.values(product.sizeStatus).map(item => (
                               <option value={item.size} className="card-panel" key = {item.size}>
                               {item.size}
                               </option>
                               ))}
-                          </select>
+                          </Form.Control>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -180,15 +174,12 @@ const ProductScreen = ({history, match}) => {
                   <Row>
                     <Col>{t("Quantity.1")}</Col>
                     <Col>
-                      <select value={qty} 
-                      onChange = {(e) => setQty(Number(e.target.value))}>
-                        <option value=""  disabled hidden> 
-                              {t("Select quantity.1")}
-                        </option> 
+                      <Form.Control as="select" value={qty} onChange = {(e) => setQty(Number(e.target.value))}>
+                        <option value="default" key = "default">{t("Choose.1")}</option> 
                         {[...Array(number).keys()].map(x => (
                           <option key = {x + 1} value = {x + 1}>{x + 1}</option>
                         ))}
-                      </select>
+                      </Form.Control>
                     </Col>
                   </Row>
                 </ListGroup.Item>
