@@ -43,4 +43,34 @@ const getProfile = expressAsyncHandler(async (req, res) => {
         throw new Error("User not found")
     }
 })
-export {userAuth, getProfile}
+
+//@description Registration
+//@route POST /api/users
+//@access Public
+const regUser = expressAsyncHandler(async (req, res) => {
+    const {firstName, lastName, email, password} = req.body
+    const existUser = await User.findOne({email})
+    if(existUser){
+        res.status(400)
+        throw new Error('User already exist')
+    }
+    const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+    })
+    if(user){
+        res.status(201).json({
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            isAdmin: user.isAdmin,
+        })
+    }else{
+        res.status(400)
+        throw new Error('Invalid user data')
+    }
+})
+export {userAuth, getProfile, regUser}
