@@ -28,6 +28,7 @@ const orderSchema = mongoose.Schema({
             require: true,
             ref: 'Product'
         },
+        custImage: {type: String},
     }],
     shippingAddress:{
         address: {type: String, require: true},
