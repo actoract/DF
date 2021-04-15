@@ -11,6 +11,7 @@ import ProductScreen from './screens/ProductScreen'
 import TestProductScreen from './screens/TestProductScreen'
 import CartScreen from './screens/CartScreen'
 import LoginScreen from './screens/LoginScreen'
+import RegScreen from './screens/RegScreen'
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path = '/test' component = {TestScreen} />
           <Route path = '/products/:id' component = {ProductScreen} />
           <Route path = '/login' component = {LoginScreen} />
+          <Route path = '/register' component = {RegScreen} />
           <Route path = '/testproduct/:id' component = {TestProductScreen} />
           <Route path = '/cart/:id?' component = {CartScreen} />
         </Container>

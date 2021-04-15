@@ -6,33 +6,27 @@ import { useTranslation } from 'react-i18next';
 import i18next from '../../i18n';
 import weardrop from './weardrop.png';
 import { Menu, Dropdown, Button, Space } from 'antd';
+import {logoutAction} from '../../actions/userAction'
 
 
 function Header() {
-
+    const dispatch = useDispatch()
     const { t,i18n } = useTranslation();
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     }
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
-
+    const handleLogout = () => {
+        dispatch(logoutAction())
+    }
     const menu = (
         <Menu>
           <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                {t('profile.1')}
-            </a>
+            {t('profile.1')}
           </Menu.Item>
-          <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+          <Menu.Item onClick = {handleLogout}>
             {t('log out.1')}
-                </a>
-          </Menu.Item>
-          <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-              3rd menu item
-            </a>
           </Menu.Item>
         </Menu>
       );
@@ -48,7 +42,7 @@ function Header() {
             <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
             {userInfo ? (
                 <Dropdown overlay={menu} placement="bottomRight">
-                    <Link to = {`/login`} className = 'nav-but1'>{userInfo.firstName} {userInfo.lastName}</Link>
+                    <Link to = {`/login`} className = 'nav-but1'>{userInfo.firstName}</Link>
                 </Dropdown>
             ) : 
                 <Link to = {`/login`} className = 'nav-but2'>{t('SingIn.1')}</Link>

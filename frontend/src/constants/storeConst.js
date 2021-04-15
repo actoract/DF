@@ -17,3 +17,12 @@ export const TEST_PRODUCTS_DET_FAIL = 'TEST_PRODUCTS_DET_FAIL';
 export const CART_ADD = 'CART_ADD';
 export const CART_REMOVE = 'CART_REMOVE';
 export const CART_CHANGE = 'CART_CHANGE';
+
+export const LOGIN_REQ = 'LOGIN_REQ'
+export const LOGIN_SUC = 'LOGIN_SUC'
+export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const LOGOUT = 'LOGOUT'
+
+export const REG_REQ = 'REG_REQ'
+export const REG_SUC = 'REG_SUC'
+export const REG_FAIL = 'REG_FAIL'
