@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
+import Uploader from '../components/upload'
 import smile from './smile.png';
 import { message } from 'antd';
 
@@ -139,14 +140,18 @@ const CartScreen = ({match, location, history}) => {
                                 </Col > :
                                 <Col md = {2}>
                                     <p><strong>{t('Upload image.1')}: </strong> </p>
-                                    <div className = 'button_for_everything' onClick = {uploadImage}> {t('Select.1')}
-                                    </div> 
+                                    <Uploader item = {item}/>
                                     <input
+                                        className = 'button_for_everything'
                                         type="file" 
                                         accept=".png, .jpg, .jpeg"
                                         name="photo"
                                         onChange={e => uploadImage(e, item)}
                                     />
+                                    <label>
+                                    <input type="file" name="file" accept=".png, .jpg, .jpeg" className = 'button_for_everything'/>
+                                    <span>Выберите файл</span>
+                                    </label>
                                 </Col>
                             }
                              <Col md = {2}>

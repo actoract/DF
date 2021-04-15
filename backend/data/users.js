@@ -3,20 +3,20 @@ const users = [
     {
         firstName: 'Admin User',
         lastName: 'Admin User',
-        email: 'fdknnk',
+        email: 'admin@yandex.ru',
         password: bcrypt.hashSync('1234567', 10),
         isAdmin: true
     },
     {
         firstName: 'Anna',
         lastName: 'chuprin',
-        email: 'lbknl ',
+        email: 'anna@yandex.ru ',
         password: bcrypt.hashSync('1234567', 10),
     },
     {
         firstName: 'Marie',
         lastName: 'chuprin',
-        email: 'lbknlfmvl ',
+        email: 'marie@yandex.ru',
         password: bcrypt.hashSync('1234567', 10),
     },
 ]
