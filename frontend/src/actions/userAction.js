@@ -1,4 +1,7 @@
-import { LOGIN_FAIL, LOGIN_REQ, LOGIN_SUC, LOGOUT, REG_REQ, REG_SUC, REG_FAIL } from "../constants/storeConst"
+import { LOGIN_FAIL, LOGIN_REQ, LOGIN_SUC, LOGOUT_REQ, 
+    REG_REQ, REG_SUC, REG_FAIL, 
+    USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL,
+    USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL} from "../constants/storeConst"
 import axios from 'axios'
 
 export const loginAction = (email, password) => async (dispatch) => {
@@ -56,5 +59,59 @@ export const regAction = (firstName, lastName, email, password) => async (dispat
 }
 export const logoutAction = () => async (dispatch) => {
     localStorage.removeItem('userInfo')
-    dispatch({type: LOGOUT})
+    dispatch({type: LOGOUT_REQ})
+}
+
+export const getProfileAction = (id) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: USER_PROFILE_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.get(`/api/users/${id}`, config)
+        dispatch({
+            type: USER_PROFILE_SUC,
+            payload: data
+        })
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }
+    catch(error){
+        dispatch({
+            type: USER_PROFILE_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const updProfileAction = (user) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: USER_PROFILE_UPD_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.put('/api/users/profile', user, config)
+        dispatch({
+            type: USER_PROFILE_UPD_SUC,
+            payload: data
+        })
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }
+    catch(error){
+        dispatch({
+            type: USER_PROFILE_UPD_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
 }

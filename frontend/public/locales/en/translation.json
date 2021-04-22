@@ -20,11 +20,11 @@
     "SelectFormat":{
         "1": "Select format of clothes"
     },
-    "SingIn":{
-        "1": "Sing In"
+    "SignIn":{
+        "1": "Sign In"
     },
     "Cart":{
-        "1": "Cart"
+        "1": "cart"
     },
     "Price":{
         "1": "Price"
@@ -112,6 +112,9 @@
     },
     "Choose":{
         "1": "Choose..."
+    },
+    "SignOut":{
+        "1": "sign out"
     }
     
     

@@ -22,12 +22,14 @@ function Header() {
     }
     const menu = (
         <Menu>
-          <Menu.Item>
-            {t('profile.1')}
-          </Menu.Item>
-          <Menu.Item onClick = {handleLogout}>
-            {t('log out.1')}
-          </Menu.Item>
+            <Link to = {`/profile`} >
+                <Menu.Item>
+                    {t('profile.1')}
+                </Menu.Item>
+            </Link>
+            <Menu.Item onClick = {handleLogout}>
+                {t('log out.1')}
+            </Menu.Item>
         </Menu>
       );
     return(
@@ -41,11 +43,9 @@ function Header() {
             </ul>
             <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
             {userInfo ? (
-                <Dropdown overlay={menu} placement="bottomRight">
-                    <Link to = {`/login`} className = 'nav-but1'>{userInfo.firstName}</Link>
-                </Dropdown>
+                <Link to = {`/login`} className = 'nav-but2' onClick = {handleLogout}>{t('SignOut.1')}</Link>
             ) : 
-                <Link to = {`/login`} className = 'nav-but2'>{t('SingIn.1')}</Link>
+                <Link to = {`/login`} className = 'nav-but2'>{t('SignIn.1')}</Link>
             }
             <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
         </nav>

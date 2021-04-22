@@ -21,8 +21,18 @@ export const CART_CHANGE = 'CART_CHANGE';
 export const LOGIN_REQ = 'LOGIN_REQ'
 export const LOGIN_SUC = 'LOGIN_SUC'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
-export const LOGOUT = 'LOGOUT'
+export const LOGOUT_REQ = 'LOGOUT_REQ'
 
 export const REG_REQ = 'REG_REQ'
 export const REG_SUC = 'REG_SUC'
 export const REG_FAIL = 'REG_FAIL'
+
+export const USER_PROFILE_REQ = 'USER_PROFILE_REQ'
+export const USER_PROFILE_SUC = 'USER_PROFILE_SUC'
+export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL'
+
+export const USER_PROFILE_UPD_REQ = 'USER_PROFILE_UPD_REQ'
+export const USER_PROFILE_UPD_SUC = 'USER_PROFILE_UPD_SUC'
+export const USER_PROFILE_UPD_FAIL = 'USER_PROFILE_UPD_FAIL'
+export const USER_PROFILE_UPD_RESET_FAIL = 'USER_PROFILE_UPD_RESET_FAIL'
+

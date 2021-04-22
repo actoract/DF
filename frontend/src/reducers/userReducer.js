@@ -1,4 +1,6 @@
-import {LOGIN_REQ, LOGIN_SUC, LOGIN_FAIL, LOGOUT, REG_REQ, REG_SUC, REG_FAIL} from '../constants/storeConst'
+import {LOGIN_REQ, LOGIN_SUC, LOGIN_FAIL, LOGOUT_REQ, REG_REQ, REG_SUC, REG_FAIL, 
+    USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL,
+    USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL, USER_PROFILE_UPD_RESET_FAIL} from '../constants/storeConst'
 
 export const userLoginReducer = (state = {}, action) => {
     switch(action.type){
@@ -16,8 +18,10 @@ export const userLoginReducer = (state = {}, action) => {
                 loadingVal: false,
                 error: action.payload
             }
-        case LOGOUT:
-            return{}
+        case LOGOUT_REQ:
+            return{
+
+            }
         default:
             return state
     }
@@ -39,6 +43,56 @@ export const userRegReducer = (state = {}, action) => {
             return{
                 loadingVal: false,
                 error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+
+
+export const userProfileReducer = (state = {user: {}}, action) => {
+    switch(action.type){
+        case USER_PROFILE_REQ:
+            return { 
+                ...state,
+                loadingVal: true
+            }
+        case USER_PROFILE_SUC:
+            return{
+                loadingVal: false,
+                user: action.payload
+            }
+        case USER_PROFILE_FAIL:
+            return{
+                loadingVal: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const userProfileUpdReducer = (state = {}, action) => {
+    switch(action.type){
+        case USER_PROFILE_UPD_REQ:
+            return { 
+                loadingVal: true
+            }
+        case USER_PROFILE_UPD_SUC:
+            return{
+                loadingVal: false,
+                success: true,
+                userInfo: action.payload
+            }
+        case USER_PROFILE_UPD_FAIL:
+            return{
+                loadingVal: false,
+                error: action.payload
+            }
+        case USER_PROFILE_UPD_RESET_FAIL:
+            return{
+
             }
         default:
             return state

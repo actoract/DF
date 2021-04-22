@@ -73,4 +73,33 @@ const regUser = expressAsyncHandler(async (req, res) => {
         throw new Error('Invalid user data')
     }
 })
-export {userAuth, getProfile, regUser}
+
+//@description UPDATE user profile
+//@route GET /api/users/profile
+//@access Private
+const updateProfile = expressAsyncHandler(async (req, res) => {
+    const existUser = await User.findById(req.user._id)
+    if(existUser){
+        existUser.firstName = req.body.firstName || existUser.firstName
+        existUser.lastName = req.body.lastName || existUser.lastName
+        existUser.email = req.body.email || existUser.email
+        if(req.body.password){
+            existUser.password = req.body.password
+        }
+        const updatedUser = await existUser.save()
+        res.json({
+            _id: updatedUser._id,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: tokenGeneration(updatedUser._id) //token Generation
+        })
+    }
+    else{
+        res.status(404)
+        throw new Error("User not found")
+    }
+})
+
+export {userAuth, getProfile, regUser, updateProfile}
