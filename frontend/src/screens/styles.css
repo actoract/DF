@@ -23,7 +23,8 @@
 }
 .CardDetails{
   position: relative;
-  width: 400px;
+  min-width: 400px;
+  max-width: 600px;
   height: auto;
   top: 0;
   max-height: 1000px;
@@ -43,9 +44,10 @@
   height: auto;
 }
 .mainProduct{
+  margin-top: 50px;
   position:absolute;
-  padding-top: 100px;
   width: 80%;
+  left: 10%;
 }
 .mainHome{
   position:absolute;
@@ -208,7 +210,7 @@ input[type="file"] {
   background-color: #FA460D;
 }
 .FormCont{
-  position: absolute;
-  top: 400px;
-  margin-top: 300px;
+  position: relative;
+  margin-top: 100px;
+  background-color: #f6f6f6;
 }

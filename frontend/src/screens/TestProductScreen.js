@@ -65,7 +65,7 @@ const TestProductScreen = ({match}) => {
     return (
         <div className = "mainProduct"> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
-          <Row>
+          <Row className='justify-content-center'>
             <Col md = {6}>
             <div className = "canvasP">
               <Canvas style={{ background: "white" }} >

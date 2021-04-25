@@ -29,7 +29,6 @@ const ShippingScreen = ({history}) => {
     }
     return (
         <FormCont className = "FormCont">
-           <h1>Shipping</h1> 
             <StepsComp step2></StepsComp>
            <Form onSubmit = {submitHandler} >
                 <Form.Group controlId='address'>

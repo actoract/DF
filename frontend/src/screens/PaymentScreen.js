@@ -29,7 +29,6 @@ const PaymentScreen = ({history}) => {
     }
     return (
         <FormCont className = "FormCont">
-           <h1>Shipping</h1> 
             <Steps step3></Steps>
            <Form onSubmit = {submitHandler} >
                 <Form.Group controlId='paymentMethod'>

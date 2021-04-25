@@ -142,6 +142,7 @@ const CartScreen = ({match, location, history}) => {
                                     <p><strong>{t('Upload image.1')}: </strong> </p>
                                     <Uploader item = {item}/>
                                     <input
+                                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                                         className = 'button_for_everything'
                                         type="file" 
                                         accept=".png, .jpg, .jpeg"
