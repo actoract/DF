@@ -207,3 +207,8 @@ input[type="file"] {
   border :1px solid white;
   background-color: #FA460D;
 }
+.FormCont{
+  position: absolute;
+  top: 400px;
+  margin-top: 300px;
+}

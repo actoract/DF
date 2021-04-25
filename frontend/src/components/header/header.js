@@ -33,7 +33,7 @@ function Header() {
         </Menu>
       );
     return(
-        <nav className = 'NavbarItems navbar-expand-sm fixed-top navbar-light' data-spy="affix" data-offset-top="197">
+        <nav className = 'NavbarItems navbar-expand-sm fixed-top navbar-light' data-spy="affix" data-offset-top="50">
             <Link to = {`/`}><img src={weardrop} alt="this is car image"  className = 'navbarlogo'/></Link>
             
             <ul className = 'nav-menu'>

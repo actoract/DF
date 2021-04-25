@@ -13,6 +13,8 @@ import CartScreen from './screens/CartScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegScreen from './screens/RegScreen'
 import UserScreen from './screens/UserScreen'
+import ShippingScreen from './screens/ShippingScreen'
+import PaymentScreen from './screens/PaymentScreen'
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
       <main className = "py-3">
         <Container>
           <Route path = '/' component = {HomeScreen} exact/>
+          <Route path = '/shipping' component = {ShippingScreen}/>
+          <Route path = '/payment' component = {PaymentScreen}/>
           <Route path = '/store' component = {StoreScreen} />
           <Route path = '/about' component = {AboutScreen} />
           <Route path = '/test' component = {TestScreen} />

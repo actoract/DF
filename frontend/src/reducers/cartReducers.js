@@ -1,6 +1,10 @@
-import {CART_ADD, CART_REMOVE, CART_CHANGE} from '../constants/storeConst'
+import {CART_ADD, 
+    CART_REMOVE, 
+    CART_CHANGE, 
+    CART_SAVE_ADDRESS,
+    CART_SAVE_PAYMENT_METHOD} from '../constants/storeConst'
 
-export const cartReducer = (state = {cartItems: []}, action) => {
+export const cartReducer = (state = {cartItems: [], deliveryAddress:{}}, action) => {
     switch (action.type){
         case CART_ADD:
             const item = action.payload
@@ -41,6 +45,18 @@ export const cartReducer = (state = {cartItems: []}, action) => {
                 ...state,
                 cartItems: state.cartItems.filter(x => (x.id !== action.payload.id && Number(x.size) !== Number(action.payload.size))) //Добавить проверку типа, размера, КРЧ идентифицировать, что это точно та одежда
             }
+        case CART_SAVE_ADDRESS:
+            return{
+                ...state,
+                deliveryAddress: action.payload
+            }
+
+        case CART_SAVE_PAYMENT_METHOD:
+            return{
+                ...state,
+                paymentMethod: action.payload
+            }
+
         default:
             return state
     }

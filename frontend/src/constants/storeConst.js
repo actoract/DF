@@ -17,6 +17,8 @@ export const TEST_PRODUCTS_DET_FAIL = 'TEST_PRODUCTS_DET_FAIL';
 export const CART_ADD = 'CART_ADD';
 export const CART_REMOVE = 'CART_REMOVE';
 export const CART_CHANGE = 'CART_CHANGE';
+export const CART_SAVE_ADDRESS = 'CART_SAVE_ADDRESS';
+export const CART_SAVE_PAYMENT_METHOD = 'CART_SAVE_PAYMENT_METHOD';
 
 export const LOGIN_REQ = 'LOGIN_REQ'
 export const LOGIN_SUC = 'LOGIN_SUC'
