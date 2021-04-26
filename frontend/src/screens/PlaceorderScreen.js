@@ -16,6 +16,9 @@ const PlaceorderScreen = () => {
     const dispatch = useDispatch();
     const { t } = useTranslation(); 
     const cart = useSelector(state => state.cart)
+    const handleCheckout = () => {
+        //history.push('/login?redirect=shipping')
+   }
     return (
         <>
         <Row className = 'justify-content-md-center'>
@@ -25,13 +28,13 @@ const PlaceorderScreen = () => {
           <Row>
             
             <div className = "CardDetails">
-                <div className = "text_details"><strong>Shipping address: </strong> 
+                <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
                   {cart.deliveryAddress.address},
                     {cart.deliveryAddress.city},
                     {cart.deliveryAddress.postCode},
                     {cart.deliveryAddress.country}</div>
-                <div className = "text_details"><strong>Payment method: </strong> {cart.paymentMethod}</div>
-                <div className = "text_details"><strong>Cart items: </strong></div>
+                <div className = "text_details"><strong>{t('Payment method.1')}: </strong> {cart.paymentMethod}</div>
+                <div className = "text_details"><strong>{t('Cart items.1')}: </strong></div>
                 <ListGroup.Item>
                 {cart.cartItems.length === 0? alert("Empty cart") : (
                     <ListGroup variant='flush'>
@@ -60,6 +63,14 @@ const PlaceorderScreen = () => {
                 )}
                 </ListGroup.Item>
             </div>
+            <Col md={4}>
+                <div className = "CardDetails2">
+                    <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
+                    <p><strong>{t('Total number.1')}:</strong> {cart.cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
+                    <p><strong>{t('Total price.1')}:</strong> {cart.cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
+                    <div className = 'nav-but2' onClick = {handleCheckout}>{t('place order.1')}</div>  
+                </div>
+            </Col>
           </Row>
         </div>
         </>

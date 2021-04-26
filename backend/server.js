@@ -14,11 +14,13 @@ app.use(express.json())
 dotenv.config()
 connectDB()
 
-
+//HTTP GET "/"
 app.get('/', (req, res) => {
     res.send('API is running')
 })
+//specified middleware function to "/products"
 app.use('/api/products', productRoutes)
+//specified middleware function to "/users"
 app.use('/api/users', userRoutes)
 /*app.get('/api/products', (req, res) => {
     res.json(products)
@@ -28,6 +30,7 @@ app.get('/api/products/:id', (req, res) => {
     res.json(product)
 })*/
 
+//specified middleware function to "/testproducts"
 app.use('/api/testproducts', testproductRoutes)
 
 /*app.get('/api/testproducts', (req, res) => {
@@ -41,6 +44,7 @@ app.get('/api/testproducts/:id', (req, res) => {
 app.use(notFound)
 app.use(errorHandler)
 
+//connections on the specified host and port 5000
 const PORT = process.env.PORT || 5000
 app.listen(
     PORT, 

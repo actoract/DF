@@ -33,19 +33,19 @@ const ShippingScreen = ({history}) => {
            <Form onSubmit = {submitHandler} >
                 <Form.Group controlId='address'>
                     <Form.Label>address</Form.Label>
-                    <Form.Control required type = "text" placeholder = 'enter address' onChange = {(e) => setAddress(e.target.value)}></Form.Control>
+                    <Form.Control required type = "text" placeholder = {!address ?'enter address' : address} onChange = {(e) => setAddress(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='address'>
                     <Form.Label>city</Form.Label>
-                    <Form.Control required type = "text" placeholder = 'enter city' onChange = {(e) => setCity(e.target.value)}></Form.Control>
+                    <Form.Control required type = "text" placeholder = {!city ? 'enter city': city} onChange = {(e) => setCity(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='address'>
                     <Form.Label>country</Form.Label>
-                    <Form.Control required type = "text" placeholder = 'enter country' onChange = {(e) => setCountry(e.target.value)}></Form.Control>
+                    <Form.Control required type = "text" placeholder = {!country ? 'enter country': country} onChange = {(e) => setCountry(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='address'>
                     <Form.Label>post code</Form.Label>
-                    <Form.Control required type = "text" placeholder = 'enter post code' onChange = {(e) => setPostCode(e.target.value)}></Form.Control>
+                    <Form.Control required type = "text" placeholder = {!postCode ? 'enter post code': postCode} onChange = {(e) => setPostCode(e.target.value)}></Form.Control>
                 </Form.Group>
                 <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>
            </Form>

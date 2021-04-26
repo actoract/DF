@@ -89,6 +89,28 @@ const CartScreen = ({match, location, history}) => {
         }, false)
         myFileItemReader.readAsDataURL(files[0])
     }
+    const onChange = (event, item) => {
+        event.preventDefault();
+        const { files } = event.target;
+        console.log(files[0])
+        const myFileItemReader = new FileReader()
+        myFileItemReader.addEventListener("load", ()=>{
+          const file = myFileItemReader.result
+          if(file){
+            dispatch(changeCart(
+                item.id,
+                item.product, 
+                item.isizeStatus, 
+                item.type, 
+                item.size, 
+                item.countInStock,
+                window.URL.createObjectURL(files[0]))
+            )
+          }
+          
+        }, false)
+        myFileItemReader.readAsDataURL(files[0])
+      }
     return (
         <div className = "mainProduct">
             {cartItems.length === 0 ?  (
@@ -140,6 +162,7 @@ const CartScreen = ({match, location, history}) => {
                                 </Col > :
                                 <Col md = {2}>
                                     <p><strong>{t('Upload image.1')}: </strong> </p>
+                                    <input id='ImageInput' type="file" onChange={e => onChange(e, item)} accept="image/*"/>
                                     <Uploader item = {item}/>
                                     <input
                                         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"

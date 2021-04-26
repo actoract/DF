@@ -21,7 +21,8 @@
         "1": "Select format of clothes"
     },
     "SignIn":{
-        "1": "Sign In"
+        "1": "sign In",
+        "2": "sign in for further steps"
     },
     "Cart":{
         "1": "cart"
@@ -115,6 +116,27 @@
     },
     "SignOut":{
         "1": "sign out"
+    },
+    "ORDER SUMMERY":{
+        "1": "ORDER SUMMERY"
+    },
+    "Payment method":{
+        "1": "Payment method",
+        "2": "payment method",
+        "3": "choose payment method"
+    },
+    "Cart items":{
+        "1": "Cart items"
+    },
+    "Shipping address":{
+        "1": "Shipping address",
+        "2": "shipping address",
+        "3": "fill the shipping address form"
+    },
+    "place order":{
+        "1": "place order", 
+        "2": "finish your order application",
+        "3": "Place order"
     }
     
     
