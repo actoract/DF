@@ -8,25 +8,38 @@ import {useDispatch, useSelector} from 'react-redux'
 import Loader from '../components/loader'
 import FormCont from '../components/form'
 import StepsComp from '../components/steps'
-import {regAction} from '../actions/userAction.js'
+import {addOrder} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import {saveAddress} from '../actions/cartAction'
 
-const PlaceorderScreen = () => {
+const PlaceorderScreen = ({history}) => {
+    const orderAdd = useSelector(state => state.orderAdd)
+    const {loading, order, success, error} = orderAdd
     const dispatch = useDispatch();
     const { t } = useTranslation(); 
     const cart = useSelector(state => state.cart)
-    const handleCheckout = () => {
-        //history.push('/login?redirect=shipping')
-   }
+    useEffect(() => {
+        if(success){
+            history.push(`/order/${order._id}`)
+        }
+        else if (error){
+            message.error(error, 3);
+        }
+    },[history, success])
+    const hadlePlaceOrder = () => {
+        dispatch(addOrder({
+            orderItems: cart.cartItems,
+            deliveryAddress: cart.deliveryAddress,
+            paymentMethod: cart.paymentMethod
+        }))
+    }
     return (
         <>
         <Row className = 'justify-content-md-center'>
-                <StepsComp step4/>
+            <StepsComp step4/>
         </Row>
         <div className = "mainProduct"> 
           <Row>
-            
             <div className = "CardDetails">
                 <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
                   {cart.deliveryAddress.address},
@@ -68,7 +81,7 @@ const PlaceorderScreen = () => {
                     <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
                     <p><strong>{t('Total number.1')}:</strong> {cart.cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
                     <p><strong>{t('Total price.1')}:</strong> {cart.cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
-                    <div className = 'nav-but2' onClick = {handleCheckout}>{t('place order.1')}</div>  
+                    <div className = 'nav-but2' onClick = {hadlePlaceOrder}>{t('place order.1')}</div>  
                 </div>
             </Col>
           </Row>

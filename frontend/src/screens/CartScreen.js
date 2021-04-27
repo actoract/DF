@@ -84,7 +84,8 @@ const CartScreen = ({match, location, history}) => {
                 item.type, 
                 item.size, 
                 item.countInStock,
-                window.URL.createObjectURL(files[0]))
+                file)
+                //window.URL.createObjectURL(files[0]))
             )}
         }, false)
         myFileItemReader.readAsDataURL(files[0])
@@ -95,8 +96,11 @@ const CartScreen = ({match, location, history}) => {
         console.log(files[0])
         const myFileItemReader = new FileReader()
         myFileItemReader.addEventListener("load", ()=>{
-          const file = myFileItemReader.result
-          if(file){
+        const file = myFileItemReader.result
+        var base64Flag = 'data:image/png;base64,';
+        alert(files[0].thumbUrl)
+        //var imageStr = this.arrayBufferToBase64(data.img.data.thumbUrl);
+        if(file){
             dispatch(changeCart(
                 item.id,
                 item.product, 
@@ -104,7 +108,7 @@ const CartScreen = ({match, location, history}) => {
                 item.type, 
                 item.size, 
                 item.countInStock,
-                window.URL.createObjectURL(files[0]))
+                files[0].thumbUrl)
             )
           }
           
@@ -164,16 +168,8 @@ const CartScreen = ({match, location, history}) => {
                                     <p><strong>{t('Upload image.1')}: </strong> </p>
                                     <input id='ImageInput' type="file" onChange={e => onChange(e, item)} accept="image/*"/>
                                     <Uploader item = {item}/>
-                                    <input
-                                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                        className = 'button_for_everything'
-                                        type="file" 
-                                        accept=".png, .jpg, .jpeg"
-                                        name="photo"
-                                        onChange={e => uploadImage(e, item)}
-                                    />
                                     <label>
-                                    <input type="file" name="file" accept=".png, .jpg, .jpeg" className = 'button_for_everything'/>
+                                    <input type="file" name="file" accept=".png, .jpg, .jpeg" onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
                                     <span>Выберите файл</span>
                                     </label>
                                 </Col>

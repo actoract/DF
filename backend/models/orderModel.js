@@ -1,14 +1,5 @@
 import mongoose from 'mongoose'
 
-const imageSchema = mongoose.Schema({
-    name: String,
-    desc: String,
-    img:
-    {
-        data: Buffer,
-        contentType: String
-    }
-});
 
 const orderSchema = mongoose.Schema({
     user:{
@@ -17,9 +8,13 @@ const orderSchema = mongoose.Schema({
         ref: 'User'
     },
     orderItems: [{
-        name: {type: String, require: true},
+        id: {type: Number, require: true},
+        name: {
+            nameRus: {type: String, require: true},
+            nameEng: {type: String, require: true},
+        },
         qty: {type: Number, require: true},
-        size: {type: Number},
+        size: {type: Number, require: true},
         type: {type: String, require: true},
         image: {type: String, require: true},
         price: {type: Number, require: true},
@@ -30,10 +25,10 @@ const orderSchema = mongoose.Schema({
         },
         custImage: {type: String},
     }],
-    shippingAddress:{
+    deliveryAddress:{
         address: {type: String, require: true},
         city: {type: String, require: true},
-        postcode: {type: String, require: true},
+        postCode: {type: String, require: true},
         country: {type: String, require: true},
     },    
     email:{
@@ -71,7 +66,6 @@ const orderSchema = mongoose.Schema({
     deliveredAt:{
         type: Date
     },
-    image: [imageSchema],
 }, {
     timeStams: true
 })
