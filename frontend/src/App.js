@@ -16,6 +16,7 @@ import UserScreen from './screens/UserScreen'
 import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceorderScreen from './screens/PlaceorderScreen'
+import OrdersScreen from './screens/OrdersScreen'
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path = '/' component = {HomeScreen} exact/>
           <Route path = '/shipping' component = {ShippingScreen}/>
           <Route path = '/payment' component = {PaymentScreen}/>
+          <Route path = '/order/:id' component = {OrdersScreen}/>
           <Route path = '/placeorder' component = {PlaceorderScreen}/>
           <Route path = '/store' component = {StoreScreen} />
           <Route path = '/about' component = {AboutScreen} />

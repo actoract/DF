@@ -42,3 +42,7 @@ export const ORDER_ADD_REQ = 'ORDER_ADD_REQ'
 export const ORDER_ADD_SUC = 'ORDER_ADD_SUC'
 export const ORDER_ADD_FAIL = 'ORDER_ADD_FAIL'
 
+export const ORDER_DET_REQ = 'ORDER_DET_REQ'
+export const ORDER_DET_SUC = 'ORDER_DET_SUC'
+export const ORDER_DET_FAIL = 'ORDER_DET_FAIL'
+
