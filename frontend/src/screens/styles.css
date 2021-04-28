@@ -23,8 +23,7 @@
 }
 .CardDetails{
   position: relative;
-  min-width: 400px;
-  max-width: 600px;
+  width: auto;
   height: auto;
   top: 0;
   max-height: 1000px;
@@ -39,6 +38,9 @@
   box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
   
 }
+.CardDetails.cart{
+  width: 650px;  
+}
 .Select{
   width: auto;
   height: auto;
@@ -46,7 +48,7 @@
 .mainProduct{
   margin-top: 50px;
   position:absolute;
-  width: 80%;
+  width: 100%;
   left: 10%;
 }
 .mainHome{
@@ -112,16 +114,18 @@
   top: 0;
   max-height: 1000px;
   padding: 20px;
-
-  margin: 10px;
+  margin-bottom: 20px;
   border-radius: 5px;
   border-width: 10px;
   backdrop-filter: 1px;
-  background-color: #FFEDED;
-  box-shadow: 0px 0px 50px 10px #FDE2E2;
-
   background-color: white;
   box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+}
+.CardDetails2.details{
+  margin-top: 20px;
+}
+.CardDetails2.details:hover{
+  box-shadow: 0 30px 30px rgb(36 37 38 / 8%);
 }
 .IconButton{
   position: absolute;

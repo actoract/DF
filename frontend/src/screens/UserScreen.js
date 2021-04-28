@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import { message } from 'antd'
-import {Form, Button, Row, Col} from 'react-bootstrap'
+import {Form, Button, Row, Col, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 //import Message from '../components/message'
 import Loader from '../components/loader'
 import FormCont from '../components/form'
+import {userOrdersAction} from '../actions/orderActions'
 import {regAction, getProfileAction, loginAction, updProfileAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
 
@@ -21,7 +22,10 @@ const UserScreen = ({location, history}) => {
     const dispatch = useDispatch()
 
     const userProfile = useSelector(state => state.userProfile)
-    const {loading, error, user} = userProfile
+    const {loading: loadingProfile, error: errorProfile, user} = userProfile
+
+    const userOrders = useSelector(state => state.userOrders)
+    const {loading: loadingOrders, error: errorOrders, orders} = userOrders
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -34,8 +38,9 @@ const UserScreen = ({location, history}) => {
             history.push('/login') 
         }
         else {
-            if (!user){
+            if (!user.firstName){
                 dispatch(getProfileAction('profile'))
+                dispatch(userOrdersAction())
             }
             else{
                 setFirstName(user.firstName)
@@ -57,37 +62,58 @@ const UserScreen = ({location, history}) => {
     }
     return (
         <Row>
-            <Col md = {3}>
-
+            <Col md={3}>
+                <div className = "CardDetails2">
+                    <p><strong>{t('First name.1')}:</strong> {userInfo.firstName}</p>
+                    <p><strong>{t('Last name.1')}:</strong> {userInfo.lastName}</p>
+                    <p><strong>{t('Email.1')}:</strong> {userInfo.email}</p>
+                </div>
             </Col>
-            <Col md = {6}>
-                <FormCont>
-                <h1>user profile</h1>
-                {loading && <Loader/>}
-                <Form onSubmit = {submitHandler}>
-                    <Form.Group controlId='firstName'>
-                        <Form.Label>first name</Form.Label>
-                        <Form.Control type = "firstName" placeholder = {firstName} onChange = {(e) => setFirstName(e.target.value)}>{firstName}</Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId='lastName'>
-                        <Form.Label>last name</Form.Label>
-                        <Form.Control type = "lastName" placeholder = {lastName} onChange = {(e) => setLastName(e.target.value)}>{lastName}</Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId='email'>
-                        <Form.Label>email adress</Form.Label>
-                        <Form.Control type = "email" placeholder = {email} onChange = {(e) => setEmail(e.target.value)}></Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>password</Form.Label>
-                        <Form.Control type = "password" placeholder = 'enter password' onChange = {(e) => setPassword(e.target.value)}></Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId='passwordConf'>
-                        <Form.Label>password</Form.Label>
-                        <Form.Control type = "passwordConf" placeholder = 'confirm password' onChange = {(e) => setPasswordConf(e.target.value)}></Form.Control>
-                    </Form.Group>
-                    <Button className = "button_for_everything" type='submit' variant='primary'>update</Button>
-                    </Form>
-                </FormCont>
+            <Col md = {9}>
+                {loadingOrders ? <Loader loadingVal = {loadingOrders}/> :
+                    <>
+                    <div  key = "header">
+                            <Row>
+                                <Col md={4}>
+                                    <strong>{t('ID.1')}: </strong> 
+                                </Col>
+                                <Col md={2}>
+                                    <strong>{t('Total price.1')}: </strong> {}
+                                </Col>
+                                <Col md={2}>
+                                    <strong>{t('Order date.1')}: </strong> {}
+                                </Col>
+                                <Col md={1}>
+                                    <strong>{t('Paid.1')}: </strong> {}
+                                </Col>
+                                <Col md={2}>
+                                    <strong>{t('Delivered.1')}: </strong> {}
+                                </Col>
+                            </Row>
+                        </div>
+                    {orders.map(item => (
+                        <div className = "CardDetails2 details" key = {item._id + "/" + item._id}>
+                            <Row>
+                                <Col md={4}>
+                                    <strong>{t('ID.1')}: </strong> {item._id}
+                                </Col>
+                                <Col md={2}>
+                                    <strong>{t('Total price.1')}: </strong> {}
+                                </Col>
+                                <Col md={2}>
+                                    <strong>{t('Order date.1')}: </strong> {}
+                                </Col>
+                                <Col md={1}>
+                                    <strong>{t('Paid.1')}: </strong> {}
+                                </Col>
+                                <Col md={2}>
+                                    <strong>{t('Delivered.1')}: </strong> {}
+                                </Col>
+                            </Row>
+                        </div>
+                    ))}
+                    </>
+                }
             </Col>
         </Row>
     )

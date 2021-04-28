@@ -24,8 +24,13 @@ const ShippingScreen = ({history}) => {
     }
     const handleCheckout = (e) => {
         e.preventDefault();
-        dispatch(saveAddress({address, city, postCode, country}))
-        history.push('/payment')
+        if(address && city && postCode && country){
+            dispatch(saveAddress({address, city, postCode, country}))
+            history.push('/payment')
+        }
+        else{
+            message.error(t('Fill the form.1'), 1)
+        }
     }
     return (
         <FormCont className = "FormCont">

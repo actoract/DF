@@ -12,6 +12,8 @@ import {userProfileReducer} from './reducers/userReducer'
 import {userProfileUpdReducer} from './reducers/userReducer'
 import {orderAddRecuder} from './reducers/orderReducers'
 import {getOrderByIdReducer} from './reducers/orderReducers'
+//import {orderPayReducer} from './reducers/orderReducers'
+import {userOrdersReducer} from './reducers/orderReducers'
 
 
 
@@ -27,7 +29,9 @@ const reducer = combineReducers({
     userProfile: userProfileReducer,
     userUpdProfile: userProfileUpdReducer,
     orderAdd: orderAddRecuder,
-    orderDetails: getOrderByIdReducer,    
+    orderDetails: getOrderByIdReducer,
+    //orderPay: orderPayReducer,
+    userOrders: userOrdersReducer,
 })
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 const userInformationFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null

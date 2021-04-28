@@ -6,6 +6,7 @@ import ItemList from '../components/itemList'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/message'
 import Loader from '../components/loader'
+import Status from '../components/status'
 import {getOrderById} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import {saveAddress} from '../actions/cartAction'
@@ -18,8 +19,10 @@ const OrdersScreen = ({match}) => {
     const { t } = useTranslation(); 
 
     useEffect(() => {
-        dispatch(getOrderById(orderId))
-    },[])
+        if(!order || order._id !== orderId) {
+            dispatch(getOrderById(orderId))
+        }
+    }, [order, orderId]) 
 
     return (
         <>
@@ -40,7 +43,7 @@ const OrdersScreen = ({match}) => {
                         {order.orderItems.map((item, index) => (
                             <ListGroup.Item key={index}>
                                 <Row>
-                                    <Col md={1}>
+                                    <Col md={2}>
                                         <Image src={item.image} alt={item.name.nameRus} fluid rounded></Image>
                                     </Col>
                                     <Col md={2}>
@@ -50,7 +53,7 @@ const OrdersScreen = ({match}) => {
                                         {item.type === "dc" ? "Digital clothes" : "Real clothes"}
                                     </Col>
                                     <Col md={2}>
-                                        {item.type === "dc" ? <img src={item.custimeImage } alt="1" fluid rounded></img>: <div/>}
+                                        {item.type === "dc" ? <Image src={item.custImage } alt="1" fluid rounded></Image>: <div/>}
                                     </Col>
                                     <Col md={4}>
                                         {item.qty} x {item.price} = {item.qty * item.price}
@@ -62,12 +65,17 @@ const OrdersScreen = ({match}) => {
                 )}
                 </ListGroup.Item>
             </div>
-            <Col md={4}>
+            
+          <Col md={4}>
                 <div className = "CardDetails2">
                     <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
                     <p><strong>{t('Total number.1')}:</strong> {order.orderItems.reduce((acc, current) => acc + current.qty, 0)}</p>
                     <p><strong>{t('Total price.1')}:</strong> {order.orderItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
-                    <div className = 'nav-but2' >{t('place order.1')}</div>  
+                    <p><strong>{t('Payment status.1')}:</strong> {!order.isPaid ? t('Not paid.1') : t('Paid.1')}</p>
+                    {order.isPaid ? <p><strong>{t('Paid at.1')}:</strong>  order.paidAt </p>: ""}
+                    <p><strong>{t('Delivery status.1')}:</strong> {!order.isDelivered ? t('Not delivered.1') : t('Deliverd.1')}</p>
+                    {order.isDelivered ? <p><strong>{t('Delivered at.1')}:</strong>  order.deliveredAt </p>: ""}
+                    <Status/>
                 </div>
             </Col>
           </Row>

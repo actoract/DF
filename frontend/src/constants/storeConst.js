@@ -46,3 +46,12 @@ export const ORDER_DET_REQ = 'ORDER_DET_REQ'
 export const ORDER_DET_SUC = 'ORDER_DET_SUC'
 export const ORDER_DET_FAIL = 'ORDER_DET_FAIL'
 
+export const USER_ORDERS_REQ = 'USER_ORDERS_REQ'
+export const USER_ORDERS_SUC = 'USER_ORDERS_SUC'
+export const USER_ORDERS_FAIL = 'USER_ORDERS_FAIL'
+
+export const ORDER_PAY_REQ = 'ORDER_PAY_REQ'
+export const ORDER_PAY_SUC = 'ORDER_PAY_SUC'
+export const ORDER_PAY_FAIL = 'ORDER_PAY_FAIL'
+export const ORDER_PAY_RESET = 'ORDER_PAY_RESET'
+

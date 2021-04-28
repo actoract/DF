@@ -43,7 +43,9 @@ function Header() {
             </ul>
             <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
             {userInfo ? (
-                <Link to = {`/login`} className = 'nav-but2' onClick = {handleLogout}>{t('SignOut.1')}</Link>
+                <Dropdown overlay={menu} placement="bottomRight">
+                <Link to = {`/login`} className = 'nav-but1'>{userInfo.firstName}</Link>
+                </Dropdown>
             ) : 
                 <Link to = {`/login`} className = 'nav-but2'>{t('SignIn.1')}</Link>
             }

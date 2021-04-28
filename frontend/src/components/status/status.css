@@ -1,0 +1,8 @@
+.status{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: white;
+    border-radius: 30px;
+    border-color: #FA460D;
+}

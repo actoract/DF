@@ -40,7 +40,7 @@ const PlaceorderScreen = ({history}) => {
         </Row>
         <div className = "mainProduct"> 
           <Row>
-            <div className = "CardDetails">
+            <div className = "CardDetails cart">
                 <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
                   {cart.deliveryAddress.address},
                     {cart.deliveryAddress.city},
@@ -54,19 +54,19 @@ const PlaceorderScreen = ({history}) => {
                         {cart.cartItems.map((item, index) => (
                             <ListGroup.Item key={index}>
                                 <Row>
-                                    <Col md={1}>
+                                    <Col md={2}>
                                         <Image src={item.image} alt={item.name.nameRus} fluid rounded></Image>
                                     </Col>
-                                    <Col md={2}>
+                                    <Col md={3}>
                                         <Link to={`/product/${item.product}`}>{item.name.nameRus}/{item.name.nameEng}</Link>
                                     </Col>
                                     <Col md={2}>
                                         {item.type === "dc" ? "Digital clothes" : "Real clothes"}
                                     </Col>
                                     <Col md={2}>
-                                        {item.type === "dc" ? item.custimeImage : <div/>}
+                                        {item.type === "dc" ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : <div/>}
                                     </Col>
-                                    <Col md={4}>
+                                    <Col md={2}>
                                         {item.qty} x {item.price} = {item.qty * item.price}
                                     </Col>
                                 </Row>
@@ -76,8 +76,8 @@ const PlaceorderScreen = ({history}) => {
                 )}
                 </ListGroup.Item>
             </div>
-            <Col md={4}>
-                <div className = "CardDetails2">
+            <Col md={3}>
+                <div className = "CardDetails2" >
                     <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
                     <p><strong>{t('Total number.1')}:</strong> {cart.cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
                     <p><strong>{t('Total price.1')}:</strong> {cart.cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>

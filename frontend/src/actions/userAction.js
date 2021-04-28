@@ -79,7 +79,6 @@ export const getProfileAction = (id) => async (dispatch, getState) => {
             type: USER_PROFILE_SUC,
             payload: data
         })
-        localStorage.setItem('userInfo', JSON.stringify(data))
     }
     catch(error){
         dispatch({

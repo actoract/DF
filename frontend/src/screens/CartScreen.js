@@ -22,6 +22,7 @@ const CartScreen = ({match, location, history}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
+    const [image, setImage] = useState();
     useEffect (() => {
         if(productId){
             dispatch(addToCart(cartItems.length + 1, productId, qty, type, Number(size), 0))
@@ -32,7 +33,7 @@ const CartScreen = ({match, location, history}) => {
         dispatch(removeFromCart(id, Number(size)))
     }
 
-    const handleSizeChange = (e, item) => {
+    /*const handleSizeChange = (e, item) => {
         const keys = Object.keys(item.sizeStatus); 
         for (let key of keys) {
             if (item.sizeStatus[key].size == e.target.value){
@@ -44,7 +45,7 @@ const CartScreen = ({match, location, history}) => {
                     ""))
             }
         }
-    }
+    }*/
     const handleChange = (e, item) => {
         const keys = Object.keys(item.sizeStatus); 
         const  exist = cartItems.find(x => x.product == item.product && Number(e.target.value) == Number(x.size));
@@ -68,7 +69,12 @@ const CartScreen = ({match, location, history}) => {
         }
     }
    const handleCheckout = () => {
-        history.push('/login?redirect=shipping')
+       if(image){
+            history.push('/login?redirect=shipping')
+       }
+       else{
+            message.error(t('Upload image to digital purchase.1'), 1)
+       }
    }
    const uploadImage = (e, item) => {
         e.preventDefault();
@@ -76,6 +82,7 @@ const CartScreen = ({match, location, history}) => {
         const myFileItemReader = new FileReader()
         myFileItemReader.addEventListener("load", ()=>{
         const file = myFileItemReader.result
+        setImage(file)
         if(file){
             dispatch(changeCart(
                 item.id,
@@ -90,7 +97,7 @@ const CartScreen = ({match, location, history}) => {
         }, false)
         myFileItemReader.readAsDataURL(files[0])
     }
-    const onChange = (event, item) => {
+    /*const onChange = (event, item) => {
         event.preventDefault();
         const { files } = event.target;
         console.log(files[0])
@@ -114,7 +121,7 @@ const CartScreen = ({match, location, history}) => {
           
         }, false)
         myFileItemReader.readAsDataURL(files[0])
-      }
+      }*/
     return (
         <div className = "mainProduct">
             {cartItems.length === 0 ?  (
@@ -166,11 +173,10 @@ const CartScreen = ({match, location, history}) => {
                                 </Col > :
                                 <Col md = {2}>
                                     <p><strong>{t('Upload image.1')}: </strong> </p>
-                                    <input id='ImageInput' type="file" onChange={e => onChange(e, item)} accept="image/*"/>
-                                    <Uploader item = {item}/>
                                     <label>
                                     <input type="file" name="file" accept=".png, .jpg, .jpeg" onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
                                     <span>Выберите файл</span>
+                                    {image ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
                                     </label>
                                 </Col>
                             }
@@ -195,13 +201,13 @@ const CartScreen = ({match, location, history}) => {
                     </div>
                 ))}
                 </Col>
-                    <Col md={3}>
-                        <div className = "CardDetails2">
-                            <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
-                            <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
-                            <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
-                        </div>
-                    </Col>
+                <Col md={3}>
+                    <div className = "CardDetails2">
+                        <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
+                        <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
+                        <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
+                    </div>
+                </Col>
                 </Row>
             )}
         </div>
