@@ -1,7 +1,8 @@
 import { LOGIN_FAIL, LOGIN_REQ, LOGIN_SUC, LOGOUT_REQ, 
     REG_REQ, REG_SUC, REG_FAIL, 
     USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL,
-    USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL} from "../constants/storeConst"
+    USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL,
+    USERS_REQ, USERS_SUC, USERS_FAIL} from "../constants/storeConst"
 import axios from 'axios'
 
 export const loginAction = (email, password) => async (dispatch) => {
@@ -110,6 +111,31 @@ export const updProfileAction = (user) => async (dispatch, getState) => {
     catch(error){
         dispatch({
             type: USER_PROFILE_UPD_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const usersAction = () => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: USERS_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.get('/api/users', config)
+        dispatch({
+            type: USERS_SUC,
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: USERS_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

@@ -48,8 +48,8 @@ const getProfile = expressAsyncHandler(async (req, res) => {
 //@route GET /api/users
 //@access for admin
 const getAllProfiles = expressAsyncHandler(async (req, res) => {
-    const existUser = await User.find({})
-    res.json(existUser)
+    const users = await User.find({})
+    res.json(users)
 })
 
 //@description Registration
