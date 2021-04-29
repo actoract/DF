@@ -9,6 +9,8 @@ import FormCont from '../components/form'
 import {userOrdersAction} from '../actions/orderActions'
 import {regAction, getProfileAction, loginAction, updProfileAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
+import CartDetails from "../components/cardDetails"
+import ModalMessage from "../components/modalMessage"
 
 const UserScreen = ({location, history}) => {
     const [firstName, setFirstName] = useState('')
@@ -50,72 +52,44 @@ const UserScreen = ({location, history}) => {
         }
     }, [dispatch, history, userInfo, user])
 
-    const submitHandler = (e) =>{
+    /*const submitHandler = (e) =>{
         e.preventDefault()
         /*if(password && password !== passwordConfirm){
             message.error(t('Passwods dont match.1'), 3);
-        }*/
+        }
             dispatch(updProfileAction({id: user._id, firstName, lastName, email, password}))
         if (success){
             message.success(t('Success.1'), 1)
         }
-    }
+    }*/
     return (
-        <Row>
-            <Col md={3}>
-                <div className = "CardDetails2">
-                    <p><strong>{t('First name.1')}:</strong> {userInfo.firstName}</p>
-                    <p><strong>{t('Last name.1')}:</strong> {userInfo.lastName}</p>
-                    <p><strong>{t('Email.1')}:</strong> {userInfo.email}</p>
-                </div>
-            </Col>
-            <Col md = {9}>
-                {loadingOrders ? <Loader loadingVal = {loadingOrders}/> :
-                    <>
-                    <div  key = "header">
-                            <Row>
-                                <Col md={4}>
-                                    <strong>{t('ID.1')}: </strong> 
-                                </Col>
-                                <Col md={2}>
-                                    <strong>{t('Total price.1')}: </strong> {}
-                                </Col>
-                                <Col md={2}>
-                                    <strong>{t('Order date.1')}: </strong> {}
-                                </Col>
-                                <Col md={1}>
-                                    <strong>{t('Paid.1')}: </strong> {}
-                                </Col>
-                                <Col md={2}>
-                                    <strong>{t('Delivered.1')}: </strong> {}
-                                </Col>
-                            </Row>
-                        </div>
-                    {orders.map(item => (
-                        <div className = "CardDetails2 details" key = {item._id + "/" + item._id}>
-                            <Row>
-                                <Col md={4}>
-                                    <strong>{t('ID.1')}: </strong> {item._id}
-                                </Col>
-                                <Col md={2}>
-                                    <strong>{t('Total price.1')}: </strong> {}
-                                </Col>
-                                <Col md={2}>
-                                    <strong>{t('Order date.1')}: </strong> {}
-                                </Col>
-                                <Col md={1}>
-                                    <strong>{t('Paid.1')}: </strong> {}
-                                </Col>
-                                <Col md={2}>
-                                    <strong>{t('Delivered.1')}: </strong> {}
-                                </Col>
-                            </Row>
-                        </div>
-                    ))}
-                    </>
-                }
-            </Col>
-        </Row>
+        <>
+            <Row>
+                <Col md={3}>
+                    <div className = "CardDetails2">
+                        <p><strong>{t('First name.1')}:</strong> {userInfo.firstName}</p>
+                        <p><strong>{t('Last name.1')}:</strong> {userInfo.lastName}</p>
+                        <p><strong>{t('Email.1')}:</strong> {userInfo.email}</p>
+                    </div>
+                </Col>
+                <Col md = {9}>
+                    <CartDetails key={t('ID.1')} id = {t('ID.1')} text={[t('Total price.1'), t('Order date.1'), t('Paid.1'), t('Delivered.1')]} type="header"></CartDetails>
+                        
+                    {loadingOrders ? <Loader loadingVal = {loadingOrders}/> : !orders ? 
+                        <CartDetails className = "CardDetails2 details" key = "empty order" text={[t('ORDER LIST IS EMPTY.1')]} type="details"></CartDetails>:
+                        <>
+                        {orders.map(item => (
+                            <CartDetails className = "CardDetails2 details" key = {item._id}
+                            id = {item._id} 
+                            text={[t('Total price.1'), t('Order date.1'), item.isPaid, item.isDelivered]} 
+                            type="details"
+                            />
+                        ))}
+                        </>
+                    }
+                </Col>
+            </Row>
+        </>
     )
 }
 export default UserScreen

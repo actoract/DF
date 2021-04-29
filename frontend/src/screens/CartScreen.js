@@ -123,7 +123,7 @@ const CartScreen = ({match, location, history}) => {
         myFileItemReader.readAsDataURL(files[0])
       }*/
     return (
-        <div className = "mainProduct">
+        <div>
             {cartItems.length === 0 ?  (
                 <Container>
                 <Row className="justify-content-md-center">

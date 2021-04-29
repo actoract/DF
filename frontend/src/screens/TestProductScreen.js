@@ -63,7 +63,7 @@ const TestProductScreen = ({match}) => {
   //const [testproduct, setTestProduct] = useState({});
 
     return (
-        <div className = "mainProduct"> 
+        <div> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
           <Row className='justify-content-center'>
             <Col md = {6}>

@@ -98,7 +98,7 @@ const ProductScreen = ({history, match}) => {
 
 
     return (
-        <div className = "mainProduct"> 
+        <div> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
           <Row>
             <Col md = {6}>

@@ -57,7 +57,7 @@ export const regAction = (firstName, lastName, email, password) => async (dispat
         })
     }
 }
-export const logoutAction = () => async (dispatch) => {
+export const logoutAction = () => (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({type: LOGOUT_REQ})
 }

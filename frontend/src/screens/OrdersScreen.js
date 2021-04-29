@@ -27,9 +27,11 @@ const OrdersScreen = ({match}) => {
     return (
         <>
         {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
-        <div className = "mainProduct"> 
+        <div> 
           <Row>
-            <div className = "CardDetails">
+              
+          <Col md={8}>
+            <div className = "CardDetails2">
                 <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
                     {order.deliveryAddress.address},
                     {order.deliveryAddress.city},
@@ -65,6 +67,7 @@ const OrdersScreen = ({match}) => {
                 )}
                 </ListGroup.Item>
             </div>
+            </Col>
             
           <Col md={4}>
                 <div className = "CardDetails2">
