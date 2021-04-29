@@ -44,6 +44,14 @@ const getProfile = expressAsyncHandler(async (req, res) => {
     }
 })
 
+//@description GET all profiles
+//@route GET /api/users
+//@access for admin
+const getAllProfiles = expressAsyncHandler(async (req, res) => {
+    const existUser = await User.find({})
+    res.json(existUser)
+})
+
 //@description Registration
 //@route POST /api/users
 //@access Public
@@ -102,4 +110,4 @@ const updateProfile = expressAsyncHandler(async (req, res) => {
     }
 })
 
-export {userAuth, getProfile, regUser, updateProfile}
+export {userAuth, getProfile, getAllProfiles, regUser, updateProfile}
