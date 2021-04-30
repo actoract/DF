@@ -20,7 +20,23 @@ function Header() {
     const handleLogout = () => {
         dispatch(logoutAction())
     }
-    const menu = (
+    const menu = userInfo && userInfo.isAdmin ? (
+        <Menu>
+            <Link to = {`/profile`} >
+                <Menu.Item>
+                    {t('profile.1')}
+                </Menu.Item>
+            </Link>
+            <Link to = {`/users`} >
+                <Menu.Item>
+                    {t('users.1')}
+                </Menu.Item>
+            </Link>
+            <Menu.Item onClick = {handleLogout}>
+                {t('log out.1')}
+            </Menu.Item>
+        </Menu>
+      ) :(
         <Menu>
             <Link to = {`/profile`} >
                 <Menu.Item>

@@ -36,6 +36,7 @@ export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL'
 export const USERS_REQ = 'USERS_REQ'
 export const USERS_SUC = 'USERS_SUC'
 export const USERS_FAIL = 'USERS_FAIL'
+export const USERS_RESET = 'USERS_RESET'
 
 export const USER_PROFILE_UPD_REQ = 'USER_PROFILE_UPD_REQ'
 export const USER_PROFILE_UPD_SUC = 'USER_PROFILE_UPD_SUC'

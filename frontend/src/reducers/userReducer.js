@@ -1,7 +1,7 @@
 import {LOGIN_REQ, LOGIN_SUC, LOGIN_FAIL, LOGOUT_REQ, REG_REQ, REG_SUC, REG_FAIL, 
     USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL,
     USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL, USER_PROFILE_UPD_RESET_FAIL,
-    USERS_FAIL, USERS_SUC, USERS_REQ} from '../constants/storeConst'
+    USERS_FAIL, USERS_SUC, USERS_REQ, USERS_RESET} from '../constants/storeConst'
 
 export const userLoginReducer = (state = {}, action) => {
     switch(action.type){
@@ -116,6 +116,10 @@ export const usersReducer = (state = {users: []}, action) => {
             return{
                 loading: false,
                 error: action.payload
+            }
+        case USERS_RESET:
+            return{
+                users: []
             }
         default:
             return state

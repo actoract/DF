@@ -40,7 +40,7 @@ function App() {
           <Route path = '/test' component = {TestScreen} />
           <Route path = '/products/:id' component = {ProductScreen} />
           <Route path = '/login' component = {LoginScreen} />
-          <Route path = '/admin/users' component = {UsersScreen} />
+          <Route path = '/users' component = {UsersScreen} />
           <Route path = '/register' component = {RegScreen} />
           <Route path = '/profile' component = {UserScreen} />
           <Route path = '/testproduct/:id' component = {TestProductScreen} />

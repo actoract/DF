@@ -2,7 +2,7 @@ import { LOGIN_FAIL, LOGIN_REQ, LOGIN_SUC, LOGOUT_REQ,
     REG_REQ, REG_SUC, REG_FAIL, 
     USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL,
     USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL,
-    USERS_REQ, USERS_SUC, USERS_FAIL} from "../constants/storeConst"
+    USERS_REQ, USERS_SUC, USERS_FAIL, USERS_RESET} from "../constants/storeConst"
 import axios from 'axios'
 
 export const loginAction = (email, password) => async (dispatch) => {
@@ -61,6 +61,8 @@ export const regAction = (firstName, lastName, email, password) => async (dispat
 export const logoutAction = () => (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({type: LOGOUT_REQ})
+    dispatch({type: USERS_RESET})
+
 }
 
 export const getProfileAction = (id) => async (dispatch, getState) => {

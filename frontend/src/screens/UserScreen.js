@@ -73,16 +73,24 @@ const UserScreen = ({location, history}) => {
                     </div>
                 </Col>
                 <Col md = {9}>
-                    <CartDetails key={t('ID.1')} id = {t('ID.1')} text={[t('Total price.1'), t('Order date.1'), t('Paid.1'), t('Delivered.1')]} type="header"></CartDetails>
+                    <CartDetails key={t('ID.1')} id = {t('ID.1')} 
+                    text={[t('Total price.1'), t('Order date.1'), t('Paid.1'), t('Delivered.1')]} 
+                    type="header"
+                    page="user"></CartDetails>
                         
                     {loadingOrders ? <Loader loadingVal = {loadingOrders}/> : !orders ? 
-                        <CartDetails className = "CardDetails2 details" key = "empty order" text={[t('ORDER LIST IS EMPTY.1')]} type="details"></CartDetails>:
+                        <CartDetails className = "CardDetails2 details" key = "empty order" 
+                        text={[t('ORDER LIST IS EMPTY.1')]} 
+                        type="details" 
+                        page="user">
+                        </CartDetails>:
                         <>
                         {orders.map(item => (
                             <CartDetails className = "CardDetails2 details" key = {item._id}
                             id = {item._id} 
                             text={[t('Total price.1'), t('Order date.1'), item.isPaid, item.isDelivered]} 
                             type="details"
+                            page="user"
                             />
                         ))}
                         </>
