@@ -1,5 +1,5 @@
 import express from 'express'
-import {userAuth, getProfile, regUser, updateProfile, getAllProfiles} from '../controllers/userController.js'
+import {userAuth, getProfile, regUser, updateProfile, getAllProfiles, getProfileById, updateProfileById} from '../controllers/userController.js'
 import {protect, admin} from '../middleware/authicationMiddleware.js'
 const router = express.Router()
 
@@ -7,7 +7,12 @@ const router = express.Router()
 router.route('/').post(regUser).get(protect, admin, getAllProfiles)
 router.post('/login', userAuth)
 //router.route('/profile').get(protect, getProfile)
-router.route('/profile').get(protect, getProfile).put(protect, updateProfile)
+router.route('/profile')
+.get(protect, getProfile).put(protect, updateProfile)
+
+router.route('/:id')
+.get(protect, admin, getProfileById)
+.put(protect, admin, updateProfileById)
 
 
 export default router

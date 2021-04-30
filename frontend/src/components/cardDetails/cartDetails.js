@@ -12,11 +12,19 @@ const CartDetails = ({id, text, image, uploadImage, details, type, page}) => {
           <p>In order to get details click on order</p>
         </div>
       );
+    const messageAdminOnHover = (
+    <div>
+        <p>In order to update user statut click on profiler</p>
+    </div>
+    );
     
     const [isModalVis, setIsModalVisible] = useState(false);
 
     const showModalMessage = () => {
         setIsModalVisible(true);
+    }
+    const handleStatusChange = () => {
+        
     }
     return (
         <div>{   
@@ -37,13 +45,15 @@ const CartDetails = ({id, text, image, uploadImage, details, type, page}) => {
                 </Row>
             </Link>
             </Popover> :
-            <Row className = "CardDetails2 details">
+            <Popover content={messageAdminOnHover} title="How to update user status?"> 
+            <Row className = "CardDetails2 details" onClick = {handleStatusChange}>
                 {id ? <Col md={4}> {id}</Col>: <div/>}
                 {text ? text.map(item => 
                     item == false ? (<Col md={2}> <strong>✕</strong> {} </Col>) : 
                     item != true ? (<Col md={2}>  {item}  </Col>) : (<Col md={2}>  ✓  </Col>)) : <div/>
                 }
             </Row>
+            </Popover>
         }
         {isModalVis ? <ModalMessage isModalVis = {isModalVis} id = {id}/> : <div/>}
         </div>
