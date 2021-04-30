@@ -1,29 +1,28 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import {productsReducer} from './reducers/productsReducers'
-import {testproductsReducer} from './reducers/testproductsReducers'
-import {productDetReducer} from './reducers/productsReducers'
-import {productDeleteReducer} from './reducers/productsReducers'
-import {testproductDetReducer} from './reducers/testproductsReducers'
+import {productsReducer, 
+        productDetReducer,
+        productDeleteReducer,
+        productCreateReducer} from './reducers/productsReducers'
+import {testproductsReducer,
+        testproductDetReducer} from './reducers/testproductsReducers'
 import {cartReducer} from './reducers/cartReducers'
-import {userLoginReducer} from './reducers/userReducer'
-import {userRegReducer} from './reducers/userReducer'
-import {userProfileReducer} from './reducers/userReducer'
-import {userProfileUpdReducer} from './reducers/userReducer'
-import {usersReducer} from './reducers/userReducer'
-import {orderAddRecuder} from './reducers/orderReducers'
-import {getOrderByIdReducer} from './reducers/orderReducers'
-//import {orderPayReducer} from './reducers/orderReducers'
-import {userOrdersReducer} from './reducers/orderReducers'
-
-
+import {userLoginReducer,
+        userRegReducer,
+        userProfileReducer,
+        userProfileUpdReducer,
+        usersReducer,} from './reducers/userReducer'
+import {orderAddRecuder,
+        getOrderByIdReducer,
+        userOrdersReducer} from './reducers/orderReducers'
 
 const reducer = combineReducers({
     productsList: productsReducer,
     testproductsList: testproductsReducer,
     productDet: productDetReducer,
     productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
     testproductDet: testproductDetReducer,
     cart: cartReducer,
     cart: cartReducer,

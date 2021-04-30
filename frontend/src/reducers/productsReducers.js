@@ -6,7 +6,11 @@ import {PRODUCTS_LIST_REQ,
     PRODUCTS_DET_FAIL,
     PRODUCTS_DELETE_REQ,
     PRODUCTS_DELETE_SUCC,
-    PRODUCTS_DELETE_FAIL
+    PRODUCTS_DELETE_FAIL,
+    PRODUCTS_CREATE_REQ,
+    PRODUCTS_CREATE_SUCC,
+    PRODUCTS_CREATE_FAIL,
+    PRODUCTS_CREATE_RESET
 } from '../constants/storeConst'
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -85,6 +89,31 @@ export const productDeleteReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload
             }
+        default:
+            return state
+    }
+}
+
+export const productCreateReducer = (state = {}, action) => {
+    switch(action.type){
+        case PRODUCTS_CREATE_REQ:
+            return { 
+                loading: true
+            }
+        case PRODUCTS_CREATE_SUCC:
+            return{
+                loading: false,
+                success: true,
+                product: action.payload
+            }
+        case PRODUCTS_CREATE_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        case PRODUCTS_CREATE_RESET:{
+            return {}
+        }
         default:
             return state
     }

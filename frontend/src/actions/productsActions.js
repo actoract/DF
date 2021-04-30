@@ -7,6 +7,9 @@ import {PRODUCTS_LIST_REQ,
     PRODUCTS_DELETE_REQ,
     PRODUCTS_DELETE_FAIL,
     PRODUCTS_DELETE_SUCC,
+    PRODUCTS_CREATE_REQ,
+    PRODUCTS_CREATE_SUCC,
+    PRODUCTS_CREATE_FAIL,
 
 } from '../constants/storeConst'
 import axios from 'axios'
@@ -64,6 +67,32 @@ export const deleteProductAction = (id) => async (dispatch, getState) => {
     catch(error){
         dispatch({
             type: PRODUCTS_DELETE_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+export const createProductAction = () => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: PRODUCTS_CREATE_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.post(`/api/products`, {}, config)
+        dispatch({
+            type: PRODUCTS_CREATE_SUCC,
+            payload: data
+        })  
+    }
+    catch(error){
+        dispatch({
+            type: PRODUCTS_CREATE_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

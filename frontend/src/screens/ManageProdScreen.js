@@ -8,8 +8,8 @@ import {Col, Row, Image} from 'react-bootstrap'
 import { Popover, Modal } from 'antd';
 import ModalMessage from "../components/modalMessage"
 import {Link} from 'react-router-dom'
-import {USER_PROFILE_UPD_RESET} from '../constants/storeConst'
-import {productsListAction, deleteProductAction} from '../actions/productsActions'
+import {PRODUCTS_CREATE_RESET} from '../constants/storeConst'
+import {productsListAction, deleteProductAction, createProductAction} from '../actions/productsActions'
 import add from './add.png'
 import { Popconfirm, message } from 'antd';
 
@@ -26,19 +26,27 @@ const ManageProdScreen = ({history, match}) => {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
+    const productCreate = useSelector(state => state.productCreate)
+    const { success: successCreate, loading: loadingCreate, error: errorCreate, product: createdProduct  } = productCreate
+
     const { t } = useTranslation()
     
     useEffect(() => {
-        if(userInfo && userInfo.isAdmin){
-            dispatch(productsListAction())
-        }
-        else{
+        dispatch({type: PRODUCTS_CREATE_RESET})
+
+        if(!userInfo.isAdmin){
             history.push('/login')
         }
-    }, [dispatch, history, userInfo, successDelete])
+        if(successCreate){
+            history.push(`/product/${createdProduct._id}/edit`)
+        }
+        else{
+            dispatch(productsListAction())
+        }
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
 
     const addHandle = (d) => {
-        //add
+        dispatch(createProductAction())
     }
     const confirmDelete = (id) => {
         //alert(id);
@@ -55,6 +63,8 @@ const ManageProdScreen = ({history, match}) => {
                 <h3>Products</h3> 
                 <Image src = {add} alt={add} className="add" onClick={addHandle}/>
             </Row>
+            {loadingCreate && <Loader loadingVal = {loadingCreate}/>}
+            {errorCreate && <Message>{errorCreate}</Message>}
             {loadingDelete && <Loader loadingVal = {loading}/>}
             {errorDelete && <Message>{errorDelete}</Message>}
             {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
