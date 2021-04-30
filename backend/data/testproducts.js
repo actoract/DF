@@ -27,7 +27,7 @@ const testproducts = [
     },
 ]
 
-const testproducts = [
+/*const testproducts = [
     {
         name: {
             nameRus:'Джинсы в вырезами ',
@@ -54,5 +54,5 @@ const testproducts = [
             color: "Голубой"
         },
     },
-]
+]*/
 export default testproducts

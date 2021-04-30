@@ -91,7 +91,7 @@ export const getProfileAction = (id) => async (dispatch, getState) => {
     }
 }
 
-export const updProfileAction = (user) => async (dispatch, getState) => {
+export const updProfileAction = (user, id) => async (dispatch, getState) => {
     try{
         dispatch({
             type: USER_PROFILE_UPD_REQ
@@ -103,12 +103,15 @@ export const updProfileAction = (user) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const {data} = await axios.put('/api/users/profile', user, config)
+        const {data} = await axios.put(`/api/users/${user._id}`, user, config)
         dispatch({
-            type: USER_PROFILE_UPD_SUC,
+            type: USER_PROFILE_UPD_SUC
+        })
+        dispatch({
+            type: USER_PROFILE_SUC,
             payload: data
         })
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        //localStorage.setItem('userInfo', JSON.stringify(data))
     }
     catch(error){
         dispatch({

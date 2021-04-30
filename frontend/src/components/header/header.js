@@ -22,18 +22,25 @@ function Header() {
     }
     const menu = userInfo && userInfo.isAdmin ? (
         <Menu>
-            <Link to = {`/profile`} >
-                <Menu.Item>
-                    {t('profile.1')}
-                </Menu.Item>
-            </Link>
-            <Link to = {`/users`} >
-                <Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href={`/manageproducts`}>
+                    {t('manage store.1')}
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" to={`/managetestproducts`}>
+                    {t('manage test products.1')}
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href={`/users`}>
                     {t('users.1')}
-                </Menu.Item>
-            </Link>
-            <Menu.Item onClick = {handleLogout}>
-                {t('log out.1')}
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer"  onClick = {handleLogout}>
+                    {t('log out.1')}
+                </a>
             </Menu.Item>
         </Menu>
       ) :(

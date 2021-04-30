@@ -131,9 +131,9 @@ const updateProfile = expressAsyncHandler(async (req, res) => {
 const updateProfileById = expressAsyncHandler(async (req, res) => {
     const existUser = await User.findById(req.params.id)
     if(existUser){
-        //existUser.firstName = req.body.firstName || existUser.firstName
-        //existUser.lastName = req.body.lastName || existUser.lastName
-        //existUser.email = req.body.email || existUser.email
+        existUser.firstName = existUser.firstName
+        existUser.lastName = existUser.lastName
+        existUser.email = existUser.email
         existUser.isAdmin = req.body.isAdmin
         const updatedUser = await existUser.save()
         res.json({

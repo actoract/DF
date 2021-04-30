@@ -17,6 +17,8 @@ import UsersScreen from './screens/UsersScreen'
 import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceorderScreen from './screens/PlaceorderScreen'
+import ManageProdScreen from './screens/ManageProdScreen'
+import ManageTestProdScreen from './screens/ManageTestProdScreen'
 import OrdersScreen from './screens/OrdersScreen'
 import { Trans, useTranslation } from "react-i18next";
 
@@ -38,6 +40,8 @@ function App() {
           <Route path = '/store' component = {StoreScreen} />
           <Route path = '/about' component = {AboutScreen} />
           <Route path = '/test' component = {TestScreen} />
+          <Route path = '/managetestproducts' component = {ManageTestProdScreen} />
+          <Route path = '/manageproducts' component = {ManageProdScreen} />
           <Route path = '/products/:id' component = {ProductScreen} />
           <Route path = '/login' component = {LoginScreen} />
           <Route path = '/users' component = {UsersScreen} />
