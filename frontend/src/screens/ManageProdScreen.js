@@ -9,8 +9,9 @@ import { Popover, Modal } from 'antd';
 import ModalMessage from "../components/modalMessage"
 import {Link} from 'react-router-dom'
 import {USER_PROFILE_UPD_RESET} from '../constants/storeConst'
-import {productsListAction} from '../actions/productsActions'
+import {productsListAction, deleteProductAction} from '../actions/productsActions'
 import add from './add.png'
+import { Popconfirm, message } from 'antd';
 
 const ManageProdScreen = ({history, match}) => {
     const productId = match.params.id
@@ -18,6 +19,9 @@ const ManageProdScreen = ({history, match}) => {
 
     const productsList = useSelector(state => state.productsList)
     const { products, loading, error  } = productsList
+
+    const productDelete = useSelector(state => state.productDelete)
+    const { success: successDelete, loading: loadingDelete, error: errorDelete  } = productDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -31,14 +35,19 @@ const ManageProdScreen = ({history, match}) => {
         else{
             history.push('/login')
         }
-    }, [dispatch, history, userInfo])
-    const deleteHandle = (id) => {
-        if(window.confirm('Are you sure?')){
-            //delete
-        }
-    }
+    }, [dispatch, history, userInfo, successDelete])
+
     const addHandle = (d) => {
         //add
+    }
+    const confirmDelete = (id) => {
+        //alert(id);
+        dispatch(deleteProductAction(id))
+        //message.success('Click on Yes');
+    } 
+    const cancelDelete = (e) => {
+        console.log(e);
+        //message.error('Click on No');
     }
     return (
         <>
@@ -46,7 +55,9 @@ const ManageProdScreen = ({history, match}) => {
                 <h3>Products</h3> 
                 <Image src = {add} alt={add} className="add" onClick={addHandle}/>
             </Row>
-           {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
+            {loadingDelete && <Loader loadingVal = {loading}/>}
+            {errorDelete && <Message>{errorDelete}</Message>}
+            {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
             <>
             <Row  key = "header">
                 <Col md={1} className =""><strong>{t('Image.1')}</strong></Col> 
@@ -56,10 +67,18 @@ const ManageProdScreen = ({history, match}) => {
                 <Col md={2} className =""><strong>{t('Real price.1')}</strong></Col> 
             </Row>
             {products.map(item => (
-                <Row key={item.id} className = "CardDetails2 details">
-                    <div className = "CloseBut" onClick = {() => deleteHandle()}>
-                        ✕
-                    </div>
+                <Row key={item._id} className = "CardDetails2 details">
+                    <Popconfirm
+                    title="Are you sure to delete this task?"
+                    onConfirm={() => confirmDelete(item._id)}
+                    onCancel={cancelDelete}
+                    okText="Yes"
+                    cancelText="No"
+                    >
+                        <div className = "CloseBut" >
+                            ✕
+                        </div>
+                    </Popconfirm>
                     <Col md={1}><Image src = {item.image} alt={item.name} fluid rounded/></Col>
                     <Col md={4}>{item._id}</Col>
                     <Col md={2}>{item.name.nameRus}/{item.name.nameEng}</Col>
