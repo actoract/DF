@@ -36,7 +36,7 @@ const deleteProduct = expressAsyncHandler(async (req, res) => {
         res.status(404)
         throw new Error ('Not found')
     }
-    res.json(product)
+    res.json(productExist)
 })
 
 
