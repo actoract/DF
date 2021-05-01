@@ -30,39 +30,39 @@ const EditTestScreen = () => {
     return ( 
     <FormCont className = "FormCont">
          <Row className = 'justify-content-md-center'>
-             <h3>Add details for product</h3>
-        <Form>
-            <Form.Group controlId='nameRus'>
-                <Form.Label>name(rus)</Form.Label>
-                <Form.Control required type = "text" placeholder = {!nameRus ?'enter name(rus)' : nameRus} onChange = {(e) => setNameRus(e.target.value)}></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='nameEng'>
-                <Form.Label>name(eng)</Form.Label>
-                <Form.Control required type = "text" placeholder = {!nameEng ? 'enter name(eng)': nameEng} onChange = {(e) => setNameEng(e.target.value)}></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='image'>
-                <Form.Label>image</Form.Label>
-                <Form.Control required type = "text" placeholder = {!image ? 'enter location to image': image} onChange = {(e) => setImage(e.target.value)}></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='model'>
-                <Form.Label>model</Form.Label>
-                <Form.Control required type = "text" placeholder = {!model ? 'enter location to 3D-model': model} onChange = {(e) => setModel(e.target.value)}></Form.Control>
-            </Form.Group>
-            
-            <Form.Group controlId='descCare'>
-                <Form.Label>description: care</Form.Label>
-                <Form.Control required type = "text" placeholder = {!descCare ? 'enter care for product': descCare} onChange = {(e) => setdescCare(e.target.value)}></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='descCare'>
-                <Form.Label>description: material</Form.Label>
-                <Form.Control required type = "text" placeholder = {!descMaterial ? 'enter material of product': descMaterial} onChange = {(e) => setMaterial(e.target.value)}></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='descColor'>
-                <Form.Label>description: color</Form.Label>
-                <Form.Control required type = "text" placeholder = {!descColor ? 'enter color of product': descColor} onChange = {(e) => setColor(e.target.value)}></Form.Control>
-            </Form.Group>
-            <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
-        </Form>
+             <h3>Add details for test product</h3>
+            <Form>
+                <Form.Group controlId='nameRus'>
+                    <Form.Label>name(rus)</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!nameRus ?'enter name(rus)' : nameRus} onChange = {(e) => setNameRus(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='nameEng'>
+                    <Form.Label>name(eng)</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!nameEng ? 'enter name(eng)': nameEng} onChange = {(e) => setNameEng(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='image'>
+                    <Form.Label>image</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!image ? 'enter location to image': image} onChange = {(e) => setImage(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='model'>
+                    <Form.Label>model</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!model ? 'enter location to 3D-model': model} onChange = {(e) => setModel(e.target.value)}></Form.Control>
+                </Form.Group>
+                
+                <Form.Group controlId='descCare'>
+                    <Form.Label>description: care</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!descCare ? 'enter care for product': descCare} onChange = {(e) => setdescCare(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='descCare'>
+                    <Form.Label>description: material</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!descMaterial ? 'enter material of product': descMaterial} onChange = {(e) => setMaterial(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='descColor'>
+                    <Form.Label>description: color</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!descColor ? 'enter color of product': descColor} onChange = {(e) => setColor(e.target.value)}></Form.Control>
+                </Form.Group>
+                <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
+            </Form>
         </Row>
     </FormCont>
 

@@ -10,7 +10,11 @@ import {PRODUCTS_LIST_REQ,
     PRODUCTS_CREATE_REQ,
     PRODUCTS_CREATE_SUCC,
     PRODUCTS_CREATE_FAIL,
-    PRODUCTS_CREATE_RESET
+    PRODUCTS_CREATE_RESET,
+    PRODUCTS_UPDATE_REQ,
+    PRODUCTS_UPDATE_SUCC,
+    PRODUCTS_UPDATE_FAIL,
+    PRODUCTS_UPDATE_RESET
 } from '../constants/storeConst'
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -113,6 +117,33 @@ export const productCreateReducer = (state = {}, action) => {
             }
         case PRODUCTS_CREATE_RESET:{
             return {}
+        }
+        default:
+            return state
+    }
+}
+
+export const productUpdateReducer = (state = {product: {}}, action) => {
+    switch(action.type){
+        case PRODUCTS_UPDATE_REQ:
+            return { 
+                loading: true
+            }
+        case PRODUCTS_UPDATE_SUCC:
+            return{
+                loading: false,
+                success: true,
+                product: action.payload
+            }
+        case PRODUCTS_UPDATE_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        case PRODUCTS_UPDATE_RESET:{
+            return {
+                product:{}
+            }
         }
         default:
             return state

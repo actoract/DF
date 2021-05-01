@@ -46,8 +46,8 @@ const createTestProduct = expressAsyncHandler(async (req, res) => {
     res.status(201).json(createdTestProduct)
 })
 
-//@description Update product
-//@route POST /api/products/:id
+//@description Update test product
+//@route POST /api/testproducts/:id
 //@access private for admin
 const updateTestProduct = expressAsyncHandler(async (req, res) => {
     const {name, image, model, description} = req.body

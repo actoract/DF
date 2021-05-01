@@ -21,6 +21,7 @@ import ManageProdScreen from './screens/ManageProdScreen'
 import ManageTestProdScreen from './screens/ManageTestProdScreen'
 import OrdersScreen from './screens/OrdersScreen'
 import EditScreen from './screens/EditScreen'
+import EditTestScreen from './screens/EditTestScreen'
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
@@ -38,18 +39,19 @@ function App() {
           <Route path = '/payment' component = {PaymentScreen}/>
           <Route path = '/order/:id' component = {OrdersScreen}/>
           <Route path = '/placeorder' component = {PlaceorderScreen}/>
+          <Route path = '/product/:id/edit' component = {EditScreen} />
+          <Route path = '/testproduct/:id/edit' component = {EditTestScreen} />
           <Route path = '/store' component = {StoreScreen} />
           <Route path = '/about' component = {AboutScreen} />
           <Route path = '/test' component = {TestScreen} />
           <Route path = '/managetestproducts' component = {ManageTestProdScreen} />
-          <Route path = '/product/:id/edit' component = {EditScreen} />
           <Route path = '/manageproducts' component = {ManageProdScreen} />
           <Route path = '/products/:id' component = {ProductScreen} />
+          <Route path = '/testproducts/:id' component = {TestProductScreen} />
           <Route path = '/login' component = {LoginScreen} />
           <Route path = '/users' component = {UsersScreen} />
           <Route path = '/register' component = {RegScreen} />
           <Route path = '/profile' component = {UserScreen} />
-          <Route path = '/testproduct/:id' component = {TestProductScreen} />
           <Route path = '/cart/:id?' component = {CartScreen} />
         </Container>
       </main>

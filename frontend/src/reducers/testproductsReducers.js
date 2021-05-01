@@ -10,9 +10,13 @@ import {TEST_PRODUCTS_LIST_REQ,
     TEST_PRODUCTS_CREATE_REQ,
     TEST_PRODUCTS_CREATE_SUCC,
     TEST_PRODUCTS_CREATE_FAIL,
+    TEST_PRODUCTS_CREATE_RESET,
+    TEST_PRODUCTS_UPDATE_REQ,
+    TEST_PRODUCTS_UPDATE_SUCC,
+    TEST_PRODUCTS_UPDATE_FAIL,
+    TEST_PRODUCTS_UPDATE_RESET,
 
 } from '../constants/storeConst'
-import axios from 'axios'
 
 export const testproductsReducer = (state = { testproducts: [] }, action) => {
     switch(action.type){
@@ -68,53 +72,75 @@ export const testproductDetReducer = (state = { testproduct: {
     }
 }
 
-
-export const testproductDeleteReducer = (id) => async (dispatch, getState) => {
-    try{
-        dispatch({
-            type: TEST_PRODUCTS_DELETE_REQ
-        })
-        const {userLogin: {userInfo}} = getState()
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`
+export const testproductDeleteReducer = (state = {}, action) => {
+    switch(action.type){
+        case TEST_PRODUCTS_DELETE_REQ:
+            return { 
+                loading: true
             }
-        }
-        await axios.delete(`/api/testproducts/${id}`, config)
-        dispatch({
-            type: TEST_PRODUCTS_DELETE_SUCC,
-        })  
-    }
-    catch(error){
-        dispatch({
-            type: TEST_PRODUCTS_DELETE_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message
-        })
+        case TEST_PRODUCTS_DELETE_SUCC:
+            return{
+                loading: false,
+                success: true
+            }
+        case TEST_PRODUCTS_DELETE_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        default:
+            return state
     }
 }
 
+export const testproductCreateReducer = (state = {}, action) => {
+    switch(action.type){
+        case TEST_PRODUCTS_CREATE_REQ:
+            return { 
+                loading: true
+            }
+        case TEST_PRODUCTS_CREATE_SUCC:
+            return{
+                loading: false,
+                success: true,
+                testproduct: action.payload
+            }
+        case TEST_PRODUCTS_CREATE_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        case TEST_PRODUCTS_CREATE_RESET:{
+            return {}
+        }
+        default:
+            return state
+    }
+}
 
-export const testproductCreateReducer = () => async (dispatch, getState) => {
-    try{
-        dispatch({
-            type: TEST_PRODUCTS_CREATE_REQ
-        })
-        const {userLogin: {userInfo}} = getState()
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`
+export const testproductUpdateReducer = (state = {testproduct: {}}, action) => {
+    switch(action.type){
+        case TEST_PRODUCTS_UPDATE_REQ:
+            return { 
+                loading: true
+            }
+        case TEST_PRODUCTS_UPDATE_SUCC:
+            return{
+                loading: false,
+                success: true,
+                testproduct: action.payload
+            }
+        case TEST_PRODUCTS_UPDATE_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        case TEST_PRODUCTS_UPDATE_RESET:{
+            return {
+                testproduct:{}
             }
         }
-        const {data} = await axios.post(`/api/testproducts`, {}, config)
-        dispatch({
-            type: TEST_PRODUCTS_CREATE_SUCC,
-            payload: data
-        })  
-    }
-    catch(error){
-        dispatch({
-            type: TEST_PRODUCTS_CREATE_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message
-        })
+        default:
+            return state
     }
 }

@@ -28,7 +28,7 @@ function Header() {
                 </a>
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" to={`/managetestproducts`}>
+                <a target="_blank" rel="noopener noreferrer" href={`/managetestproducts`}>
                     {t('manage test products.1')}
                 </a>
             </Menu.Item>
