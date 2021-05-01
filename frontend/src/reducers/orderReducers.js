@@ -1,6 +1,7 @@
 import {ORDER_ADD_FAIL,
     ORDER_ADD_REQ,
     ORDER_ADD_SUC,
+    ORDER_ADD_RESET,
     ORDER_DET_SUC,
     ORDER_DET_REQ,
     ORDER_DET_FAIL,
@@ -26,6 +27,8 @@ export const orderAddRecuder = (state = {}, action) => {
                 loading: false,
                 error: action.payload
             }
+        case ORDER_ADD_RESET:
+            return {}
         default:
             return state
     }

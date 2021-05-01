@@ -22,7 +22,7 @@ const CartScreen = ({match, location, history}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
-    const [image, setImage] = useState();
+    //const [image, setImage] = useState();
     useEffect (() => {
         if(productId){
             dispatch(addToCart(cartItems.length + 1, productId, qty, type, Number(size), 0))
@@ -69,14 +69,9 @@ const CartScreen = ({match, location, history}) => {
         }
     }
    const handleCheckout = () => {
-       if(image){
-            history.push('/login?redirect=shipping')
-       }
-       else{
-            message.error(t('Upload image to digital purchase.1'), 1)
-       }
+        history.push('/login?redirect=shipping')
    }
-   const uploadImage = (e, item) => {
+   /*const uploadImage = (e, item) => {
         e.preventDefault();
         const { files } = e.target;
         const myFileItemReader = new FileReader()
@@ -96,7 +91,7 @@ const CartScreen = ({match, location, history}) => {
             )}
         }, false)
         myFileItemReader.readAsDataURL(files[0])
-    }
+    }*/
     /*const onChange = (event, item) => {
         event.preventDefault();
         const { files } = event.target;
@@ -171,14 +166,7 @@ const CartScreen = ({match, location, history}) => {
                                         ))}
                                     </Form.Control>
                                 </Col > :
-                                <Col md = {2}>
-                                    <p><strong>{t('Upload image.1')}: </strong> </p>
-                                    <label>
-                                    <input type="file" name="file" accept=".png, .jpg, .jpeg" onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
-                                    <span>Выберите файл</span>
-                                    {image ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
-                                    </label>
-                                </Col>
+                                <Col md = {2}/>
                             }
                              <Col md = {2}>
                                 {item.type == "rc" ?

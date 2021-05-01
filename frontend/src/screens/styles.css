@@ -28,6 +28,7 @@
   top: 0;
   max-height: 1000px;
   padding: 20px;
+  margin: 30px;
   border-radius: 5px;
   border-width: 10px;
   backdrop-filter: 1px;
@@ -114,15 +115,24 @@
   top: 0;
   max-height: 1000px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 0px;
   border-radius: 5px;
   border-width: 10px;
   backdrop-filter: 1px;
   background-color: white;
   box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
 }
+.CardDetails2.placeorder{
+  position: relative;
+  width: auto;
+  height: 200px;
+  top: 0;
+  max-height: 1000px;
+  margin-top: 30px;
+}
 .CardDetails2.details{
   margin-top: 20px;
+  margin: 20px;
 }
 .CardDetails2.details:hover{
   box-shadow: 0 30px 30px rgb(36 37 38 / 8%);

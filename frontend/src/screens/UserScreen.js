@@ -79,14 +79,14 @@ const UserScreen = ({location, history}) => {
                     page="user"></CartDetails>
                         
                     {loadingOrders ? <Loader loadingVal = {loadingOrders}/> : !orders ? 
-                        <CartDetails className = "CardDetails2 details" key = "empty order" 
+                        <CartDetails className = "CardDetails2" key = "empty order" 
                         text={[t('ORDER LIST IS EMPTY.1')]} 
                         type="details" 
                         page="user">
                         </CartDetails>:
                         <>
                         {orders.map(item => (
-                            <CartDetails className = "CardDetails2 details" key = {item._id}
+                            <CartDetails className = "CardDetails2" key = {item._id}
                             id = {item._id} 
                             text={[t('Total price.1'), t('Order date.1'), item.isPaid, item.isDelivered]} 
                             type="details"

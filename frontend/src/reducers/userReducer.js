@@ -1,5 +1,5 @@
 import {LOGIN_REQ, LOGIN_SUC, LOGIN_FAIL, LOGOUT_REQ, REG_REQ, REG_SUC, REG_FAIL, 
-    USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL,
+    USER_PROFILE_REQ, USER_PROFILE_SUC, USER_PROFILE_FAIL, USER_PROFILE_RESET,
     USER_PROFILE_UPD_REQ, USER_PROFILE_UPD_SUC, USER_PROFILE_UPD_FAIL, USER_PROFILE_UPD_RESET,
     USERS_FAIL, USERS_SUC, USERS_REQ, USERS_RESET} from '../constants/storeConst'
 
@@ -69,6 +69,8 @@ export const userProfileReducer = (state = {user: {}}, action) => {
                 loadingVal: false,
                 error: action.payload
             }
+        case USER_PROFILE_RESET:
+            return{}
         default:
             return state
     }

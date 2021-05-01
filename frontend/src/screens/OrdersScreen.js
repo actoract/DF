@@ -48,7 +48,7 @@ const OrdersScreen = ({match}) => {
                                     <Col md={2}>
                                         <Image src={item.image} alt={item.name.nameRus} fluid rounded></Image>
                                     </Col>
-                                    <Col md={2}>
+                                    <Col md={3}>
                                         <Link to={`/product/${item.product}`}>{item.name.nameRus}/{item.name.nameEng}</Link>
                                     </Col>
                                     <Col md={2}>
@@ -57,7 +57,7 @@ const OrdersScreen = ({match}) => {
                                     <Col md={2}>
                                         {item.type === "dc" ? <Image src={item.custImage } alt="1" fluid rounded></Image>: <div/>}
                                     </Col>
-                                    <Col md={4}>
+                                    <Col md={2}>
                                         {item.qty} x {item.price} = {item.qty * item.price}
                                     </Col>
                                 </Row>
