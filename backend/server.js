@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'//nodejs module to work with files
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 //import products from './data/products.js'
@@ -7,6 +8,7 @@ import productRoutes from './routes/productRoutes.js'
 import testproductRoutes from './routes/testproductRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import  uploadImageRoutes from './routes/uploadImageRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 
 const app = express()
@@ -24,6 +26,10 @@ app.use('/api/products', productRoutes)
 //specified middleware function to "/users"
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/uploadimage', uploadImageRoutes)
+
+const __dirname = path.resolve()
+app.use('/upload', express.static(path.join(__dirname, '/upload')))//Making statis folder
 /*app.get('/api/products', (req, res) => {
     res.json(products)
 })
