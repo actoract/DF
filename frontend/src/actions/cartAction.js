@@ -22,11 +22,11 @@ export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (di
             name: data.name,
             image: data.image,
             price: type == "dc" ? data.price.priceDigital : data.price.priceReal * qty,
-            sizeStatus: data.sizeStatus,
+            //sizeStatus: data.sizeStatus,
             type,
             qty: type == "dc" ? 1 :  qty,
             size,
-            maxQty: maxQty,
+            custImage:"",
             //custImage
         }
     })

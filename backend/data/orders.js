@@ -1,15 +1,15 @@
-/*const orders = [
+const orders = [
     {
         user: '607400643caf5e34c069038a',
         orderItems: [{
             name: 'Голубая шуба',
             qty: 4,
-            size:38,
+            size:"S",
             type: 'rc',
             image: '/images/clothes1.png',
             price: 1500,
             product: '607400643caf5e34c069038d',
-            custImage: '/images/clothes1.png'
+            custImage: '/images/clothes1.png',
 
         }],
         shippingAddress:{
@@ -26,14 +26,11 @@
             updateTime: 'updatetime',
             email_address: 'emaiadress',
         },
-        totalPrice: '1500',
+        totalPrice: 1500,
         isPaid: true,
         paidAt: "",
-        isDelivered: true,
+        isDelivered: false,
         deliveredAt: ""
     }
 ]
-export default orders*/
-
-const orders = []
 export default orders

@@ -35,6 +35,7 @@ const PlaceorderScreen = ({history}) => {
         }
     }, [history, success])
     const hadlePlaceOrder = () => {
+        alert(cart.cartItems[0]._id)
         dispatch(addOrder({
             orderItems: cart.cartItems,
             deliveryAddress: cart.deliveryAddress,

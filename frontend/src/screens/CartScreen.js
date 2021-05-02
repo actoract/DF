@@ -26,6 +26,7 @@ const CartScreen = ({match, location, history}) => {
     //const [image, setImage] = useState();
     useEffect (() => {
         if(productId){
+            console.log(productId)
             dispatch(addToCart(cartItems.length + 1, productId, qty, type, Number(size), 0))
         }
     }, [dispatch, productId, qty, type, size])
@@ -87,16 +88,17 @@ const CartScreen = ({match, location, history}) => {
         history.push('/login?redirect=shipping')
    }
    const handleQtyChange = (e, item) => {
+       console.log(item._id)
        if(item.maxQty < e.target.value){
             message.error(t('Count in stock is less fir this item.1'), 3);
-            dispatch(changeCart(item.id, item.product, item.maxQty, item.type, item.size, item.maxQty))
+            dispatch(changeCart(item._id, item.product, item.maxQty, item.type, item.size, item.maxQty))
             setQty(item.maxQty)
        }
        else if (e.target.value == 0 || !e.target.value){
-            dispatch(removeFromCart(item.id, Number(item.size)))
+            dispatch(removeFromCart(item._id, Number(item.size)))
        }
        else{
-            dispatch(changeCart(item.id, item.product, e.target.value, item.type, item.size, item.maxQty))
+            dispatch(changeCart(item._id, item.product, e.target.value, item.type, item.size, item.maxQty))
             setQty(e.target.value)
        }
    }

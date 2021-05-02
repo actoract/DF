@@ -26,6 +26,9 @@ const OrdersScreen = ({match, history}) => {
     const dispatch = useDispatch();
     const { t } = useTranslation(); 
 
+    if(!userInfo){
+        history.push('/login')
+    }
     useEffect(() => {
         if(!order || order._id !== orderId) {
             dispatch(getOrderById(orderId))
@@ -34,9 +37,9 @@ const OrdersScreen = ({match, history}) => {
             dispatch({type: ORDER_UPDATE_STATUS_RESET})
             dispatch(getOrderById(orderId))
         }
-        if(!userInfo || !userInfo.isAdmin){
+        /*if(!userInfo || !userInfo.isAdmin){//Из-за этого происходит переход при Placeorder
             history.push('/login')
-        }
+        }*/
     }, [history, order, orderId, dispatch, successStatus]) 
 
     const changeStatusHandle = () => {

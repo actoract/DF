@@ -36,7 +36,7 @@ const UserScreen = ({location, history}) => {
     const {success} = userUpdProfile
 
     useEffect (() => {
-        if(!userInfo || !userInfo.isAdmin){
+        if(!userInfo){
             history.push('/login') 
         }
         else {
