@@ -5,7 +5,7 @@ import expressAsyncHandler from 'express-async-handler'
 //@route POST /api/orders
 //@access Private
 const addOrder = expressAsyncHandler(async (req, res) => {
-    const {orderItems, deliveryAddress, paymentMethod} = req.body
+    const {orderItems, deliveryAddress, paymentMethod, totalPrice, isDelivered, isPaid} = req.body
     if(orderItems && orderItems.length == 0){
         res.status(400)
         throw new Error('No new items')
@@ -15,7 +15,11 @@ const addOrder = expressAsyncHandler(async (req, res) => {
             orderItems, 
             deliveryAddress, 
             paymentMethod,
-            user: req.user._id
+            user: req.user._id,
+            totalPrice,
+            isDelivered,
+            isPaid,
+            paidAt: Date.now()
         })
         const createdOrder = await order.save()
         res.status(201).json(createdOrder)
@@ -75,11 +79,28 @@ const getOrders = expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({}).populate('user', 'id firstName lastName email')
     res.json(orders)
 })
+//@description Update delivery status
+//@route GET /api/orders/:id/deliver
+//@access Private admin
+const updateOrderStatus = expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+    if(order){
+        order.isDelivered = true
+        order.deliveredAt = Date.now()
+        const updatedOrder = await order.save()
+        res.json(updatedOrder)
+    }
+    else{
+        res.status(404)
+        throw new Error('Order not found')
+    }
+})
 
 export {
     addOrder,
     getOrderById,
     paidOrder,
     getLogedUserOrders,
-    getOrders
+    getOrders,
+    updateOrderStatus
 }

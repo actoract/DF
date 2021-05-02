@@ -28,10 +28,9 @@ const EditTestScreen = () => {
         }
     }
     return ( 
-    <FormCont className = "FormCont">
-         <Row className = 'justify-content-md-center'>
-             <h3>Add details for test product</h3>
-            <Form>
+        <Row className = 'justify-content-md-center'>
+            <Col>
+            <h3>Add details for test product</h3>
                 <Form.Group controlId='nameRus'>
                     <Form.Label>name(rus)</Form.Label>
                     <Form.Control required type = "text" placeholder = {!nameRus ?'enter name(rus)' : nameRus} onChange = {(e) => setNameRus(e.target.value)}></Form.Control>
@@ -62,9 +61,8 @@ const EditTestScreen = () => {
                     <Form.Control required type = "text" placeholder = {!descColor ? 'enter color of product': descColor} onChange = {(e) => setColor(e.target.value)}></Form.Control>
                 </Form.Group>
                 <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
-            </Form>
+            </Col>
         </Row>
-    </FormCont>
 
     )
 }

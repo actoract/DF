@@ -10,6 +10,8 @@ import Status from '../components/status'
 import {getOrderById, ordersAction} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import {saveAddress} from '../actions/cartAction'
+import { Popover, Modal } from 'antd';
+import { LinkContainer } from 'react-router-bootstrap'
 
 const OrdersScreen_Admin = ({history}) => {
     //const orderId = match.params.id
@@ -22,9 +24,18 @@ const OrdersScreen_Admin = ({history}) => {
     const dispatch = useDispatch();
     const { t } = useTranslation(); 
 
+    const messageAdminOnHover = (
+        <div>
+            <p>In order to view details click on the order</p>
+        </div>
+    );
+
     useEffect(() => {
         if(userInfo && userInfo.isAdmin) {
             dispatch(ordersAction())
+        }
+        else{
+            history.push('/login')
         }
     }, [dispatch, userInfo, history]) 
 
@@ -37,6 +48,9 @@ const OrdersScreen_Admin = ({history}) => {
         console.log(e);
         //message.error('Click on No');
     }
+    const handleViewDetails = (id) =>{
+        history.push(`/order/${id}`)
+    }
     return (
         <>
             <Row>
@@ -44,34 +58,29 @@ const OrdersScreen_Admin = ({history}) => {
             </Row>
             {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
             <>
-            <Row  key = "header">
+            <Row  key = "header" className="text_details">
                 <Col md={4} className =""><strong>{t('ID.1')}</strong></Col> 
-                <Col md={2} className =""><strong>{t('USER.1')}</strong></Col> 
-                <Col md={2} className =""><strong>{t('EMAIL.1')}</strong></Col> 
+                <Col md={2} className =""><strong>{t('USER.1')}</strong></Col>  
                 <Col md={2} className =""><strong>{t('TOTAL PRICE.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('PAYMENT STATUS.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('DELIVERY STTUS.1')}</strong></Col> 
             </Row>
             {orders.map(item => (
+                <LinkContainer to={`/order/${item._id}`}>
+               <Popover content={messageAdminOnHover} title="How to view order details?" key={item._id}> 
                 <Row key={item._id} className = "CardDetails2 details">
-                    <Popconfirm
-                    title="Are you sure you wnt to update order on DELIVERED"
-                    onConfirm={() => confirmUpdate(item._id)}
-                    onCancel={cancelUpdate}
-                    okText="Yes"
-                    cancelText="No"
-                    >
-                        <div className = "CloseBut" >
-                            ✕
-                        </div>
-                    </Popconfirm>
                     <Col md={4}>{item._id}</Col>
                     <Col md={2}>{item.user && item.user.firstName} {item.user && item.user.lastName}</Col>
-                    <Col md={2}>{item.user && item.user.email}</Col>
-                    <Col md={2}>{item.isPaid}</Col>
-                    <Col md={2}>{item.isPaid}</Col>
-                    <Col md={2}>{item.isDelivered}</Col>
+                    <Col md={2}>{item.totalPrice && item.totalPrice}</Col>
+                    {
+                        item.isPaid == false ? <Col md={2}> <strong>✕</strong></Col> : <Col md={2}> <strong> ✓ </strong></Col>
+                    }
+                    {
+                        item.isDelivered == false ? <Col md={2}> <strong>✕</strong></Col> : <Col md={2}> <strong> ✓ </strong></Col>
+                    }
                 </Row>
+                </Popover>
+                </LinkContainer>
             ))}
             </>
            }

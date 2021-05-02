@@ -19,7 +19,7 @@
 .text_details{
   text-align: left;
   font-size: 16px;
-  margin: 10px;
+  margin: 30px;
 }
 .CardDetails{
   position: relative;
@@ -54,8 +54,6 @@
 }
 .mainHome{
   position:absolute;
-  top:0px;
-  left: 0px;
   background-image: url(Gradient2.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -64,8 +62,8 @@
 }
 .mainAbout{
   position:absolute;
-  top:0px;
-  left: 0px;
+  top:-100px;
+  left: -209px;
   background-image: url(Gradient3.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -94,6 +92,7 @@
 .mainStore{
   margin-top: 20px;
   padding: 12px;
+  margin: -60px;
   box-sizing: border-box;
   height: auto;
   background-color: #F6f6f6;
@@ -115,7 +114,7 @@
   top: 0;
   max-height: 1000px;
   padding: 20px;
-  margin: 0px;
+  margin-bottom: 10px;
   border-radius: 5px;
   border-width: 10px;
   backdrop-filter: 1px;
@@ -226,6 +225,12 @@ input[type="file"] {
 .FormCont{
   position: relative;
   margin-top: 100px;
+  background-color: #f6f6f6;
+}
+
+.FormCont2{
+  position: absolute;
+  margin-top: 200px;
   background-color: #f6f6f6;
 }
 .add{

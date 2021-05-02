@@ -13,7 +13,10 @@ import {ORDER_ADD_FAIL,
     USER_ORDERS_REQ,
     ORDERS_REQ,
     ORDERS_SUC,
-    ORDERS_FAIL} from "../constants/storeConst"
+    ORDERS_FAIL,
+    ORDER_UPDATE_STATUS_REQ,
+    ORDER_UPDATE_STATUS_SUC,
+    ORDER_UPDATE_STATUS_FAIL} from "../constants/storeConst"
 import axios from 'axios'
 
 export const addOrder = (order) => async (dispatch, getState) => {
@@ -88,6 +91,31 @@ export const payOrderAction = (orderId, paymentResult) => async (dispatch, getSt
     catch(error){
         dispatch({
             type: ORDER_PAY_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const updateStatusAction = (order) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: ORDER_UPDATE_STATUS_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.put(`/api/orders/${order._id}/deliver`, {}, config)
+        dispatch({
+            type: ORDER_UPDATE_STATUS_SUC,
+            payload: data
+        })  
+    }
+    catch(error){
+        dispatch({
+            type: ORDER_UPDATE_STATUS_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

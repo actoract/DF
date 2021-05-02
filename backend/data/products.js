@@ -15,20 +15,12 @@ const products = [
             priceDigital: 500,
             priceReal: 1500,
         },
-        sizeStatus: [
-            {
-                size: 34, 
-                countInStock: 1
-            },
-            {
-                size: 36, 
-                countInStock: 2
-            },
-            {
-                size: 38, 
-                countInStock: 4
-            },
-        ]
+        sizeStatus: {
+            XS: 500,
+            S: 1500,
+            M: 1500,
+            L: 1500,
+        },
     },
     {
         name: {
@@ -46,20 +38,12 @@ const products = [
             priceDigital: 500,
             priceReal: 1500,
         },
-        sizeStatus: [
-            {
-                size: 34, 
-                countInStock: 1
-            },
-            {
-                size: 36, 
-                countInStock: 2
-            },
-            {
-                size: 38, 
-                countInStock: 4
-            },
-        ]
+        sizeStatus: {
+            XS: 500,
+            S: 1500,
+            M: 1500,
+            L: 1500,
+        },
     },
     {
         name: {
@@ -77,20 +61,12 @@ const products = [
             priceDigital: 500,
             priceReal: 1500,
         },
-        sizeStatus: [
-            {
-                size: 34, 
-                countInStock: 1
-            },
-            {
-                size: 36, 
-                countInStock: 2
-            },
-            {
-                size: 38, 
-                countInStock: 4
-            },
-        ]
+        sizeStatus: {
+            XS: 500,
+            S: 1500,
+            M: 1500,
+            L: 1500,
+        },
     }, 
     {
         name: {
@@ -108,20 +84,12 @@ const products = [
             priceDigital: 500,
             priceReal: 1500,
         },
-        sizeStatus: [
-            {
-                size: 34, 
-                countInStock: 1
-            },
-            {
-                size: 36, 
-                countInStock: 2
-            },
-            {
-                size: 38, 
-                countInStock: 4
-            },
-        ]
+        sizeStatus: {
+            XS: 500,
+            S: 1500,
+            M: 1500,
+            L: 1500,
+        },
     },
     {
         name: {
@@ -139,20 +107,12 @@ const products = [
             priceDigital: 500,
             priceReal: 1500,
         },
-        sizeStatus: [
-            {
-                size: 34, 
-                countInStock: 1
-            },
-            {
-                size: 36, 
-                countInStock: 2
-            },
-            {
-                size: 38, 
-                countInStock: 4
-            },
-        ]
+        sizeStatus: {
+            XS: 500,
+            S: 1500,
+            M: 1500,
+            L: 1500,
+        },
     }
 ]
 export default products

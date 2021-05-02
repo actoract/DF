@@ -1,4 +1,4 @@
-const orders = [
+/*const orders = [
     {
         user: '607400643caf5e34c069038a',
         orderItems: [{
@@ -33,4 +33,7 @@ const orders = [
         deliveredAt: ""
     }
 ]
+export default orders*/
+
+const orders = []
 export default orders

@@ -1,5 +1,5 @@
 import express from 'express'
-import {addOrder, getOrderById, paidOrder, getLogedUserOrders, getOrders} from '../controllers/orderController.js'
+import {addOrder, getOrderById, paidOrder, getLogedUserOrders, getOrders, updateOrderStatus} from '../controllers/orderController.js'
 import {protect, admin} from '../middleware/authicationMiddleware.js'
 const router = express.Router()
 
@@ -7,7 +7,8 @@ const router = express.Router()
 router.route('/').post(protect, addOrder).get(protect, admin, getOrders)
 router.route('/userorders').get(protect, getLogedUserOrders)
 router.route('/:id').get(protect, getOrderById)
-router.route('/:id/pay').put(protect, paidOrder)
+//router.route('/:id/pay').put(protect, paidOrder)
+router.route('/:id/deliver').put(protect, admin, updateOrderStatus)
 
 
 export default router

@@ -29,25 +29,35 @@ const CameraControls = () => {
 const ProductScreen = ({history, match}) => { 
 
     const [number, setNumber] = useState();
-    const [qty, setQty] = useState();
-    const [size, setSize] = useState();
+    const [qty, setQty] = useState("");
+    const [size, setSize] = useState("");
+    const [maxQty, setMaxQty] = useState("");
     const dispatch = useDispatch()
     const productDet = useSelector(state => state.productDet);
     const {product, loadingVal, error} = productDet
     const { t } = useTranslation(); 
-    const [price, setPrice] = useState();
-    const [type, setType] = useState();
-    const [status, setStatus] = useState();
+    const [price, setPrice] = useState("");
+    const [type, setType] = useState("");
+    const [status, setStatus] = useState("");
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
 
     useEffect(() => {
       dispatch(productDetAction(match.params.id))
+      if(qty && size){
+        
+      }
     }, [dispatch, match])
 
     const addToCard = () => {
-      dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, Number(size), number));
-      message.success(t('Added.1'), 3);
+      const exist = cartItems.find(item => item.product == product._id && item.size == size)
+      if(!exist){
+        dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, maxQty));
+        message.success(t('Added.1'), 3);
+      }
+      else{
+        message.error(t('Item is already added to the cart.1'), 3);
+      }
       //history.push(`/cart/${match.params.id}?qty=${qty}?type=${type}?size=${size}`)
 
       /*const keys = Object.keys(item.sizeStatus); 
@@ -79,7 +89,25 @@ const ProductScreen = ({history, match}) => {
         setType("rc")
       }
     }
-    function HandleSizeChange(){
+    const handleSizeChang = (e) => {
+      for (var key in product.sizeStatus) {
+        if(key == e.target.value){
+          setMaxQty(Number(product.sizeStatus[key])) 
+        }
+      }
+      setSize(e.target.value)
+    }
+
+    const handleQtyChange = (e) => {
+      if (maxQty < e.target.value){
+        message.error(t('Count in stock is less fir this item.1'), 3);
+        setQty(maxQty)
+      }
+      else{
+        setQty(e.target.value)
+      }
+    }
+    /*function HandleSizeChange(){
       const keys = Object.keys(product.sizeStatus); 
       setSize(document.getElementById("2").value)
       for (let key of keys) {
@@ -94,7 +122,7 @@ const ProductScreen = ({history, match}) => {
           }
         }
       }
-    }
+    }*/
 
 
     return (
@@ -152,39 +180,30 @@ const ProductScreen = ({history, match}) => {
                           {t('Size.1')}
                         </Col>
                           <Col>
-                          <Form.Control as="select"   className = "SelectBut2" id = "2" onChange = {HandleSizeChange}>
+                          <Form.Control as="select"   className = "SelectBut2" id = "2" onChange = {e => handleSizeChang(e)}>
                               <option value="default" key = "default">{t('Choose.1')}</option> 
-                              {Object.values(product.sizeStatus).map(item => (
-                              <option value={item.size} className="card-panel" key = {item.size}>
-                              {item.size}
+                              {Object.keys(product.sizeStatus).map(item => (
+                              <option value={item} className="card-panel" key = {item}>
+                              {item}
                               </option>
                               ))}
                           </Form.Control>
                         </Col>
                       </Row>
                     </ListGroup.Item>
-                    
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>
+                          {t('Quantity.1')}
+                        </Col>
+                          <Col>
+                          <Form.Control required type = "number" name="qty" placeholder = {t('Quantity.1')} value={qty} onChange = {(e) => handleQtyChange(e)}></Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
                     </>
                   }
                 </ListGroup>
-                {number > 0 && //??????
-                <div>
-                <ItemList text = "Status.1" list_item = {status}/>
-                <ListGroup.Item text = "Number.1" list_item = {number}>
-                  <Row>
-                    <Col>{t("Quantity.1")}</Col>
-                    <Col>
-                      <Form.Control as="select" value={qty} onChange = {(e) => setQty(Number(e.target.value))}>
-                        <option value="default" key = "default">{t("Choose.1")}</option> 
-                        {[...Array(number).keys()].map(x => (
-                          <option key = {x + 1} value = {x + 1}>{x + 1}</option>
-                        ))}
-                      </Form.Control>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                </div>
-              }
               </Card>
               {type == "dc" || type == "rc" && size != undefined && qty != undefined ?
                 <div  className = 'add' onClick = {addToCard}> {t('Add.1')}</div> :

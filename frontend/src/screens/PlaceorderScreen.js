@@ -38,7 +38,10 @@ const PlaceorderScreen = ({history}) => {
         dispatch(addOrder({
             orderItems: cart.cartItems,
             deliveryAddress: cart.deliveryAddress,
-            paymentMethod: cart.paymentMethod
+            paymentMethod: cart.paymentMethod,
+            totalPrice: cart.cartItems.reduce((acc, current) => acc + Number(current.price), 0), 
+            isDelivered: false,
+            isPaid: true
         }))
     }
     const uploadImage = async(e) => {//http request

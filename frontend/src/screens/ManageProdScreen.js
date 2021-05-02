@@ -34,7 +34,7 @@ const ManageProdScreen = ({history, match}) => {
     useEffect(() => {
         dispatch({type: PRODUCTS_CREATE_RESET})
 
-        if(!userInfo.isAdmin){
+        if(!userInfo || !userInfo.isAdmin){
             history.push('/login')
         }
         if(successCreate){
@@ -69,7 +69,7 @@ const ManageProdScreen = ({history, match}) => {
             {errorDelete && <Message>{errorDelete}</Message>}
             {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
             <>
-            <Row  key = "header">
+            <Row  key = "header" className="text_details">
                 <Col md={1} className =""><strong>{t('Image.1')}</strong></Col> 
                 <Col md={4} className =""><strong>{t('ID.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('Name.1')}</strong></Col> 
@@ -91,7 +91,7 @@ const ManageProdScreen = ({history, match}) => {
                     </Popconfirm>
                     <Col md={1}><Image src = {item.image} alt={item.name} fluid rounded/></Col>
                     <Col md={4}>{item._id}</Col>
-                    <Col md={2}>{item.name.nameRus}/{item.name.nameEng}</Col>
+                    <Col md={2}>{item.name.nameRus}</Col>
                     <Col md={2}>{item.price.priceDigital}</Col>
                     <Col md={2}>{item.price.priceReal}</Col>
                 </Row>

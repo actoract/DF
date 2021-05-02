@@ -22,6 +22,7 @@ const CartScreen = ({match, location, history}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
+    const [qtylimit, setQty] = useState()
     //const [image, setImage] = useState();
     useEffect (() => {
         if(productId){
@@ -46,10 +47,24 @@ const CartScreen = ({match, location, history}) => {
             }
         }
     }*/
-    const handleChange = (e, item) => {
-        const keys = Object.keys(item.sizeStatus); 
-        const  exist = cartItems.find(x => x.product == item.product && Number(e.target.value) == Number(x.size));
-        console.log(exist)
+    /*const handleChange = (e, item) => {
+
+        const exist = cartItems.find(x => x.product == item._id && x.size == e.target.value)
+        if(!exist){
+            dispatch(changeCart(item.id, item.product, item.qty, item.type, e.target.value, item.countInStock))
+            //dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, number));
+            //message.success(t('Added.1'), 3);
+        }
+        else{
+            message.error(t('The item already exist.1'), 3);
+        }
+
+
+        /*const keys = Object.keys(item.sizeStatus); 
+        const exist = cartItems.map(x => Object.keys(x.sizeStatus).find(size => (
+            size == e.target.value && item.product == x.product 
+        )))
+
         if (exist){
             message.success("Exist", 3);
         }
@@ -67,9 +82,23 @@ const CartScreen = ({match, location, history}) => {
                 }
             }
         }
-    }
+    }*/
    const handleCheckout = () => {
         history.push('/login?redirect=shipping')
+   }
+   const handleQtyChange = (e, item) => {
+       if(item.maxQty < e.target.value){
+            message.error(t('Count in stock is less fir this item.1'), 3);
+            dispatch(changeCart(item.id, item.product, item.maxQty, item.type, item.size, item.maxQty))
+            setQty(item.maxQty)
+       }
+       else if (e.target.value == 0 || !e.target.value){
+            dispatch(removeFromCart(item.id, Number(item.size)))
+       }
+       else{
+            dispatch(changeCart(item.id, item.product, e.target.value, item.type, item.size, item.maxQty))
+            setQty(e.target.value)
+       }
    }
    /*const uploadImage = (e, item) => {
         e.preventDefault();
@@ -136,7 +165,7 @@ const CartScreen = ({match, location, history}) => {
                 </Row>
                 </Container>) :
             (<Row>
-                <Col md={8}>
+                <Col md={9}>
                 {cartItems.map(item => (
                     <div className = "CardDetails2" key = {item.product + "/" + item.size}>
                         <div className = "CloseBut" onClick = {() => handleRemove(item.id, item.size)}>
@@ -158,27 +187,15 @@ const CartScreen = ({match, location, history}) => {
                             {item.type == "rc" ?
                                 <Col md = {2}>
                                     <strong>{t('Quantity.1')}: </strong>
-                                    <Form.Control as='select' custom value={item.qty} onChange = {(e) => dispatch(changeCart(item.id, item.product, Number(e.target.value), item.type, item.size, item.countInStock))}>  
-                                        {[...Array(item.countInStock).keys()].map(x => (
-                                        <option key = {x + 1} value = {x + 1}>
-                                            {x + 1}
-                                        </option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Control required type = "number" value={qtylimit} name="qty" placeholder = {item.qty} 
+                                    onChange = {(e) => handleQtyChange(e, item)}></Form.Control>
                                 </Col > :
                                 <Col md = {2}/>
                             }
                              <Col md = {2}>
                                 {item.type == "rc" ?
-                                    <Col>
-                                        <strong>{t('Size.1')}: </strong>
-                                        <Form.Control as='select' custom value={item.size} onChange = {e => handleChange(e, item)}> 
-                                            {Object.values(item.sizeStatus).map(x => (
-                                            <option value={x.size} className="card-panel" key = {x.size}>
-                                            {x.size}
-                                            </option>
-                                            ))}
-                                        </Form.Control>
+                                    <Col md = {2}>
+                                        <strong>{t('Size.1')}: </strong>{item.size}
                                     </Col> :
                                     <Col>
                                         <strong>{t('Size.1')}: </strong> {t('unified.1')}

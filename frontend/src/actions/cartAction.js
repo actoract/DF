@@ -5,7 +5,7 @@ import {CART_ADD,
     CART_SAVE_ADDRESS,
     CART_SAVE_PAYMENT_METHOD} from '../constants/storeConst'
 
-export const addToCart = (stateNumber, id, qty, type, size, countInStock, custImage) => async (dispatch, getState) =>{
+export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (dispatch, getState) =>{
     const {data} = await axios.get(`/api/products/${id}`)
     let count
     const keys = Object.keys(data.sizeStatus); 
@@ -26,8 +26,8 @@ export const addToCart = (stateNumber, id, qty, type, size, countInStock, custIm
             type,
             qty: type == "dc" ? 1 :  qty,
             size,
-            countInStock: count,
-            custImage
+            maxQty: maxQty,
+            //custImage
         }
     })
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
@@ -44,7 +44,7 @@ export const removeFromCart = (id, size) => (dispatch, getState) =>{
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 
-export const changeCart = (stateNumber, id, qty, type, size, countInStock, custImage) => async (dispatch, getState) =>{
+export const changeCart = (stateNumber, id, qty, type, size, maxQty) => async (dispatch, getState) =>{
     const {data} = await axios.get(`/api/products/${id}`)
     dispatch({
         type: CART_CHANGE,
@@ -58,8 +58,7 @@ export const changeCart = (stateNumber, id, qty, type, size, countInStock, custI
             type,
             qty: type == "dc" ? 1 :  qty,
             size,
-            countInStock, 
-            custImage
+            maxQty: maxQty
         }
     })
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))

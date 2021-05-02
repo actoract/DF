@@ -65,20 +65,12 @@ const createProduct = expressAsyncHandler(async (req, res) => {
             priceDigital: 500,
             priceReal: 1500,
         },
-        sizeStatus: [
-            {
-                size: 34, 
-                countInStock: 1
-            },
-            {
-                size: 36, 
-                countInStock: 2
-            },
-            {
-                size: 38, 
-                countInStock: 4
-            },
-        ]
+        sizeStatus: {
+            XS: 500,
+            S: 1500,
+            M: 1500,
+            L: 1500,
+        },
     })
     const createdProduct = await product.save()
     res.status(201).json(createdProduct)
@@ -100,8 +92,10 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
         product.description.care = description.care
         product.description.material = description.material
         product.description.color = description.color
-        product.sizeStatus.size = sizeStatus.size
-        product.sizeStatus.countInStock = sizeStatus.countInStock
+        product.sizeStatus.XS = sizeStatus.XS
+        product.sizeStatus.S = sizeStatus.S
+        product.sizeStatus.M = sizeStatus.M
+        product.sizeStatus.L = sizeStatus.L
         const updatedProduct = await product.save()
         res.json(updatedProduct)
     }

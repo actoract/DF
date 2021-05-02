@@ -70,7 +70,7 @@ const ManageTestProdScreen = ({history, match}) => {
             </Row>
            {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
             <>
-            <Row  key = "header">
+            <Row  key = "header" className="text_details">
                 <Col md={1} className =""><strong>{t('Image.1')}</strong></Col> 
                 <Col md={4} className =""><strong>{t('ID.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('Name.1')}</strong></Col> 

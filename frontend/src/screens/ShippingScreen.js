@@ -18,6 +18,7 @@ const ShippingScreen = ({history}) => {
     const [city, setCity] = useState(deliveryAddress.city);
     const [postCode, setPostCode] = useState(deliveryAddress.postCode);
     const [country, setCountry] = useState(deliveryAddress.country);
+    const [email, setEmail] = useState(deliveryAddress.country);
     const { t } = useTranslation(); 
     const dispatch = useDispatch()
     const submitHandler = (e) => {

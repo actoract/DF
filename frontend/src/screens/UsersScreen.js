@@ -75,7 +75,7 @@ const UsersScreen = ({history, match}) => {
            <h1>Users</h1> 
            {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
            <>
-           <Row  key = "header">
+           <Row  className = "text_details" key = "header">
                 <Col md={4} className =""><strong>{t('ID.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('First name.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('Last name.1')}</strong></Col> 

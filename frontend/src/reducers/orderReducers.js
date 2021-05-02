@@ -11,7 +11,11 @@ import {ORDER_ADD_FAIL,
     USER_ORDERS_FAIL,
     ORDERS_REQ,
     ORDERS_SUC,
-    ORDERS_FAIL} from "../constants/storeConst"
+    ORDERS_FAIL,
+    ORDER_UPDATE_STATUS_FAIL,
+    ORDER_UPDATE_STATUS_REQ,
+    ORDER_UPDATE_STATUS_SUC,
+    ORDER_UPDATE_STATUS_RESET} from "../constants/storeConst"
 
 export const orderAddRecuder = (state = {}, action) => {
     switch(action.type){
@@ -120,6 +124,29 @@ export const ordersReducer = (state = {orders:[]}, action) => {
                 loading: false,
                 error: action.payload
             }
+        default:
+            return state
+    }
+}
+
+export const orderUpdateStatusReducer = (state = {}, action) => {
+    switch(action.type){
+        case ORDER_UPDATE_STATUS_REQ:
+            return{
+                loading: true
+            }
+        case ORDER_UPDATE_STATUS_SUC:
+            return{
+                loading: false,
+                success: true
+            }
+        case ORDER_UPDATE_STATUS_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        case ORDER_UPDATE_STATUS_RESET:
+            return{}
         default:
             return state
     }

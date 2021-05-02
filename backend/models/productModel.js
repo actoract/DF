@@ -27,10 +27,12 @@ const productSchema = mongoose.Schema({
         material: {type: String, require: true},
         color: {type: String, require: true},
     },
-    sizeStatus:[{
-        size: {type: Number, require: true},
-        countInStock: {type: Number, require: true, default: 0}
-    }],
+    sizeStatus:{
+        XS: {type: Number, require: true},
+        S: {type: Number, require: true},
+        M: {type: Number, require: true},
+        L: {type: Number, require: true},
+    },
 
 }, {
     timeStams: true
