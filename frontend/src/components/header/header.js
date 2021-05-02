@@ -33,6 +33,11 @@ function Header() {
                 </a>
             </Menu.Item>
             <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href={`/ordersadmin`}>
+                    {t('orders.1')}
+                </a>
+            </Menu.Item>
+            <Menu.Item>
                 <a target="_blank" rel="noopener noreferrer" href={`/users`}>
                     {t('users.1')}
                 </a>

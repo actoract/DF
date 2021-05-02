@@ -10,7 +10,10 @@ import {ORDER_ADD_FAIL,
     ORDER_PAY_RESET,
     USER_ORDERS_FAIL,
     USER_ORDERS_SUC,
-    USER_ORDERS_REQ} from "../constants/storeConst"
+    USER_ORDERS_REQ,
+    ORDERS_REQ,
+    ORDERS_SUC,
+    ORDERS_FAIL} from "../constants/storeConst"
 import axios from 'axios'
 
 export const addOrder = (order) => async (dispatch, getState) => {
@@ -110,6 +113,31 @@ export const userOrdersAction = () => async (dispatch, getState) => {
     catch(error){
         dispatch({
             type: USER_ORDERS_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const ordersAction = () => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: ORDERS_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.get(`/api/orders`, config)
+        dispatch({
+            type: ORDERS_SUC,
+            payload: data
+        })  
+    }
+    catch(error){
+        dispatch({
+            type: ORDERS_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

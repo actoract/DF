@@ -68,9 +68,18 @@ const getLogedUserOrders = expressAsyncHandler(async (req, res) => {
     res.json(orders)
 })
 
+//@description Get all orders
+//@route GET /api/orders
+//@access Private
+const getOrders = expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'id firstName lastName email')
+    res.json(orders)
+})
+
 export {
     addOrder,
     getOrderById,
     paidOrder,
-    getLogedUserOrders
+    getLogedUserOrders,
+    getOrders
 }
