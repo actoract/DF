@@ -70,6 +70,38 @@ const updateTestProduct = expressAsyncHandler(async (req, res) => {
 })
 
 
+//@description Create review
+//@route POST /api/testproducts/:id/reviews
+//@access private
+const createReviewTestProduct = expressAsyncHandler(async (req, res) => {
+    const {rating, comment} = req.body
+    const testproduct = await TestProduct.findById(req.params.id)
+    if (testproduct){
+        const existReview = testproduct.reviews.find(rev => rev.user.toString() === req.user._id.toString())
+        if(existReview){
+            res.status(400)
+            throw new Error ('Test product is already reviewed')
+        }
+        const review ={
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+        testproduct.reviews.push(review)
+        testproduct.ratingNum = testproduct.reviews.length
+        testproduct.rating = testproduct.reviews.reduce((acc, item) => item.rating + acc, 0)/testproduct.reviews.length
+        await testproduct.save()
+        res.status(201).json({message: 'Review is added'})
+    }
+    else{
+        res.status(404)
+        throw new Error ('Test product not found')
+    }
+})
+
+
 //@description Delete test product
 //@route DELETE /api/testproducts/:id
 //@access private for admin
@@ -91,5 +123,6 @@ export {
     getTestProductById,
     deleteTestProduct,
     createTestProduct,
-    updateTestProduct
+    updateTestProduct,
+    createReviewTestProduct
 }
