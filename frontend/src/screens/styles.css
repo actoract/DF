@@ -23,12 +23,11 @@
 }
 .CardDetails{
   position: relative;
-  width: auto;
+  width: 500px;
   height: auto;
   top: 0;
   max-height: 1000px;
   padding: 20px;
-  margin: 30px;
   border-radius: 5px;
   border-width: 10px;
   backdrop-filter: 1px;

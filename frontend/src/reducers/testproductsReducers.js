@@ -15,6 +15,10 @@ import {TEST_PRODUCTS_LIST_REQ,
     TEST_PRODUCTS_UPDATE_SUCC,
     TEST_PRODUCTS_UPDATE_FAIL,
     TEST_PRODUCTS_UPDATE_RESET,
+    TEST_PRODUCTS_REVIEW_FAIL,
+    TEST_PRODUCTS_REVIEW_REQ,
+    TEST_PRODUCTS_REVIEW_SUCC,
+    TEST_PRODUCTS_REVIEW_RESET,
 
 } from '../constants/storeConst'
 
@@ -136,6 +140,34 @@ export const testproductUpdateReducer = (state = {testproduct: {}}, action) => {
                 error: action.payload
             }
         case TEST_PRODUCTS_UPDATE_RESET:{
+            return {
+                testproduct:{}
+            }
+        }
+        default:
+            return state
+    }
+}
+
+
+
+export const testproductReviewReducer = (state = {}, action) => {
+    switch(action.type){
+        case TEST_PRODUCTS_REVIEW_REQ:
+            return { 
+                loading: true
+            }
+        case TEST_PRODUCTS_REVIEW_SUCC:
+            return{
+                loading: false,
+                success: true,
+            }
+        case TEST_PRODUCTS_REVIEW_FAIL:
+            return{
+                loading: false,
+                error: action.payload
+            }
+        case TEST_PRODUCTS_REVIEW_RESET:{
             return {
                 testproduct:{}
             }

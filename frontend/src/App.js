@@ -42,6 +42,7 @@ function App() {
           <Route path = '/ordersadmin' component = {OrdersScreen_Admin}/>
           <Route path = '/placeorder' component = {PlaceorderScreen}/>
           <Route path = '/product/:id/edit' component = {EditScreen} />
+          <Route path = '/testproduct/:id' component = {TestProductScreen} />
           <Route path = '/testproduct/:id/edit' component = {EditTestScreen} />
           <Route path = '/store' component = {StoreScreen} />
           <Route path = '/about' component = {AboutScreen} />
@@ -49,7 +50,6 @@ function App() {
           <Route path = '/managetestproducts' component = {ManageTestProdScreen} />
           <Route path = '/manageproducts' component = {ManageProdScreen} />
           <Route path = '/products/:id' component = {ProductScreen} />
-          <Route path = '/testproducts/:id' component = {TestProductScreen} />
           <Route path = '/login' component = {LoginScreen} />
           <Route path = '/users' component = {UsersScreen} />
           <Route path = '/register' component = {RegScreen} />

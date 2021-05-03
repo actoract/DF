@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Suspense, useRef} from 'react'
 import { useTranslation } from 'react-i18next'
 import {useDispatch, useSelector} from 'react-redux'
-import {Row, Col, ListGroup, Card } from 'react-bootstrap'
+import {Row, Col, ListGroup, Card, Button } from 'react-bootstrap'
 import ItemList from '../components/itemList'
 import { Rate } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
@@ -10,7 +10,11 @@ import DemoScene from "../components/demoScene"
 import Loader from "../components/loader"
 import Message from "../components/message"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {testproductDetAction} from '../actions/testproductsActions'
+import {testproductDetAction, reviewTestProductAction} from '../actions/testproductsActions'
+import {TEST_PRODUCTS_REVIEW_RESET} from '../constants/storeConst'
+import { Input } from 'antd';
+import { message } from 'antd';
+
 const customIcons = {
   1: <FrownOutlined />,
   2: <FrownOutlined />,
@@ -53,19 +57,47 @@ function Loading() {
 const TestProductScreen = ({match}) => {
 
   const dispatch = useDispatch()
+
+  const [rating, setRate] = useState(0)
+  const [comment, setComment] = useState('')
+
   const testproductDet = useSelector(state => state.testproductDet)
   const {testproduct, loadingVal, error} = testproductDet
+
+  const testproductReview = useSelector(state => state.testproductReview)
+  const {success: successReview, error: errorReview} = testproductReview
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
+  
+  const { TextArea } = Input;
+  
   useEffect (() => {
+    if(successReview){
+      message.success(t('Review is added.1'), 3);
+    }
+    else if(errorReview){
+      message.error(t('Error'), 3);
+    }
+    setRate(0)
+    setComment('')
+    dispatch({type: TEST_PRODUCTS_REVIEW_RESET})
     dispatch(testproductDetAction(match.params.id))
   }, [dispatch, match])
 
   const { t } = useTranslation(); 
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert(match.params.id)
+    dispatch(reviewTestProductAction(match.params.id, {rating,comment}))
+  }
   //const [testproduct, setTestProduct] = useState({});
 
     return (
         <div> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
-          <Row className='justify-content-center'>
+          <Row>
             <Col md = {6}>
             <div className = "canvasP">
               <Canvas style={{ background: "white" }} >
@@ -102,10 +134,14 @@ const TestProductScreen = ({match}) => {
                     <ItemList text = "Material.1" list_item = {testproduct.description.material}/>
                 </ListGroup>
               </Card>
-              
+              {errorReview && <Message>{errorReview}</Message>}
               <div className = "text_details">2. {t('Step3.1')}</div>
-              <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} />
+              <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
               <div className = "text_details">3. {t('Step4.1')}</div>
+              <TextArea rows={4} onChange={e => setComment(e.target.value)} />
+              <Button type="submit" variant="primary" onClick={e => handleSubmit(e)}>
+                Submit
+              </Button>
               <br />
             </div>
           </Row>
