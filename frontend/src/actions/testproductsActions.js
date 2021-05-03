@@ -13,6 +13,9 @@ import {TEST_PRODUCTS_LIST_REQ,
     TEST_PRODUCTS_REVIEW_REQ,
     TEST_PRODUCTS_REVIEW_SUCC,
     TEST_PRODUCTS_REVIEW_FAIL,
+    TEST_PRODUCTS_UPDATE_REQ,
+    TEST_PRODUCTS_UPDATE_SUCC,
+    TEST_PRODUCTS_UPDATE_FAIL,
 } from '../constants/storeConst'
 import axios from 'axios'
 
@@ -120,6 +123,32 @@ export const reviewTestProductAction = (testproductId, review) => async (dispatc
     catch(error){
         dispatch({
             type: TEST_PRODUCTS_REVIEW_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const updateTestProductAction = (testproduct) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: TEST_PRODUCTS_UPDATE_REQ
+        })
+        const {userLogin: {userInfo}} = getState()
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.put(`/api/testproducts/${testproduct._id}`, testproduct, config)
+        dispatch({
+            type: TEST_PRODUCTS_UPDATE_SUCC,
+            payload: data
+        })  
+    }
+    catch(error){
+        dispatch({
+            type: TEST_PRODUCTS_UPDATE_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

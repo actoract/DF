@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 const TestProduct = ({testproducts}) => {
     return (
-        <Link to = {`/testproduct/${testproducts._id}`}>
+        <Link to = {`/testproducts/${testproducts._id}`}>
         <div className='Card'>
             <img className='img'
                 alt="WEARDROP"

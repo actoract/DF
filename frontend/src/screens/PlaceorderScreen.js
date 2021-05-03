@@ -35,7 +35,6 @@ const PlaceorderScreen = ({history}) => {
         }
     }, [history, success])
     const hadlePlaceOrder = () => {
-        alert(cart.cartItems[0]._id)
         dispatch(addOrder({
             orderItems: cart.cartItems,
             deliveryAddress: cart.deliveryAddress,
@@ -84,12 +83,30 @@ const PlaceorderScreen = ({history}) => {
                 {cart.cartItems.length === 0? alert("Empty cart") : (
                     <ListGroup variant='flush'>
                         {cart.cartItems.map((item, index) => (
+                            <>
+                                <Row>
+                                    <Col md={2}>
+                                        <strong>{t('Image.1')}</strong>
+                                    </Col>
+                                    <Col md={3}>
+                                        <strong>{t('Name.1')}</strong>
+                                    </Col>
+                                    <Col md={2}>
+                                        <strong>{t('Type.1')}</strong>
+                                    </Col>
+                                    <Col md={2}>
+                                        <strong>{t('Customer image.1')}</strong>
+                                    </Col>
+                                    <Col md={2}>
+                                        <strong>{t('Total price.1')}</strong>
+                                    </Col>
+                                </Row>
                             <ListGroup.Item key={index}>
                                 <Row>
                                     <Col md={2}>
                                         <Image src={item.image} alt={item.name.nameRus} fluid rounded></Image>
                                     </Col>
-                                    <Col md={2}>
+                                    <Col md={3}>
                                         <Link to={`/product/${item.product}`}>{item.name.nameRus}/{item.name.nameEng}</Link>
                                     </Col>
                                     <Col md={2}>
@@ -112,6 +129,7 @@ const PlaceorderScreen = ({history}) => {
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
+                            </>
                         ))}
                     </ListGroup>
                 )}

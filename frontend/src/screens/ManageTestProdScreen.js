@@ -74,6 +74,8 @@ const ManageTestProdScreen = ({history, match}) => {
                 <Col md={1} className =""><strong>{t('Image.1')}</strong></Col> 
                 <Col md={4} className =""><strong>{t('ID.1')}</strong></Col> 
                 <Col md={2} className =""><strong>{t('Name.1')}</strong></Col> 
+                <Col md={2} className =""><strong>{t('Number of reviews.1')}</strong></Col> 
+                <Col md={2} className =""><strong>{t('Total rating.1')}</strong></Col> 
             </Row>
             {testproducts.map(item => (
                 <Row key={item.id} className = "CardDetails2 details">
@@ -91,6 +93,8 @@ const ManageTestProdScreen = ({history, match}) => {
                     <Col md={1}><Image src = {item.image} alt={item.name} fluid rounded/></Col>
                     <Col md={4}>{item._id}</Col>
                     <Col md={2}>{item.name.nameRus}/{item.name.nameEng}</Col>
+                    <Col md={2}>{item.ratingNum}</Col>
+                    <Col md={2}>{item.rating}</Col>
                 </Row>
             ))}
             </>

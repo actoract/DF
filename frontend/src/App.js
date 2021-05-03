@@ -42,7 +42,7 @@ function App() {
           <Route path = '/ordersadmin' component = {OrdersScreen_Admin}/>
           <Route path = '/placeorder' component = {PlaceorderScreen}/>
           <Route path = '/product/:id/edit' component = {EditScreen} />
-          <Route path = '/testproduct/:id' component = {TestProductScreen} />
+          <Route path = '/testproducts/:id' component = {TestProductScreen} />
           <Route path = '/testproduct/:id/edit' component = {EditTestScreen} />
           <Route path = '/store' component = {StoreScreen} />
           <Route path = '/about' component = {AboutScreen} />

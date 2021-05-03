@@ -16,8 +16,8 @@ const TestScreen = () => {
     }, [dispatch])
 
     return (
-        <>
-        {loadingVal ? <Loader/> : error ? <Message/> : 
+        <div className = "mainStore">
+        {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 
             <Row>
                     {testproducts.map((testproducts, i) => (
                         <Col sm={12} md={6} lg={4} xl={4} key = {i}>
@@ -26,7 +26,7 @@ const TestScreen = () => {
                     ))}
             </Row>
         }
-        </>
+        </div>
     )
 }
 

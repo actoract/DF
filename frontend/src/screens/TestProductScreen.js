@@ -89,8 +89,12 @@ const TestProductScreen = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(match.params.id)
-    dispatch(reviewTestProductAction(match.params.id, {rating,comment}))
+    if(userInfo){
+      dispatch(reviewTestProductAction(match.params.id, {rating,comment}))
+    }
+    else{
+      message.error(t('Please login in order to submit review'), 3);
+    }
   }
   //const [testproduct, setTestProduct] = useState({});
 
@@ -134,7 +138,7 @@ const TestProductScreen = ({match}) => {
                     <ItemList text = "Material.1" list_item = {testproduct.description.material}/>
                 </ListGroup>
               </Card>
-              {errorReview && <Message>{errorReview}</Message>}
+              {errorReview && message.error(errorReview, 3)}
               <div className = "text_details">2. {t('Step3.1')}</div>
               <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
               <div className = "text_details">3. {t('Step4.1')}</div>

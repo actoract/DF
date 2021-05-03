@@ -6,6 +6,7 @@ import Message from '../components/message'
 import Loader from '../components/loader'
 import FormCont from '../components/form'
 import {loginAction} from '../actions/userAction.js'
+import { message } from 'antd';
 
 const LoginScreen = ({location, history}) => {
     const [email, setEmail] = useState('')
@@ -26,7 +27,7 @@ const LoginScreen = ({location, history}) => {
     return (
         <FormCont>
             <h1>Sign In</h1>
-            {error && <Message>{error}</Message>}
+            {error && message.error(error, 3)}
             {loading && <Loader/>}
             <Form onSubmit = {submitHandler}>
                 <Form.Group controlId='email'>

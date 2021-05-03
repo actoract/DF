@@ -39,7 +39,8 @@
   
 }
 .CardDetails.cart{
-  width: 650px;  
+  width: 650px; 
+  margin-top: 30px; 
 }
 .Select{
   width: auto;
@@ -89,13 +90,14 @@
   color: white;
 }
 .mainStore{
-  margin-top: 20px;
   padding: 12px;
   margin: -60px;
+  margin-top: 0px;
   box-sizing: border-box;
   height: auto;
   background-color: #F6f6f6;
   z-index:0;
+  margin-bottom: 100px;
 }
 .ratecomp:hover{
   color:#FA460D;
@@ -127,6 +129,7 @@
   top: 0;
   max-height: 1000px;
   margin-top: 30px;
+  margin-left: 30px;
 }
 .CardDetails2.details{
   margin-top: 20px;

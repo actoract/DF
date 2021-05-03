@@ -4,13 +4,17 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Row, Col, Image, Container, Form} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
+import {testproductsListAction, updateTestProductAction} from '../actions/testproductsActions'
 import Uploader from '../components/upload'
 import smile from './smile.png';
 import { message, Input, Button, Checkbox  } from 'antd';
 import FormCont from '../components/form'
+import { TEST_PRODUCTS_UPDATE_RESET } from '../constants/storeConst';
 
-const EditTestScreen = () => {
-    const { t } = useTranslation(); 
+const EditTestScreen = ({history, match}) => {
+    const { t } = useTranslation()
+    const dispatch = useDispatch()
+    const testproductId = match.params.id
     const [nameRus, setNameRus] =  useState('')
     const [nameEng, setNameEng] =  useState('')
     const [image, setImage] =  useState('')
@@ -18,10 +22,41 @@ const EditTestScreen = () => {
     const [descCare, setdescCare] =  useState('')
     const [descMaterial, setMaterial] =  useState('')
     const [descColor, setColor] =  useState('')
-    
+
+    const testproductUpdate = useSelector(state => state.testproductUpdate)
+    const {loading: loadingUpdate, error: errorUpdate, success: successUpdate} = testproductUpdate
+
+    const testproductDet = useSelector((state) => state.testproductDet)
+    const {loading, error, testproduct} = testproductDet
+
+    useEffect (() => {
+        if(successUpdate){
+            dispatch({type: TEST_PRODUCTS_UPDATE_RESET})
+            history.push('/test')
+        }
+        else{
+            if(!testproductUpdate.name || testproductUpdate._id !== testproductId){
+                dispatch(testproductsListAction(testproductId))
+            }
+            else{
+
+            }
+        }
+    },[dispatch, history, testproductId, testproduct, successUpdate])
+
     const handleCheckout = (e) => {
         e.preventDefault();
         if(nameRus && nameEng && image && model && descCare && descMaterial && descColor){
+            dispatch(updateTestProductAction({
+                _id: testproductId,
+                name: {nameRus:nameRus, nameEng: nameEng},
+                image,
+                model,
+                description:{
+                    care: descCare, 
+                    material: descMaterial, 
+                    color: descColor},
+            }))
         }
         else{
             message.error(t('Fill the form.1'), 1)
