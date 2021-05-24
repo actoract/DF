@@ -22,7 +22,7 @@ import axios from 'axios'
 export const testproductsListAction = () => async (dispatch) => {
     try{
         dispatch({type: TEST_PRODUCTS_LIST_REQ})
-        const { data } = await axios.get('/api/testproducts')
+        const { data } = await axios.get('/api/testproducts/')
         dispatch({
             type: TEST_PRODUCTS_LIST_SUCC,
             payload: data

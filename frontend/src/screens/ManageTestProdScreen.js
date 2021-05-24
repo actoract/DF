@@ -21,7 +21,7 @@ const ManageTestProdScreen = ({history, match}) => {
 
     const testproductCreate = useSelector(state => state.testproductCreate)
     const { success: successCreate, loading: loadingCreate, error: errorCreate, testproduct: createdTestProduct  } = testproductCreate
-
+    
 
     const testproductDelete = useSelector(state => state.testproductDelete)
     const { success: successDelete, loading: loadingDelete, error: errorDelete  } = testproductDelete
@@ -74,24 +74,25 @@ const ManageTestProdScreen = ({history, match}) => {
                 <Col md={2} className =""><strong>{t('Total rating.1')}</strong></Col> 
             </Row>
             {testproducts.map(item => (
+                <Popconfirm
+                title={t('Are you sure to delete this product?.1')}
+                onConfirm={() => confirmDelete(item._id)}
+                onCancel={cancelDelete}
+                okText={t('Yes.1')}
+                cancelText={t('No.1')}
+                >
                 <Row key={item.id} className = "CardDetails2 details">
-                    <Popconfirm
-                    title={t('Are you sure to delete this product?.1')}
-                    onConfirm={() => confirmDelete(item._id)}
-                    onCancel={cancelDelete}
-                    okText={t('Yes.1')}
-                    cancelText={t('No.1')}
-                    >
+ 
                         <div className = "CloseBut">
                             ✕
                         </div>
-                    </Popconfirm>
                     <Col md={1}><Image src = {item.image} alt={item.name} fluid rounded/></Col>
                     <Col md={4}>{item._id}</Col>
                     <Col md={2}>{item.name.nameRus}/{item.name.nameEng}</Col>
                     <Col md={2}>{item.ratingNum}</Col>
                     <Col md={2}>{item.rating}</Col>
                 </Row>
+                </Popconfirm>
             ))}
             </>
            }

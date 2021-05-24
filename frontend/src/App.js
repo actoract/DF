@@ -28,9 +28,8 @@ import { Trans, useTranslation } from "react-i18next";
 
 function App() {
   return (
-    <div className =  "App">
-    <Suspense fallback={(<div>Loading</div>)}>
     <Router>
+    <Header/>
       <main className = "py-3">
         <Container className="FormCont">
           <Route path = '/' component = {HomeScreen} exact/>
@@ -55,10 +54,7 @@ function App() {
           <Route path = '/cart/:id?' component = {CartScreen} />
         </Container>
       </main>
-      <Header/>
     </Router>
-    </Suspense>
-    </div>
   );
 }
 

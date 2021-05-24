@@ -73,24 +73,24 @@ const ManageProdScreen = ({history, match}) => {
                 <Col md={2} className =""><strong>{t('Real price.1')}</strong></Col> 
             </Row>
             {products.map(item => (
+                <Popconfirm
+                title= {t('Are you sure to delete this product?.1')}
+                onConfirm={() => confirmDelete(item._id)}
+                onCancel={cancelDelete}
+                okText={t('Yes.1')}
+                cancelText={t('No.1')}
+                >
                 <Row key={item._id} className = "CardDetails2 details">
-                    <Popconfirm
-                    title= {t('Are you sure to delete this product?.1')}
-                    onConfirm={() => confirmDelete(item._id)}
-                    onCancel={cancelDelete}
-                    okText={t('Yes.1')}
-                    cancelText={t('No.1')}
-                    >
-                        <div className = "CloseBut" >
-                            ✕
-                        </div>
-                    </Popconfirm>
+                    <div className = "CloseBut" >
+                        ✕
+                    </div>
                     <Col md={1}><Image src = {item.image} alt={item.name} fluid rounded/></Col>
                     <Col md={4}>{item._id}</Col>
                     <Col md={2}>{item.name.nameRus}</Col>
                     <Col md={2}>{item.price.priceDigital}</Col>
                     <Col md={2}>{item.price.priceReal}</Col>
                 </Row>
+                </Popconfirm>
             ))}
             </>
            }

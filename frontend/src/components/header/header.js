@@ -63,7 +63,6 @@ function Header() {
     return(
         <nav className = 'NavbarItems navbar-expand-sm fixed-top ' data-spy="affix">
             <Link to = {`/`}><img src={weardrop} alt="this is car image"  className = 'navbarlogo'/></Link>
-            
             <ul className = 'nav-menu'>
                 <Link to = {`/about`} className = 'nav-links'>{t('About.1')}</Link>
                 <Link to = {`/store`} className = 'nav-links'>{t('Store.1')}</Link>
