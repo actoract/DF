@@ -59,10 +59,10 @@ export const deleteTestProductAction = (id) => async (dispatch, getState) => {
         dispatch({
             type: TEST_PRODUCTS_DELETE_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         await axios.delete(`/api/testproducts/${id}`, config)
@@ -84,10 +84,10 @@ export const createTestProductAction = () => async (dispatch, getState) => {
         dispatch({
             type: TEST_PRODUCTS_CREATE_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         const {data} = await axios.post(`/api/testproducts`, {}, config)
@@ -109,10 +109,10 @@ export const reviewTestProductAction = (testproductId, review) => async (dispatc
         dispatch({
             type: TEST_PRODUCTS_REVIEW_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         await axios.post(`/api/testproducts/${testproductId}/reviews`, review, config)
@@ -133,11 +133,11 @@ export const updateTestProductAction = (testproduct) => async (dispatch, getStat
         dispatch({
             type: TEST_PRODUCTS_UPDATE_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         const {data} = await axios.put(`/api/testproducts/${testproduct._id}`, testproduct, config)

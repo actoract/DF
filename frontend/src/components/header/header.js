@@ -16,11 +16,11 @@ function Header() {
         i18n.changeLanguage(lng);
     }
     const userLogin = useSelector(state => state.userLogin)
-    const {userInfo} = userLogin
+    const {userDet} = userLogin
     const handleLogout = () => {
         dispatch(logoutAction())
     }
-    const menu = userInfo && userInfo.isAdmin ? (
+    const menu = userDet && userDet.isAdmin ? (
         <Menu>
             <Menu.Item>
                 <a target="_blank" rel="noopener noreferrer" href={`/manageproducts`}>
@@ -38,7 +38,7 @@ function Header() {
                 </a>
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href={`/users`}>
+                <a target="_blank" rel="noopener noreferrer" href={`/usersadmin`}>
                     {t('users.1')}
                 </a>
             </Menu.Item>
@@ -61,7 +61,7 @@ function Header() {
         </Menu>
       );
     return(
-        <nav className = 'NavbarItems navbar-expand-sm fixed-top navbar-light' data-spy="affix" data-offset-top="50">
+        <nav className = 'NavbarItems navbar-expand-sm fixed-top ' data-spy="affix">
             <Link to = {`/`}><img src={weardrop} alt="this is car image"  className = 'navbarlogo'/></Link>
             
             <ul className = 'nav-menu'>
@@ -70,9 +70,9 @@ function Header() {
                 <Link to = {`/test`} className = 'nav-links'>{t('Test.1')}</Link>
             </ul>
             <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
-            {userInfo ? (
+            {userDet ? (
                 <Dropdown overlay={menu} placement="bottomRight">
-                <Link to = {`/login`} className = 'nav-but1'>{userInfo.firstName}</Link>
+                <Link to = {`/login`} className = 'nav-but1'>{userDet.firstName}</Link>
                 </Dropdown>
             ) : 
                 <Link to = {`/login`} className = 'nav-but2'>{t('SignIn.1')}</Link>

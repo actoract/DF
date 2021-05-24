@@ -11,6 +11,7 @@ const addOrder = expressAsyncHandler(async (req, res) => {
         throw new Error('No new items')
     }
     else{
+        console.log("controller")
         const order = new Order({
             orderItems, 
             deliveryAddress, 
@@ -23,6 +24,7 @@ const addOrder = expressAsyncHandler(async (req, res) => {
         })
         const createdOrder = await order.save()
         res.status(201).json(createdOrder)
+        return
     }
 })
 
@@ -33,6 +35,7 @@ const getOrderById = expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email')
     if(order){
         res.json(order)
+        return
     }
     else{
         res.status(404)
@@ -56,6 +59,7 @@ const paidOrder = expressAsyncHandler(async (req, res) => {
         }
         const updatedOrder = await order.save()
         res.json(updatedOrder)
+        return
     }
     else{
         res.status(404)
@@ -70,6 +74,7 @@ const paidOrder = expressAsyncHandler(async (req, res) => {
 const getLogedUserOrders = expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({user: req.user._id})
     res.json(orders)
+    return
 })
 
 //@description Get all orders
@@ -78,6 +83,7 @@ const getLogedUserOrders = expressAsyncHandler(async (req, res) => {
 const getOrders = expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({}).populate('user', 'id firstName lastName email')
     res.json(orders)
+    return
 })
 //@description Update delivery status
 //@route GET /api/orders/:id/deliver
@@ -89,6 +95,7 @@ const updateOrderStatus = expressAsyncHandler(async (req, res) => {
         order.deliveredAt = Date.now()
         const updatedOrder = await order.save()
         res.json(updatedOrder)
+        return
     }
     else{
         res.status(404)

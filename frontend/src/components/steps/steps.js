@@ -14,7 +14,7 @@ const StepsComp = ({step1, step2, step3, step4}) => {
                     <Step title={t('SignIn.1')} description={t('SignIn.2')} />
                 </LinkContainer>
                 {step2 || step3 || step4 ? 
-                    <LinkContainer to='/shipping'>
+                    <LinkContainer to='/deliveryaddress'>
                         <Step title={t('Shipping address.2')}  description={t('Shipping address.3')} />
                     </LinkContainer> : 
                     <Step title={t('Shipping address.2')} description={t('Shipping address.3')} />

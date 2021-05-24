@@ -4,9 +4,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
-import Uploader from '../components/upload'
 import smile from './smile.png';
 import { message } from 'antd';
+import upload from './upload.png'
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id
@@ -20,19 +20,18 @@ const CartScreen = ({match, location, history}) => {
         location.search.lastIndexOf("?size")) : ""
     const size = location.search ? location.search.split('size=').pop() : ""
     const dispatch = useDispatch()
-    const cart = useSelector(state => state.cart)
-    const {cartItems} = cart
+    const userCart = useSelector(state => state.userCart)
+    const {cartItems} = userCart
     const [qtylimit, setQty] = useState()
-    //const [image, setImage] = useState();
+    const [image, setImage] = useState(false);
     useEffect (() => {
         if(productId){
-            console.log(productId)
-            dispatch(addToCart(cartItems.length + 1, productId, qty, type, Number(size), 0))
+            dispatch(addToCart(cartItems.length + 1, productId, qty, type, size, 0))
         }
     }, [dispatch, productId, qty, type, size])
     
-    const handleRemove = (id, size) => {
-        dispatch(removeFromCart(id, Number(size)))
+    const handleRemove = (product, size, type) => {
+        dispatch(removeFromCart(product, size, type))
     }
 
     /*const handleSizeChange = (e, item) => {
@@ -85,30 +84,42 @@ const CartScreen = ({match, location, history}) => {
         }
     }*/
    const handleCheckout = () => {
-        history.push('/login?redirect=shipping')
+        cartItems.map(item => {
+            if(item.type == "dc" && !item.custImage){
+                setImage(false)
+            }
+            else{
+                setImage(true)
+            }
+        })
+        if(image){
+            history.push('/login?redirect=deliveryaddress')
+        }
+        else{
+            message.error(t('Upload image.1'), 3)
+        }
    }
    const handleQtyChange = (e, item) => {
-       console.log(item._id)
        if(item.maxQty < e.target.value){
             message.error(t('Count in stock is less fir this item.1'), 3);
-            dispatch(changeCart(item._id, item.product, item.maxQty, item.type, item.size, item.maxQty))
+            dispatch(changeCart(item.id, item.product, item.maxQty, item.type, item.size, item.maxQty, ""))
             setQty(item.maxQty)
        }
        else if (e.target.value == 0 || !e.target.value){
-            dispatch(removeFromCart(item._id, Number(item.size)))
+            dispatch(removeFromCart(item.id, Number(item.size), item.product, item.type))
        }
        else{
-            dispatch(changeCart(item._id, item.product, e.target.value, item.type, item.size, item.maxQty))
+            dispatch(changeCart(item.id, item.product, e.target.value, item.type, item.size, item.maxQty, ""))
             setQty(e.target.value)
        }
    }
-   /*const uploadImage = (e, item) => {
+   const uploadImage = (e, item) => {
         e.preventDefault();
         const { files } = e.target;
         const myFileItemReader = new FileReader()
         myFileItemReader.addEventListener("load", ()=>{
         const file = myFileItemReader.result
-        setImage(file)
+        setImage(true)
         if(file){
             dispatch(changeCart(
                 item.id,
@@ -122,7 +133,7 @@ const CartScreen = ({match, location, history}) => {
             )}
         }, false)
         myFileItemReader.readAsDataURL(files[0])
-    }*/
+    }
     /*const onChange = (event, item) => {
         event.preventDefault();
         const { files } = event.target;
@@ -170,7 +181,7 @@ const CartScreen = ({match, location, history}) => {
                 <Col md={9}>
                 {cartItems.map(item => (
                     <div className = "CardDetails2" key = {item.product + "/" + item.size}>
-                        <div className = "CloseBut" onClick = {() => handleRemove(item.id, item.size)}>
+                        <div className = "CloseBut" onClick = {() => handleRemove(item.product, item.size, item.type)}>
                             ✕
                         </div>
                         <Row>
@@ -192,7 +203,13 @@ const CartScreen = ({match, location, history}) => {
                                     <Form.Control required type = "number" value={qtylimit} name="qty" placeholder = {item.qty} 
                                     onChange = {(e) => handleQtyChange(e, item)}></Form.Control>
                                 </Col > :
-                                <Col md = {2}/>
+                                <Col md = {2}>
+                                    <label className="Upload">
+                                    <strong>{t('Upload Image.1')} </strong>
+                                    <input type="file" accept="image/*"  onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
+                                    </label>
+                                    {item.custImage ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
+                                </Col>
                             }
                              <Col md = {2}>
                                 {item.type == "rc" ?
@@ -210,7 +227,7 @@ const CartScreen = ({match, location, history}) => {
                 </Col>
                 <Col md={3}>
                     <div className = "CardDetails2">
-                        <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
+                        <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.qty), 0)}</p>
                         <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
                         <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
                     </div>

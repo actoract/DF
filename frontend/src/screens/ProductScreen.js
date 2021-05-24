@@ -39,8 +39,8 @@ const ProductScreen = ({history, match}) => {
     const [price, setPrice] = useState("");
     const [type, setType] = useState("");
     const [status, setStatus] = useState("");
-    const cart = useSelector(state => state.cart)
-    const {cartItems} = cart
+    const userCart = useSelector(state => state.userCart)
+    const {cartItems} = userCart
 
     useEffect(() => {
       dispatch(productDetAction(match.params.id))
@@ -51,12 +51,15 @@ const ProductScreen = ({history, match}) => {
 
     const addToCard = () => {
       const exist = cartItems.find(item => item.product == product._id && item.size == size)
-      if(!exist){
-        dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, maxQty));
-        message.success(t('Added.1'), 3);
+      if(type == "" || (type == "rc" && (size == "" || qty == ""))){
+        message.error(t('Select product specifications.1'), 3)
       }
-      else{
-        message.error(t('Item is already added to the cart.1'), 3);
+      else if(!exist){
+        dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, maxQty))
+        message.success(t('Added.1'), 3)
+      }
+      else if(exist){
+        message.error(t('Item is already added to the cart.1'), 3)
       }
       //history.push(`/cart/${match.params.id}?qty=${qty}?type=${type}?size=${size}`)
 
@@ -100,7 +103,7 @@ const ProductScreen = ({history, match}) => {
 
     const handleQtyChange = (e) => {
       if (maxQty < e.target.value){
-        message.error(t('Count in stock is less fir this item.1'), 3);
+        message.error(t('Count in stock is less for this item.1'), 3);
         setQty(maxQty)
       }
       else{
@@ -131,9 +134,9 @@ const ProductScreen = ({history, match}) => {
           <Row>
             <Col md = {6}>
               <div className = "canvasP">
-              <Canvas style={{ background: "pink" }} >
+              <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
-                <ambientLight intensity={0.3} />
+                <hemisphereLight intensity={0.5} />
                 <directionalLight position = {[10, 10, 5]} intensity={1} />
                 <Suspense fallback={<Loading />}>
                   <DemoScene 
@@ -205,10 +208,7 @@ const ProductScreen = ({history, match}) => {
                   }
                 </ListGroup>
               </Card>
-              {type == "dc" || type == "rc" && size != undefined && qty != undefined ?
-                <div  className = 'add' onClick = {addToCard}> {t('Add.1')}</div> :
-                <div className = 'add'>{t('Add.1')}</div> 
-              }
+              <div  className = 'AddBut' onClick = {addToCard}> {t('Add.1')}</div>
             </div>
             </Col>
           </Row>

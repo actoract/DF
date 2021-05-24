@@ -20,7 +20,7 @@ export const loginAction = (email, password) => async (dispatch) => {
             type: LOGIN_SUC,
             payload: data
         })
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('userDet', JSON.stringify(data))
     }
     catch(error){
         dispatch({
@@ -49,7 +49,7 @@ export const regAction = (firstName, lastName, email, password) => async (dispat
             type: LOGIN_SUC,
             payload: data
         })
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('userDet', JSON.stringify(data))
     }
     catch(error){
         dispatch({
@@ -59,7 +59,7 @@ export const regAction = (firstName, lastName, email, password) => async (dispat
     }
 }
 export const logoutAction = () => (dispatch) => {
-    localStorage.removeItem('userInfo')
+    localStorage.removeItem('userDet')
     dispatch({type: LOGOUT_REQ})
     dispatch({type: USERS_RESET})
 
@@ -70,11 +70,11 @@ export const getProfileAction = (id) => async (dispatch, getState) => {
         dispatch({
             type: USER_PROFILE_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         const {data} = await axios.get(`/api/users/${id}`, config)
@@ -96,11 +96,11 @@ export const updProfileAction = (user, id) => async (dispatch, getState) => {
         dispatch({
             type: USER_PROFILE_UPD_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         const {data} = await axios.put(`/api/users/${user._id}`, user, config)
@@ -111,7 +111,7 @@ export const updProfileAction = (user, id) => async (dispatch, getState) => {
             type: USER_PROFILE_SUC,
             payload: data
         })
-        //localStorage.setItem('userInfo', JSON.stringify(data))
+        //localStorage.setItem('userDet', JSON.stringify(data))
     }
     catch(error){
         dispatch({
@@ -126,10 +126,10 @@ export const usersAction = () => async (dispatch, getState) => {
         dispatch({
             type: USERS_REQ
         })
-        const {userLogin: {userInfo}} = getState()
+        const {userLogin: {userDet}} = getState()
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userDet.token}`
             }
         }
         const {data} = await axios.get('/api/users', config)

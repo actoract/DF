@@ -1,6 +1,6 @@
 const orders = [
     {
-        user: '607400643caf5e34c069038a',
+       /* user: '607400643caf5e34c069038a',
         orderItems: [{
             name: 'Голубая шуба',
             qty: 4,
@@ -30,7 +30,7 @@ const orders = [
         isPaid: true,
         paidAt: "",
         isDelivered: false,
-        deliveredAt: ""
+        deliveredAt: ""*/
     }
 ]
 export default orders

@@ -12,6 +12,10 @@ export const cartReducer = (state = {cartItems: [], deliveryAddress:{}}, action)
             (x.product == item.product && x.size === undefined) ||
             (x.product === item.product && x.type === "dc" && item.type == "dc"))
             
+            /*return {
+                ...state,
+                cartItems: [...state.cartItems, item]
+            }*/
             if (existItem){
                 return {
                     ...state,
@@ -34,6 +38,15 @@ export const cartReducer = (state = {cartItems: [], deliveryAddress:{}}, action)
                     //cartItems: state.cartItems.map(x => (x.product === existItemChange.product && Number(x.size) != Number(existItemChange.size))? itemChange : x)
                 }
             }
+ /* const itemChange = action.payload
+            const existItemChange = state.cartItems.find(x =>  (x.product === itemChange.product && x.size === itemChange.size))
+            if (existItemChange){
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map(x => (x.product === existItemChange.product && x.size === existItemChange.size)? existItemChange : x)
+                    //cartItems: state.cartItems.map(x => (x.product === existItemChange.product && Number(x.size) != Number(existItemChange.size))? itemChange : x)
+                }
+            }*/
             else{
                 return {
                     ...state,
@@ -43,7 +56,10 @@ export const cartReducer = (state = {cartItems: [], deliveryAddress:{}}, action)
         case CART_REMOVE:
             return {
                 ...state,
-                cartItems: state.cartItems.filter(x => (x.id !== action.payload.id && Number(x.size) !== Number(action.payload.size))) //Добавить проверку типа, размера, КРЧ идентифицировать, что это точно та одежда
+                cartItems: state.cartItems.filter(x => ((x.product !== action.payload.product) ||
+                (x.product == action.payload.product && x.type !== action.payload.type) || 
+                (x.product == action.payload.product && x.type == action.payload.type && x.size !== action.payload.size)))
+                    //(x.product == action.payload.product && x.type == "dc" && action.payload.type == "dc"))) //Добавить проверку типа, размера, КРЧ идентифицировать, что это точно та одежда
             }
         case CART_SAVE_ADDRESS:
             return{

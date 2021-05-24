@@ -5,7 +5,7 @@ import Loader from '../components/loader'
 import CartDetails from "../components/cardDetails"
 import { useTranslation } from 'react-i18next'
 import {Col, Row} from 'react-bootstrap'
-import { Popover, Modal } from 'antd';
+import { Popover, Modal, message } from 'antd';
 import './styles.css'
 import ModalMessage from "../components/modalMessage"
 import {Link} from 'react-router-dom'
@@ -23,7 +23,7 @@ const UsersScreen = ({history, match}) => {
     const { users, loading, error  } = allUsers
 
     const userLogin = useSelector(state => state.userLogin)
-    const {userInfo} = userLogin
+    const {userDet} = userLogin
 
     const userProfile = useSelector(state => state.userProfile)
     const {user, loading: loadingProfile, error: errorProfile} = userProfile
@@ -56,7 +56,7 @@ const UsersScreen = ({history, match}) => {
         if(user.name && user._id !== userId){
             dispatch(getProfileAction())
         }
-        if(userInfo && userInfo.isAdmin){
+        if(userDet && userDet.isAdmin){
             dispatch(usersAction())
         }
         else{
@@ -66,13 +66,18 @@ const UsersScreen = ({history, match}) => {
 
     const handleStatusChange = (e, id) => {
         e.preventDefault()
-        setAdmin(e.target.value)
-        setIdChange(id)
-        dispatch(updProfileAction({_id: id, isAdmin}))
+        if(userDet._id != id){
+            setAdmin(e.target.value)
+            setIdChange(id)
+            dispatch(updProfileAction({_id: id, isAdmin}))
+        }
+        else{
+            message.error("You are not able to change your status", 3)
+        }
     }
     return (
         <>
-           <h1>Users</h1> 
+           <h1>{t("Users.1")}</h1> 
            {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
            <>
            <Row  className = "text_details" key = "header">

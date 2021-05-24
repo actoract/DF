@@ -23,24 +23,22 @@ import OrdersScreen from './screens/OrdersScreen'
 import OrdersScreen_Admin from './screens/OrdersScreen_Admin'
 import EditScreen from './screens/EditScreen'
 import EditTestScreen from './screens/EditTestScreen'
+import './i18n';
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
   return (
     <div className =  "App">
-      <Trans i18nKey="">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </Trans>
     <Suspense fallback={(<div>Loading</div>)}>
     <Router>
       <main className = "py-3">
         <Container className="FormCont">
           <Route path = '/' component = {HomeScreen} exact/>
-          <Route path = '/shipping' component = {ShippingScreen}/>
+          <Route path = '/deliveryaddress' component = {ShippingScreen}/>
           <Route path = '/payment' component = {PaymentScreen}/>
           <Route path = '/order/:id' component = {OrdersScreen}/>
           <Route path = '/ordersadmin' component = {OrdersScreen_Admin}/>
-          <Route path = '/placeorder' component = {PlaceorderScreen}/>
+          <Route path = '/finishorder' component = {PlaceorderScreen}/>
           <Route path = '/product/:id/edit' component = {EditScreen} />
           <Route path = '/testproducts/:id' component = {TestProductScreen} />
           <Route path = '/testproduct/:id/edit' component = {EditTestScreen} />
@@ -51,7 +49,7 @@ function App() {
           <Route path = '/manageproducts' component = {ManageProdScreen} />
           <Route path = '/products/:id' component = {ProductScreen} />
           <Route path = '/login' component = {LoginScreen} />
-          <Route path = '/users' component = {UsersScreen} />
+          <Route path = '/usersadmin' component = {UsersScreen} />
           <Route path = '/register' component = {RegScreen} />
           <Route path = '/profile' component = {UserScreen} />
           <Route path = '/cart/:id?' component = {CartScreen} />

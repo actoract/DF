@@ -8,12 +8,12 @@ import {CART_ADD,
 export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (dispatch, getState) =>{
     const {data} = await axios.get(`/api/products/${id}`)
     let count
-    const keys = Object.keys(data.sizeStatus); 
+    /*const keys = Object.keys(data.sizeStatus); 
     for (let key of keys) {
         if (data.sizeStatus[key].size == size){
             count = data.sizeStatus[key].countInStock
         }
-    }
+    }*/
     dispatch({
         type: CART_ADD,
         payload:{
@@ -30,21 +30,22 @@ export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (di
             //custImage
         }
     })
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+    localStorage.setItem('cartItems', JSON.stringify(getState().userCart.cartItems))
 }
 
-export const removeFromCart = (id, size) => (dispatch, getState) =>{
+export const removeFromCart = (product, size, type) => (dispatch, getState) =>{
     dispatch({
         type: CART_REMOVE,
         payload: {
-            id: id,
-            size: size
+            size: size,
+            product: product,
+            type: type
         }
     })
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+    localStorage.setItem('cartItems', JSON.stringify(getState().userCart.cartItems))
 }
 
-export const changeCart = (stateNumber, id, qty, type, size, maxQty) => async (dispatch, getState) =>{
+export const changeCart = (stateNumber, id, qty, type, size, maxQty, file) => async (dispatch, getState) =>{
     const {data} = await axios.get(`/api/products/${id}`)
     dispatch({
         type: CART_CHANGE,
@@ -58,10 +59,11 @@ export const changeCart = (stateNumber, id, qty, type, size, maxQty) => async (d
             type,
             qty: type == "dc" ? 1 :  qty,
             size,
-            maxQty: maxQty
+            maxQty: maxQty,
+            custImage: file
         }
     })
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+    localStorage.setItem('cartItems', JSON.stringify(getState().userCart.cartItems))
 }
 
 export const saveAddress = (data) => (dispatch) =>{

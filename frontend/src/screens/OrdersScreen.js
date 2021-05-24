@@ -1,16 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import { message } from 'antd'
-import {Form, Button, Row, Col, ListGroup, Image, Card} from 'react-bootstrap'
-import ItemList from '../components/itemList'
+import {Button, Row, Col, ListGroup, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/message'
 import Loader from '../components/loader'
-import Status from '../components/status'
 import {getOrderById, updateStatusAction} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import {ORDER_UPDATE_STATUS_RESET} from '../constants/storeConst'
-import {saveAddress} from '../actions/cartAction'
+import { message } from 'antd'
 
 const OrdersScreen = ({match, history}) => {
     const orderId = match.params.id
@@ -18,7 +15,7 @@ const OrdersScreen = ({match, history}) => {
     const {loading, order, error} = orderDet
 
     const userLogin = useSelector(state => state.userLogin)
-    const {userInfo} = userLogin
+    const {userDet} = userLogin
 
     const orderStatus = useSelector(state => state.orderStatus)
     const {loading: loadingStatus, success: successStatus} = orderStatus
@@ -26,7 +23,7 @@ const OrdersScreen = ({match, history}) => {
     const dispatch = useDispatch();
     const { t } = useTranslation(); 
 
-    if(!userInfo){
+    if(!userDet){
         history.push('/login')
     }
     useEffect(() => {
@@ -62,7 +59,7 @@ const OrdersScreen = ({match, history}) => {
                 <div className = "text_details"><strong>{t('Payment method.1')}: </strong> {order.paymentMethod}</div>
                 <div className = "text_details"><strong>{t('Cart items.1')}: </strong></div>
                 <ListGroup.Item>
-                {order.orderItems.length === 0? alert("Empty order") : (
+                {order.orderItems.length === 0? message.error("Empty order", 3) : (
                     <ListGroup variant='flush'>
                         {order.orderItems.map((item, index) => (
                             <ListGroup.Item key={index}>
@@ -101,8 +98,8 @@ const OrdersScreen = ({match, history}) => {
                     <p><strong>{t('Delivery status.1')}:</strong> {!order.isDelivered ? t('Not delivered.1') : t('Deliverd.1')}</p>
                     {order.isDelivered ? <p><strong>{t('Delivered at.1')}:</strong>  {order.deliveredAt} </p>: ""}
                     {loadingStatus && <Loader/>}
-                        {userInfo.isAdmin && order.isPaid && !order.isDelivered &&
-                            <Button type='button' onClick = {changeStatusHandle}>Mark as delivered</Button>
+                        {userDet && userDet.isAdmin && order.isPaid && !order.isDelivered &&
+                            <Button type='button' onClick = {changeStatusHandle}>{t('Mark as delivered.1')}</Button>
                         }
                 </div>
             </Col>

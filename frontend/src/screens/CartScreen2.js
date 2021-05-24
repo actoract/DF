@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux'
-import Message from '../components/message'
 import {Link} from 'react-router-dom'
-import products from '../products'
 import {Row, Col, ListGroup, Image, Form, Card} from 'react-bootstrap'
-import Product from '../components/products'
 import './styles.css'
-import Header from '../components/header'
 import {addToCart} from '../actions/cartAction'
-import deleteBut1 from './delete1.png';
-import deleteBut2 from './delete2.png';
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id
@@ -24,8 +18,8 @@ const CartScreen = ({match, location, history}) => {
         location.search.lastIndexOf("?size")) : ""
     const size = location.search ? location.search.split('size=').pop() : ""
     const dispatch = useDispatch()
-    const cart = useSelector(state => state.cart)
-    const {cartItems} = cart
+    const userCart = useSelector(state => state.userCart)
+    const {cartItems} = userCart
     useEffect (() => {
         if(productId){
             dispatch(addToCart(productId, qty, type, size))

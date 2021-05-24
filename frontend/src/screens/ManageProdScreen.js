@@ -1,17 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/message'
 import Loader from '../components/loader'
-import CartDetails from "../components/cardDetails"
 import { useTranslation } from 'react-i18next'
 import {Col, Row, Image} from 'react-bootstrap'
-import { Popover, Modal } from 'antd';
-import ModalMessage from "../components/modalMessage"
-import {Link} from 'react-router-dom'
 import {PRODUCTS_CREATE_RESET} from '../constants/storeConst'
 import {productsListAction, deleteProductAction, createProductAction} from '../actions/productsActions'
 import add from './add.png'
-import { Popconfirm, message } from 'antd';
+import { Popconfirm} from 'antd';
 
 const ManageProdScreen = ({history, match}) => {
     const productId = match.params.id
@@ -24,7 +20,7 @@ const ManageProdScreen = ({history, match}) => {
     const { success: successDelete, loading: loadingDelete, error: errorDelete  } = productDelete
 
     const userLogin = useSelector(state => state.userLogin)
-    const {userInfo} = userLogin
+    const {userDet} = userLogin
 
     const productCreate = useSelector(state => state.productCreate)
     const { success: successCreate, loading: loadingCreate, error: errorCreate, product: createdProduct  } = productCreate
@@ -34,7 +30,7 @@ const ManageProdScreen = ({history, match}) => {
     useEffect(() => {
         dispatch({type: PRODUCTS_CREATE_RESET})
 
-        if(!userInfo || !userInfo.isAdmin){
+        if(!userDet || !userDet.isAdmin){
             history.push('/login')
         }
         if(successCreate){
@@ -43,7 +39,7 @@ const ManageProdScreen = ({history, match}) => {
         else{
             dispatch(productsListAction())
         }
-    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
+    }, [dispatch, history, userDet, successDelete, successCreate, createdProduct])
 
     const addHandle = (d) => {
         dispatch(createProductAction())
@@ -60,7 +56,7 @@ const ManageProdScreen = ({history, match}) => {
     return (
         <>
             <Row>
-                <h3>Products</h3> 
+                <h3>{t('Products.1')}</h3> 
                 <Image src = {add} alt={add} className="add" onClick={addHandle}/>
             </Row>
             {loadingCreate && <Loader loadingVal = {loadingCreate}/>}
@@ -79,11 +75,11 @@ const ManageProdScreen = ({history, match}) => {
             {products.map(item => (
                 <Row key={item._id} className = "CardDetails2 details">
                     <Popconfirm
-                    title="Are you sure to delete this task?"
+                    title= {t('Are you sure to delete this product?.1')}
                     onConfirm={() => confirmDelete(item._id)}
                     onCancel={cancelDelete}
-                    okText="Yes"
-                    cancelText="No"
+                    okText={t('Yes.1')}
+                    cancelText={t('No.1')}
                     >
                         <div className = "CloseBut" >
                             ✕

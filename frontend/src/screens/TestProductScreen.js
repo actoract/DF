@@ -68,7 +68,7 @@ const TestProductScreen = ({match}) => {
   const {success: successReview, error: errorReview} = testproductReview
 
   const userLogin = useSelector(state => state.userLogin)
-  const {userInfo} = userLogin
+  const {userDet} = userLogin
   
   const { TextArea } = Input;
   
@@ -89,29 +89,33 @@ const TestProductScreen = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(userInfo){
+    if(!rating || !comment){
+      message.error(t('Fill the form.1'), 3);
+    }
+    else if(userDet){
       dispatch(reviewTestProductAction(match.params.id, {rating,comment}))
     }
     else{
-      message.error(t('Please login in order to submit review'), 3);
+      message.error(t('Please login in order to submit review.1'), 3);
     }
   }
   //const [testproduct, setTestProduct] = useState({});
 
     return (
         <div> 
-        {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
+          {successReview && message.success("Review is added.1")}
+          {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
           <Row>
             <Col md = {6}>
             <div className = "canvasP">
-              <Canvas style={{ background: "white" }} >
+              <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
-                <ambientLight intensity={0.3} />
+                <hemisphereLight intensity={1} />
                 <directionalLight position = {[10, 10, 5]} intensity={1} />
                 <Suspense fallback={<Loading />}>
                   <DemoScene 
-                    position={[0, -11, 0]}
-                    scale={[3, 3, 3]}
+                    position={[0, 0, 0]}
+                    scale={[5, 5, 5]}
                     model = {testproduct.model}/>
                 </Suspense>
               </Canvas>
@@ -143,9 +147,9 @@ const TestProductScreen = ({match}) => {
               <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
               <div className = "text_details">3. {t('Step4.1')}</div>
               <TextArea rows={4} onChange={e => setComment(e.target.value)} />
-              <Button type="submit" variant="primary" onClick={e => handleSubmit(e)}>
-                Submit
-              </Button>
+              <div className="AddBut" onClick={e => handleSubmit(e)}>
+                {t('submit.1')}
+              </div>
               <br />
             </div>
           </Row>

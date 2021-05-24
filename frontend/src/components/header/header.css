@@ -1,6 +1,7 @@
 .header {
     height: 60px;
     padding: 18px;
+    margin: 50px;
     z-index: 2;
 }
 .but{
@@ -72,10 +73,10 @@
   justify-content: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  padding-right: 10px;
   min-height: 37px;
   height: auto;
-  width: 120px;
-  left: 2232px;
+  width: auto;
   top: 2650px;
   border-radius: 30px;
   background-color: #FA460D;

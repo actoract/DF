@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import { message } from 'antd'
-import {Form, Button, Row, Col, Image} from 'react-bootstrap'
+import {Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-//import Message from '../components/message'
 import Loader from '../components/loader'
-import FormCont from '../components/form'
 import {userOrdersAction} from '../actions/orderActions'
-import {regAction, getProfileAction, loginAction, updProfileAction} from '../actions/userAction.js'
+import {getProfileAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
-import CartDetails from "../components/cardDetails"
-import ModalMessage from "../components/modalMessage"
+import { LinkContainer } from 'react-router-bootstrap'
+import { Popover,  } from 'antd';
+import Message from '../components/message'
 
 const UserScreen = ({location, history}) => {
     const [firstName, setFirstName] = useState('')
@@ -30,27 +27,32 @@ const UserScreen = ({location, history}) => {
     const {loading: loadingOrders, error: errorOrders, orders} = userOrders
 
     const userLogin = useSelector(state => state.userLogin)
-    const {userInfo} = userLogin
+    const {userDet} = userLogin
 
     const userUpdProfile = useSelector(state => state.userUpdProfile)
     const {success} = userUpdProfile
 
+    const messageOnHover = (
+        <div>
+            <p>In order to view details click on the order</p>
+        </div>
+    );
     useEffect (() => {
-        if(!userInfo){
+        if(!userDet || userDet.isAdmin){
             history.push('/login') 
         }
         else {
-            if (!user.firstName){
+            if (!user || !user.firstName || success) {
+                //dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getProfileAction('profile'))
                 dispatch(userOrdersAction())
-            }
-            else{
+            } else {
                 setFirstName(user.firstName)
                 setLastName(user.lastName)
                 setEmail(user.email)
             }
         }
-    }, [dispatch, history, userInfo, user])
+    }, [dispatch, history, userDet, user])
 
     /*const submitHandler = (e) =>{
         e.preventDefault()
@@ -63,40 +65,50 @@ const UserScreen = ({location, history}) => {
         }
     }*/
     return (
-        <>
+        <>{userDet &&
             <Row>
                 <Col md={3}>
                     <div className = "CardDetails2">
-                        <p><strong>{t('First name.1')}:</strong> {userInfo.firstName}</p>
-                        <p><strong>{t('Last name.1')}:</strong> {userInfo.lastName}</p>
-                        <p><strong>{t('Email.1')}:</strong> {userInfo.email}</p>
+                        <p><strong>{t('First name.1')}:</strong> {userDet.firstName}</p>
+                        <p><strong>{t('Last name.1')}:</strong> {userDet.lastName}</p>
+                        <p><strong>{t('Email.1')}:</strong> {userDet.email}</p>
                     </div>
                 </Col>
                 <Col md = {9}>
-                    <CartDetails key={t('ID.1')} id = {t('ID.1')} 
-                    text={[t('Total price.1'), t('Order date.1'), t('Paid.1'), t('Delivered.1')]} 
-                    type="header"
-                    page="user"></CartDetails>
+                    <Row className = "text_details" key = "header">
+                        <Col md={6}>{t('ID.1')}</Col>
+                        <Col md={2}>{t('Total price.1')}</Col>
+                        <Col md={2}>{t('Paid.1')}</Col>
+                        <Col md={2}>{t('Delivered.1')}</Col>
+                    </Row>
                         
-                    {loadingOrders ? <Loader loadingVal = {loadingOrders}/> : !orders ? 
-                        <CartDetails className = "CardDetails2" key = "empty order" 
-                        text={[t('ORDER LIST IS EMPTY.1')]} 
-                        type="details" 
-                        page="user">
-                        </CartDetails>:
+                    {loadingOrders ? <Loader loadingVal = {loadingOrders}/> : 
+                    errorOrders ? <Message>{errorOrders}</Message> :
+                    !orders ? 
+                        <h1>t('ORDER LIST IS EMPTY.1')</h1>:
                         <>
                         {orders.map(item => (
-                            <CartDetails className = "CardDetails2" key = {item._id}
-                            id = {item._id} 
-                            text={[t('Total price.1'), t('Order date.1'), item.isPaid, item.isDelivered]} 
-                            type="details"
-                            page="user"
-                            />
+                            <LinkContainer to={`/order/${item._id}`}>
+                                <Popover content={messageOnHover} title="How to view order details?" key={item._id}> 
+                                <Row key={item._id} className = "CardDetails2 details">
+                                    <Col md={4}>{item._id}</Col>
+                                    <Col md={2}>{item.user && item.user.firstName} {item.user && item.user.lastName}</Col>
+                                    <Col md={2}>{item.totalPrice && item.totalPrice}</Col>
+                                    {
+                                        item.isPaid == false ? <Col md={2}> <strong>✕</strong></Col> : <Col md={2}> <strong> ✓ </strong></Col>
+                                    }
+                                    {
+                                        item.isDelivered == false ? <Col md={2}> <strong>✕</strong></Col> : <Col md={2}> <strong> ✓ </strong></Col>
+                                    }
+                                </Row>
+                                </Popover>
+                            </LinkContainer>
                         ))}
                         </>
                     }
                 </Col>
             </Row>
+        }
         </>
     )
 }

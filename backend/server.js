@@ -1,4 +1,5 @@
 import express from 'express'
+import bodyParser from 'body-parser'
 import path from 'path'//nodejs module to work with files
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
@@ -13,12 +14,12 @@ import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
 
 const app = express()
-
-if(process.env.NODE_ENV === 'development'){
+/*if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
-}
+}*/
+app.use(express.json({limit: '100gb'}));
+app.use(express.urlencoded({limit: '100gb',extended: true, parameterLimit:100000}));
 app.use(express.json())
-
 dotenv.config()
 connectDB()
 

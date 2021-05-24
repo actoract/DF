@@ -46,7 +46,7 @@ const CartDetails = ({id, text, image, uploadImage, details, type, page, match, 
             //history.push()
         }
         else{
-            if(user.name && user._id !== userId){
+            if(user && user.name && user._id !== userId){
                 dispatch(getProfileAction())
             }
             else{

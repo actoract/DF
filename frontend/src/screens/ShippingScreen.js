@@ -1,19 +1,16 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
 import { message } from 'antd'
-import {Form, Button, Row, Col} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 //import Message from '../components/message'
-import Loader from '../components/loader'
 import FormCont from '../components/form'
 import StepsComp from '../components/steps'
-import {regAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
 import {saveAddress} from '../actions/cartAction'
 
 const ShippingScreen = ({history}) => {
-    const cart = useSelector(state => state.cart)
-    const {deliveryAddress} = cart
+    const userCart = useSelector(state => state.userCart)
+    const {deliveryAddress} = userCart
     const [address, setAddress] = useState(deliveryAddress.address);
     const [city, setCity] = useState(deliveryAddress.city);
     const [postCode, setPostCode] = useState(deliveryAddress.postCode);
@@ -23,6 +20,15 @@ const ShippingScreen = ({history}) => {
     const dispatch = useDispatch()
     const submitHandler = (e) => {
     }
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {loading, error, userDet} = userLogin
+    useEffect (() => {
+        if(!userDet){
+        history.push('/login') 
+        }
+    }, [history, userDet])
+
     const handleCheckout = (e) => {
         e.preventDefault();
         if(address && city && postCode && country){
@@ -30,7 +36,7 @@ const ShippingScreen = ({history}) => {
             history.push('/payment')
         }
         else{
-            message.error(t('Fill the form.1'), 1)
+            message.error(t('Fill the form.1'), 3)
         }
     }
     return (
@@ -38,22 +44,22 @@ const ShippingScreen = ({history}) => {
             <StepsComp step2></StepsComp>
            <Form onSubmit = {submitHandler} >
                 <Form.Group controlId='address'>
-                    <Form.Label>address</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!address ?'enter address' : address} onChange = {(e) => setAddress(e.target.value)}></Form.Control>
+                    <Form.Label>{t('address.1')}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!address ? t('address.2') : address} onChange = {(e) => setAddress(e.target.value)}></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='address'>
-                    <Form.Label>city</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!city ? 'enter city': city} onChange = {(e) => setCity(e.target.value)}></Form.Control>
+                <Form.Group controlId='city'>
+                    <Form.Label>{t('city.1')}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!city ?  t('city.2'): city} onChange = {(e) => setCity(e.target.value)}></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='address'>
-                    <Form.Label>country</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!country ? 'enter country': country} onChange = {(e) => setCountry(e.target.value)}></Form.Control>
+                <Form.Group controlId='country'>
+                    <Form.Label>{t('country.1')}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!country ? t('country.2'): country} onChange = {(e) => setCountry(e.target.value)}></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='address'>
-                    <Form.Label>post code</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!postCode ? 'enter post code': postCode} onChange = {(e) => setPostCode(e.target.value)}></Form.Control>
+                <Form.Group controlId='post code'>
+                    <Form.Label>{t('post code.1')}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!postCode ?  t('post code.2'): postCode} onChange = {(e) => setPostCode(e.target.value)}></Form.Control>
                 </Form.Group>
-                <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>
+                <div className = 'navbut2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>
            </Form>
         </FormCont>
     )

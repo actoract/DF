@@ -6,13 +6,11 @@ import Product from '../components/products'
 import Loader from '../components/loader'
 import Message from '../components/message'
 
-
-
 const StoreScreen = () => {
     const dispatch = useDispatch()
     const productsList = useSelector(state => state.productsList)
     const { products, loadingVal, error  } = productsList
-    
+ 
     useEffect(() => {
         dispatch(productsListAction())
     }, [dispatch])

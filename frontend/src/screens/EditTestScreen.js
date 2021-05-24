@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {Row, Col, Image, Container, Form} from 'react-bootstrap'
-import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
+import {Row, Col, Form} from 'react-bootstrap'
 import {testproductsListAction, updateTestProductAction} from '../actions/testproductsActions'
-import Uploader from '../components/upload'
-import smile from './smile.png';
-import { message, Input, Button, Checkbox  } from 'antd';
-import FormCont from '../components/form'
+import { message } from 'antd';
 import { TEST_PRODUCTS_UPDATE_RESET } from '../constants/storeConst';
 
 const EditTestScreen = ({history, match}) => {
@@ -29,8 +24,14 @@ const EditTestScreen = ({history, match}) => {
     const testproductDet = useSelector((state) => state.testproductDet)
     const {loading, error, testproduct} = testproductDet
 
+    const userLogin = useSelector(state => state.userLogin)
+    const {userDet} = userLogin
+
     useEffect (() => {
-        if(successUpdate){
+        if(!userDet || !userDet.isAdmin){
+            history.push('/login') 
+        }
+        else if(successUpdate){
             dispatch({type: TEST_PRODUCTS_UPDATE_RESET})
             history.push('/test')
         }
@@ -59,41 +60,41 @@ const EditTestScreen = ({history, match}) => {
             }))
         }
         else{
-            message.error(t('Fill the form.1'), 1)
+            message.error(t('Fill the form.1'), 3)
         }
     }
     return ( 
         <Row className = 'justify-content-md-center'>
             <Col>
-            <h3>Add details for test product</h3>
+            <h3>{t("Add test product data.1")}</h3>
                 <Form.Group controlId='nameRus'>
-                    <Form.Label>name(rus)</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!nameRus ?'enter name(rus)' : nameRus} onChange = {(e) => setNameRus(e.target.value)}></Form.Control>
+                    <Form.Label>{t("name(rus).1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!nameRus ? t("enter.1")  : nameRus} onChange = {(e) => setNameRus(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='nameEng'>
-                    <Form.Label>name(eng)</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!nameEng ? 'enter name(eng)': nameEng} onChange = {(e) => setNameEng(e.target.value)}></Form.Control>
+                    <Form.Label>{t("name(eng).1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!nameEng ? t("enter.2") : nameEng} onChange = {(e) => setNameEng(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='image'>
-                    <Form.Label>image</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!image ? 'enter location to image': image} onChange = {(e) => setImage(e.target.value)}></Form.Control>
+                    <Form.Label>{t("image.1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!image ? t("enter.3") : image} onChange = {(e) => setImage(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='model'>
-                    <Form.Label>model</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!model ? 'enter location to 3D-model': model} onChange = {(e) => setModel(e.target.value)}></Form.Control>
+                    <Form.Label>{t("model.1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!model ? t("enter.4") : model} onChange = {(e) => setModel(e.target.value)}></Form.Control>
                 </Form.Group>
                 
                 <Form.Group controlId='descCare'>
-                    <Form.Label>description: care</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!descCare ? 'enter care for product': descCare} onChange = {(e) => setdescCare(e.target.value)}></Form.Control>
+                    <Form.Label>{t("description:care.1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!descCare ? t("enter.6") : descCare} onChange = {(e) => setdescCare(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='descCare'>
-                    <Form.Label>description: material</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!descMaterial ? 'enter material of product': descMaterial} onChange = {(e) => setMaterial(e.target.value)}></Form.Control>
+                    <Form.Label>{t("description:material.1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!descMaterial ? t("enter.7") : descMaterial} onChange = {(e) => setMaterial(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='descColor'>
-                    <Form.Label>description: color</Form.Label>
-                    <Form.Control required type = "text" placeholder = {!descColor ? 'enter color of product': descColor} onChange = {(e) => setColor(e.target.value)}></Form.Control>
+                    <Form.Label>{t("description:color.1")}</Form.Label>
+                    <Form.Control required type = "text" placeholder = {!descColor ? t("enter.8") : descColor} onChange = {(e) => setColor(e.target.value)}></Form.Control>
                 </Form.Group>
                 <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
             </Col>

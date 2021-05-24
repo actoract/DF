@@ -7,6 +7,7 @@ import expressAsyncHandler from 'express-async-handler'
 const getProducts = expressAsyncHandler(async (req, res) => {
     const products = await Product.find({})
     res.json(products)
+    return
 })
 
 //@description Fetch single products
@@ -14,11 +15,13 @@ const getProducts = expressAsyncHandler(async (req, res) => {
 //@access Public
 const getProductById = expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id)
-    if (product)
+    if (product){
         res.json(product)
+        return
+    }
     else{
         res.status(404)
-        throw new Error ('Not found')
+        throw new Error('Not found')
     }
     res.json(product)
 })
@@ -31,6 +34,7 @@ const deleteProduct = expressAsyncHandler(async (req, res) => {
     if (productExist){
         await productExist.remove()
         res.json({message: 'Product is removed'})
+        return
     }
     else{
         res.status(404)
@@ -54,7 +58,7 @@ const createProduct = expressAsyncHandler(async (req, res) => {
             priceReal:1500,
         },
         user: req.user._id,
-        image: '/images/sample.jpg',
+        image: '/images/sample.png',
         model: '/models/Model_11.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -74,6 +78,7 @@ const createProduct = expressAsyncHandler(async (req, res) => {
     })
     const createdProduct = await product.save()
     res.status(201).json(createdProduct)
+    return
 })
 
 //@description Update product

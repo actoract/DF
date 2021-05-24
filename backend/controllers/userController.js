@@ -17,6 +17,7 @@ const userAuth = expressAsyncHandler(async (req, res) => {
             isAdmin: existUser.isAdmin,
             token: tokenGeneration(existUser._id) //token Generation
         })
+        return
     }
     else{
         res.status(401)
@@ -37,6 +38,7 @@ const getProfile = expressAsyncHandler(async (req, res) => {
             email: existUser.email,
             isAdmin: existUser.isAdmin,
         })
+        return
     }
     else{
         res.status(404)
@@ -50,6 +52,7 @@ const getProfile = expressAsyncHandler(async (req, res) => {
 const getAllProfiles = expressAsyncHandler(async (req, res) => {
     const users = await User.find({})
     res.json(users)
+    return
 })
 
 //@description GET user by his ID
@@ -59,6 +62,7 @@ const getProfileById = expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id). select('-password') //pass without password
     if(user){
         res.json(user)
+        return
     }
     else{
         res.status(404)
@@ -89,7 +93,9 @@ const regUser = expressAsyncHandler(async (req, res) => {
             lastName: user.lastName,
             email: user.email,
             isAdmin: user.isAdmin,
+            token: tokenGeneration(user._id) //token Generation
         })
+        return
     }else{
         res.status(400)
         throw new Error('Invalid user data')
@@ -117,6 +123,7 @@ const updateProfile = expressAsyncHandler(async (req, res) => {
             isAdmin: updatedUser.isAdmin,
             token: tokenGeneration(updatedUser._id) //token Generation
         })
+        return
     }
     else{
         res.status(404)
@@ -143,6 +150,7 @@ const updateProfileById = expressAsyncHandler(async (req, res) => {
             email: updatedUser.email,
             isAdmin: updatedUser.isAdmin,
         })
+        return
     }
     else{
         res.status(404)

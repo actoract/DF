@@ -12,7 +12,7 @@ export const userLoginReducer = (state = {}, action) => {
         case LOGIN_SUC:
             return{
                 loadingVal: false,
-                userInfo: action.payload
+                userDet: action.payload
             }
         case LOGIN_FAIL:
             return{
@@ -38,7 +38,7 @@ export const userRegReducer = (state = {}, action) => {
         case REG_SUC:
             return{
                 loadingVal: false,
-                userInfo: action.payload
+                userDet: action.payload
             }
         case REG_FAIL:
             return{

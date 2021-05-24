@@ -7,6 +7,7 @@ import expressAsyncHandler from 'express-async-handler'
 const getTestProducts = expressAsyncHandler(async (req, res) => {
     const testproducts = await TestProduct.find({})
     res.json(testproducts)
+    return
 })
 
 //@description Fetch single products
@@ -14,8 +15,10 @@ const getTestProducts = expressAsyncHandler(async (req, res) => {
 //@access Public
 const getTestProductById = expressAsyncHandler(async (req, res) => {
     const testproduct = await TestProduct.findById(req.params.id)
-    if (testproduct)
+    if (testproduct){
         res.json(testproduct)
+        return
+    }
     else{
         res.status(404)
         throw new Error ('Not found')
@@ -34,7 +37,7 @@ const createTestProduct = expressAsyncHandler(async (req, res) => {
             nameEng:'Sample name',
         },
         user: req.user._id,
-        image: '/images/sample.jpg',
+        image: '/images/sample.png',
         model: '/models/Model_11.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -62,6 +65,7 @@ const updateTestProduct = expressAsyncHandler(async (req, res) => {
         testproduct.description.color = description.color
         const updatedTestProduct = await testproduct.save()
         res.json(updatedTestProduct)
+        return
     }
     else{
         res.status(404)
@@ -78,6 +82,7 @@ const createReviewTestProduct = expressAsyncHandler(async (req, res) => {
     const testproduct = await TestProduct.findById(req.params.id)
     if (testproduct){
         const existReview = testproduct.reviews.find(rev => rev.user.toString() === req.user._id.toString())
+        console.log(existReview)
         if(existReview){
             res.status(400)
             throw new Error ('Test product is already reviewed')
@@ -93,6 +98,7 @@ const createReviewTestProduct = expressAsyncHandler(async (req, res) => {
         testproduct.rating = testproduct.reviews.reduce((acc, item) => item.rating + acc, 0)/testproduct.reviews.length
         await testproduct.save()
         res.status(201).json({message: 'Review is added'})
+        //return
     }
     else{
         res.status(404)
