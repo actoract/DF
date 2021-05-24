@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Suspense} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {testproductsListAction} from '../actions/testproductsActions'
 import {Row, Col} from 'react-bootstrap'
-import TestProduct from '../components/test_products'
 import Loader from '../components/loader'
-import Message from '../components/message'
+const Message = React.lazy(() => import('../components/message'));
+const TestProduct = React.lazy(() => import('../components/test_products'));
 
 const TestScreen = () => {
     const dispatch = useDispatch()
@@ -17,15 +17,17 @@ const TestScreen = () => {
 
     return (
         <div className = "mainStore">
-        {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 
-            <Row>
-                    {testproducts.map((testproducts, i) => (
-                        <Col sm={12} md={6} lg={4} xl={4} key = {i}>
-                            <TestProduct testproducts = {testproducts}/>
-                        </Col>
-                    ))}
-            </Row>
-        }
+            <Suspense fallback={<Loader/>}>
+            {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 
+                <Row>
+                        {testproducts.map((testproducts, i) => (
+                            <Col sm={12} md={6} lg={4} xl={4} key = {i}>
+                                <TestProduct testproducts = {testproducts}/>
+                            </Col>
+                        ))}
+                </Row>
+            }
+            </Suspense>
         </div>
     )
 }

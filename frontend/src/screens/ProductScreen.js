@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from'react-redux'
 import {Row, Col, ListGroup, Card, Form } from 'react-bootstrap'
 import "./styles.css"
-import ItemList from '../components/itemList'
 import { Canvas, useFrame,extend, useThree } from 'react-three-fiber'
-import DemoScene from "../components/demoScene"
 import Loader from "../components/loader"
 import Loading from "../components/loading"
-import Message from "../components/message"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {productDetAction}  from '../actions/productsActions'
 import {addToCart} from '../actions/cartAction'
 import { message } from 'antd';
+const Message = React.lazy(() => import('../components/message'));
+const DemoScene = React.lazy(() => import('../components/demoScene'));
+const ItemList = React.lazy(() => import('../components/itemList'));
 
 extend({ OrbitControls }); 
 const CameraControls = () => {
@@ -26,9 +26,8 @@ const CameraControls = () => {
 };
 
 
-const ProductScreen = ({history, match}) => { 
+const ProductScreen = ({match}) => { 
 
-    const [number, setNumber] = useState();
     const [qty, setQty] = useState("");
     const [size, setSize] = useState("");
     const [maxQty, setMaxQty] = useState("");
@@ -38,7 +37,6 @@ const ProductScreen = ({history, match}) => {
     const { t } = useTranslation(); 
     const [price, setPrice] = useState("");
     const [type, setType] = useState("");
-    const [status, setStatus] = useState("");
     const userCart = useSelector(state => state.userCart)
     const {cartItems} = userCart
 
@@ -61,25 +59,7 @@ const ProductScreen = ({history, match}) => {
       else if(exist){
         message.error(t('Item is already added to the cart.1'), 3)
       }
-      //history.push(`/cart/${match.params.id}?qty=${qty}?type=${type}?size=${size}`)
-
-      /*const keys = Object.keys(item.sizeStatus); 
-      const  exist = product.find(x => x.id == product.id && Number(size) == Number(.size));
-      console.log(exist)
-      if (exist){
-          message.success("Exist", 3);
-      }
-      else{
-          for (let key of keys) {
-              if (item.sizeStatus[key].size == e.target.value){
-                  //qty = cartItems.sizeStatus[key].countInStock
-                  dispatch(changeCart(item.product, 
-                      item.sizeStatus[key].countInStock, 
-                      item.type, Number(e.target.value), 
-                      item.sizeStatus[key].countInStock))
-              }
-          }
-      }*/
+     
     }
 
     function handleChange(){
@@ -110,22 +90,7 @@ const ProductScreen = ({history, match}) => {
         setQty(e.target.value)
       }
     }
-    /*function HandleSizeChange(){
-      const keys = Object.keys(product.sizeStatus); 
-      setSize(document.getElementById("2").value)
-      for (let key of keys) {
-        if (product.sizeStatus[key].size == document.getElementById("2").value){
-          if (product.sizeStatus[key].countInStock > 0){
-            setStatus(t('In stock.1'));
-            setNumber(product.sizeStatus[key].countInStock)
-          }
-          else{
-            setStatus(t('Out of stock.1'));
-            setNumber(product.sizeStatus[key].countInStock)
-          }
-        }
-      }
-    }*/
+   
 
 
     return (

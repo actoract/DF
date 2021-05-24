@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense} from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col, Form} from 'react-bootstrap'
@@ -6,7 +6,7 @@ import { PRODUCTS_UPDATE_RESET } from '../constants/storeConst';
 import { message} from 'antd';
 import {updateProductAction, productsListAction} from '../actions/productsActions'
 import Loader from '../components/loader'
-import Message from '../components/message';
+const Message = React.lazy(() => import('../components/message'));
 
 const EditScreen = ({history, match}) => {
     const { t } = useTranslation()
@@ -29,9 +29,6 @@ const EditScreen = ({history, match}) => {
     const [sizeS, setS] =  useState('')
     const [sizeM, setM] =  useState('')
     const [sizeL, setL] =  useState('')
-    
-    //const [statusSize, setSize] =  useState('')
-    //const [statusCountInStock, setCountInStock] =  useState('')
    
     const productDet = useSelector((state) => state.productDet)
     const {loading, error, product} = productDet
@@ -39,28 +36,7 @@ const EditScreen = ({history, match}) => {
     const productUpdate = useSelector(state => state.productUpdate)
     const {loading: loadingUpdate, error: errorUpdate, success: successUpdate} = productUpdate
 
-    //const [status, setStatus] = useState(['', '']);
-    /*const [statusArray, setStatusArray] = useState([]);
-    const [status, setStatus] = useState({
-        size: '',
-        countInStock: '',
-    });*/
-
-   /* const [priceDR, setPrice] = useState({
-        priceReal: '',
-        priceDigital: '',
-    });
-
-    const [desc, setDesc] = useState({
-        care: '',
-        color: '',
-        material: '',
-    });
-
-    const [name, setName] = useState({
-        nameRus: '',
-        nameEng: '',
-    });*/
+   
     const userLogin = useSelector(state => state.userLogin)
     const {userDet} = userLogin
 
@@ -109,45 +85,8 @@ const EditScreen = ({history, match}) => {
             message.error(t('Fill the form.1'), 3)
         }
     }
-    /*const addToStatus = (e) => {
-        if(statusSize == "" || statusCountInStock == "")
-            message.error(t('Fill the form.1'), 1)
-        else{
-            //setStatus(status.concat(statusSize, statusCountInStock))
-            setStatus({
-                ...status,
-                ['size']: statusSize,
-                ['countInStock']: statusCountInStock,
-              });
-            setStatusArray(statusArray.concat(status));
-        }
-    }*/
-
-   /* const addToDesc = (e) => {
-        e.target.name == "care" ? setdescCare(e.target.value) : e.target.name == "material" ? setMaterial(e.target.value) :setColor(e.target.value)
-        setDesc({
-            ...desc,
-            [e.target.name]: e.target.value,
-            });
-    }*/
-
-    /*const addToPrice = (e) => {
-        e.target.name == "digital" ? setPriceDigital(e.target.value) : setPriceReal(e.target.value)
-        setPrice({
-            ...priceDR,
-            [e.target.name]: e.target.value,
-            });
-    }*/
-
-    /*const addToName = (e) => {
-        e.target.name == "nameRus" ? setNameRus(e.target.value) : setNameEng(e.target.value)
-        setName({
-            ...name,
-            [e.target.name]: e.target.value,
-            });
-    }*/
     return ( 
-        
+        <Suspense fallback={<Loader/>}>
         <Row className = 'justify-content-md-center'>
             <Col>
              <h3>{t("Add product data.1")}</h3>
@@ -227,6 +166,7 @@ const EditScreen = ({history, match}) => {
             <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
         </Col>
         </Row>
+        </Suspense>
 
     )
 }

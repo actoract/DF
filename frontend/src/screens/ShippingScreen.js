@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Suspense} from 'react'
 import { message } from 'antd'
 import {Form} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-//import Message from '../components/message'
-import FormCont from '../components/form'
-import StepsComp from '../components/steps'
 import { useTranslation } from 'react-i18next'
 import {saveAddress} from '../actions/cartAction'
+import Loader from '../components/loader'
+const FormCont = React.lazy(() => import('../components/form'));
+const StepsComp = React.lazy(() => import('../components/steps'));
 
 const ShippingScreen = ({history}) => {
     const userCart = useSelector(state => state.userCart)
@@ -40,6 +40,8 @@ const ShippingScreen = ({history}) => {
         }
     }
     return (
+        <div>
+        <Suspense fallback={<Loader/>}>
         <FormCont className = "FormCont">
             <StepsComp step2></StepsComp>
            <Form onSubmit = {submitHandler} >
@@ -62,6 +64,8 @@ const ShippingScreen = ({history}) => {
                 <div className = 'navbut2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>
            </Form>
         </FormCont>
+        </Suspense>
+        </div>
     )
 }
 export default ShippingScreen

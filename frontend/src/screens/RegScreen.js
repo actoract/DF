@@ -3,11 +3,12 @@ import {Link} from 'react-router-dom'
 import { message } from 'antd'
 import {Form, Button, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-//import Message from '../components/message'
-import Loader from '../components/loader'
-import FormCont from '../components/form'
 import {regAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
+import Loader from '../components/loader'
+import { Suspense } from 'react'
+const FormCont = React.lazy(() => import('../components/form'));
+const StepsComp = React.lazy(() => import('../components/steps'));
 
 const RegScreen = ({location, history}) => {
     const [firstName, setFirstName] = useState('')
@@ -15,7 +16,6 @@ const RegScreen = ({location, history}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConf] = useState('')
-    const [mes, setMess] = useState(null)
     const { t } = useTranslation()
     const redirect = location.search ? location.search.split('=')[1] : '/'
     const dispatch = useDispatch()
@@ -42,9 +42,9 @@ const RegScreen = ({location, history}) => {
         }
     }
     return (
+        <Suspense fallback={<Loader/>}>
         <FormCont>
             <h1>{t('registration.1')}</h1>
-            {loading && <Loader/>}
             {error && message.error(error, 3)}
             <Form onSubmit = {submitHandler}>
                 <Form.Group controlId='firstName'>
@@ -75,6 +75,7 @@ const RegScreen = ({location, history}) => {
                 </Col>
             </Row>
         </FormCont>
+        </Suspense>
     )
 }
 export default RegScreen

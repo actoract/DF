@@ -4,9 +4,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
-import smile from './smile.png';
 import { message } from 'antd';
-import upload from './upload.png'
+const smile = React.lazy(() => import('./smile.png'));
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id
@@ -34,55 +33,6 @@ const CartScreen = ({match, location, history}) => {
         dispatch(removeFromCart(product, size, type))
     }
 
-    /*const handleSizeChange = (e, item) => {
-        const keys = Object.keys(item.sizeStatus); 
-        for (let key of keys) {
-            if (item.sizeStatus[key].size == e.target.value){
-                //qty = cartItems.sizeStatus[key].countInStock
-                dispatch(changeCart(item.product, 
-                    item.sizeStatus[key].countInStock, 
-                    item.type, Number(e.target.value), 
-                    item.sizeStatus[key].countInStock,
-                    ""))
-            }
-        }
-    }*/
-    /*const handleChange = (e, item) => {
-
-        const exist = cartItems.find(x => x.product == item._id && x.size == e.target.value)
-        if(!exist){
-            dispatch(changeCart(item.id, item.product, item.qty, item.type, e.target.value, item.countInStock))
-            //dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, number));
-            //message.success(t('Added.1'), 3);
-        }
-        else{
-            message.error(t('The item already exist.1'), 3);
-        }
-
-
-        /*const keys = Object.keys(item.sizeStatus); 
-        const exist = cartItems.map(x => Object.keys(x.sizeStatus).find(size => (
-            size == e.target.value && item.product == x.product 
-        )))
-
-        if (exist){
-            message.success("Exist", 3);
-        }
-        else{
-            for (let key of keys) {
-                if (item.sizeStatus[key].size == Number(e.target.value)){
-                    //qty = cartItems.sizeStatus[key].countInStock
-                    dispatch(changeCart(
-                        item.id,
-                        item.product, 
-                        item.sizeStatus[key].countInStock, 
-                        item.type, Number(e.target.value), 
-                        item.sizeStatus[key].countInStock,
-                        ""))
-                }
-            }
-        }
-    }*/
    const handleCheckout = () => {
         cartItems.map(item => {
             if(item.type == "dc" && image==false){
@@ -128,36 +78,10 @@ const CartScreen = ({match, location, history}) => {
                 item.size, 
                 item.countInStock,
                 file)
-                //window.URL.createObjectURL(files[0]))
             )}
         }, false)
         myFileItemReader.readAsDataURL(files[0])
     }
-    /*const onChange = (event, item) => {
-        event.preventDefault();
-        const { files } = event.target;
-        console.log(files[0])
-        const myFileItemReader = new FileReader()
-        myFileItemReader.addEventListener("load", ()=>{
-        const file = myFileItemReader.result
-        var base64Flag = 'data:image/png;base64,';
-        alert(files[0].thumbUrl)
-        //var imageStr = this.arrayBufferToBase64(data.img.data.thumbUrl);
-        if(file){
-            dispatch(changeCart(
-                item.id,
-                item.product, 
-                item.isizeStatus, 
-                item.type, 
-                item.size, 
-                item.countInStock,
-                files[0].thumbUrl)
-            )
-          }
-          
-        }, false)
-        myFileItemReader.readAsDataURL(files[0])
-      }*/
     return (
         <div>
             {cartItems.length === 0 ?  (

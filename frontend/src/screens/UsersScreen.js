@@ -1,23 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Suspnse} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Message from '../components/message'
 import Loader from '../components/loader'
-import CartDetails from "../components/cardDetails"
 import { useTranslation } from 'react-i18next'
 import {Col, Row} from 'react-bootstrap'
-import { Popover, Modal, message } from 'antd';
+import { Popover, message } from 'antd';
 import './styles.css'
 import ModalMessage from "../components/modalMessage"
-import {Link} from 'react-router-dom'
 import {USER_PROFILE_UPD_RESET} from '../constants/storeConst'
 import {getProfileAction, 
         usersAction,
         updProfileAction} from '../actions/userAction'
 
+const Message = React.lazy(() => import('../components/message'));
+
 const UsersScreen = ({history, match}) => {
     const userId = match.params.id
     const [isAdmin, setAdmin] = useState(false);
-    const [idChange, setIdChange] = useState("");
     const dispatch = useDispatch()
     const allUsers = useSelector(state => state.allUsers)
     const { users, loading, error  } = allUsers
@@ -43,7 +41,6 @@ const UsersScreen = ({history, match}) => {
         if(UpdSucccess){
             setAdmin(user.isAdmin)
             dispatch({type: USER_PROFILE_UPD_RESET})
-            //history.push()
         }
         else{
             if(user.name && user._id !== userId){
@@ -68,7 +65,6 @@ const UsersScreen = ({history, match}) => {
         e.preventDefault()
         if(userDet._id != id){
             setAdmin(e.target.value)
-            setIdChange(id)
             dispatch(updProfileAction({_id: id, isAdmin}))
         }
         else{

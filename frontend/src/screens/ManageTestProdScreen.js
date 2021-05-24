@@ -1,6 +1,5 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, Suspense} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Message from '../components/message'
 import Loader from '../components/loader'
 import { useTranslation } from 'react-i18next'
 import {Col, Row, Image} from 'react-bootstrap'
@@ -8,9 +7,9 @@ import { Popconfirm } from 'antd';
 import {TEST_PRODUCTS_CREATE_RESET} from '../constants/storeConst'
 import add from './add.png'
 import {testproductsListAction, deleteTestProductAction, createTestProductAction} from '../actions/testproductsActions'
+const Message = React.lazy(() => import('../components/message'));
 
 const ManageTestProdScreen = ({history, match}) => {
-    const testproductId = match.params.id
     const dispatch = useDispatch()
 
     const testproductsList = useSelector(state => state.testproductsList)
@@ -41,11 +40,6 @@ const ManageTestProdScreen = ({history, match}) => {
         }
     }, [dispatch, history, userDet, successDelete, successCreate, createdTestProduct])
 
-    const deleteHandle = (id) => {
-        if(window.confirm('Are you sure?')){
-            //delete
-        }
-    }
     const confirmDelete = (id) => {
         //alert(id);
         dispatch(deleteTestProductAction(id))
@@ -59,7 +53,7 @@ const ManageTestProdScreen = ({history, match}) => {
         dispatch(createTestProductAction())
     }
     return (
-        <>
+        <Suspense fallback={<Loader/>}>
            <Row>
                 <h3>{t('Test products.1')}</h3> 
                 <Image src = {add} alt={add} className="add" onClick={addHandle}/>
@@ -96,7 +90,7 @@ const ManageTestProdScreen = ({history, match}) => {
             ))}
             </>
            }
-        </>
+        </Suspense>
     )
 }
 export default ManageTestProdScreen

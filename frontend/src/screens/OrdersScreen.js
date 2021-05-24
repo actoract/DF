@@ -2,12 +2,12 @@ import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {Button, Row, Col, ListGroup, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-import Message from '../components/message'
-import Loader from '../components/loader'
 import {getOrderById, updateStatusAction} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import {ORDER_UPDATE_STATUS_RESET} from '../constants/storeConst'
 import { message } from 'antd'
+const Message = React.lazy(() => import('../components/message'));
+const Loader = React.lazy(() => import('../components/loader'));
 
 const OrdersScreen = ({match, history}) => {
     const orderId = match.params.id

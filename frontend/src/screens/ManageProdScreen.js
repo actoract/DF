@@ -1,13 +1,14 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Message from '../components/message'
 import Loader from '../components/loader'
 import { useTranslation } from 'react-i18next'
 import {Col, Row, Image} from 'react-bootstrap'
 import {PRODUCTS_CREATE_RESET} from '../constants/storeConst'
 import {productsListAction, deleteProductAction, createProductAction} from '../actions/productsActions'
-import add from './add.png'
 import { Popconfirm} from 'antd';
+import { Suspense } from 'react'
+import add from './add.png';
+const Message = React.lazy(() => import('../components/message'));
 
 const ManageProdScreen = ({history, match}) => {
     const productId = match.params.id
@@ -54,7 +55,7 @@ const ManageProdScreen = ({history, match}) => {
         //message.error('Click on No');
     }
     return (
-        <>
+        <Suspense fallback={<Loader/>}>
             <Row>
                 <h3>{t('Products.1')}</h3> 
                 <Image src = {add} alt={add} className="add" onClick={addHandle}/>
@@ -94,7 +95,7 @@ const ManageProdScreen = ({history, match}) => {
             ))}
             </>
            }
-        </>
+        </Suspense>
     )
 }
 export default ManageProdScreen

@@ -1,15 +1,4 @@
 
-.divextra{
-  position:relative;
-  top: 500px;
-  left: 0;
-}
-.SelectBut1{
-  width:98%;
-  height: 30px;
-  border-radius: 3px;
-  border-color: #DFDFDF;
-}
 .SelectBut2{
   width:150px;
   height: 30px;
@@ -31,8 +20,6 @@
   border-radius: 5px;
   border-width: 10px;
   backdrop-filter: 1px;
-  background-color: #FFEDED;
-  box-shadow: 0px 0px 50px 10px #FDE2E2;
 
   background-color: white;
   box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
@@ -46,20 +33,20 @@
   width: auto;
   height: auto;
 }
-.mainProduct{
+/*.mainProduct{
   margin-top: 50px;
   position:absolute;
   width: 500px;
   left: 10%;
-}
-.mainHome{
+}*/
+/*.mainHome{
   position:absolute;
   background-image: url(Gradient2.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
   width: 100%;
-}
+}*/
 .mainAbout{
   position:absolute;
   left:-280px;
@@ -71,7 +58,7 @@
   padding: 50px;
 }
 
-.but{
+/*.but{
   position:relative;
   top: 10px;
   left: 40%;
@@ -88,7 +75,7 @@
 .but:hover{
   box-shadow: 0px 0px 10px 10px #FA460D;
   color: white;
-}
+}*/
 .mainStore{
   padding: 12px;
   margin: -60px;
@@ -208,9 +195,9 @@ linkStore:active {
 }
 
 
-input[type="file"] {
+/*input[type="file"] {
   display: none;
-}
+}*/
 .button_for_everything{
   justify-content: center;
   text-decoration: none;

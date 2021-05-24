@@ -4,7 +4,7 @@ const products = [
             nameRus:'Широкие джинсы с вырезами',
             nameEng: 'Wide-leg jeans with cutouts',
         },
-        image: '/images/CLOTHES_10.png',
+        image: '/images/CLOTHES_10.jpg',
         model: '/models/Model_10.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -27,7 +27,7 @@ const products = [
             nameRus: 'Платье расклешенное',
             nameEng: 'Flared dress',
         },
-        image: '/images/CLOTHES_11.png',
+        image: '/images/CLOTHES_11.jpg',
         model: '/models/Model_11.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -50,7 +50,7 @@ const products = [
             nameRus: 'Кимоно',
             nameEng: 'Kimono',
         },
-        image: '/images/CLOTHES_12.png',
+        image: '/images/CLOTHES_12.jpg',
         model: '/models/Model_12.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -73,7 +73,7 @@ const products = [
             nameRus: 'Футболка с принтом "Grimes"',
             nameEng: 'T-shirt with print " Grimes"',
         },
-        image: '/images/CLOTHES_13.png',
+        image: '/images/CLOTHES_13.jpg',
         model: '/models/Model_13.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -96,7 +96,7 @@ const products = [
             nameRus: 'Куртка',
             nameEng: 'Jacket',
         },
-        image: '/images/CLOTHES_14.png',
+        image: '/images/CLOTHES_14.jpg',
         model: '/models/Model_14.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -119,7 +119,7 @@ const products = [
             nameRus: 'Летняя рубашка',
             nameEng: 'Summer shirt',
         },
-        image: '/images/CLOTHES_15.png',
+        image: '/images/CLOTHES_15.jpg',
         model: '/models/Model_15.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -142,7 +142,7 @@ const products = [
             nameRus: 'Клетчатые штаны',
             nameEng: 'Checkered Pants',
         },
-        image: '/images/CLOTHES_16.png',
+        image: '/images/CLOTHES_16.jpg',
         model: '/models/Model_16.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -165,7 +165,7 @@ const products = [
             nameRus: 'Клетчатая юбка с разрезами',
             nameEng: 'Checkered skirt with slits',
         },
-        image: '/images/CLOTHES_17.png',
+        image: '/images/CLOTHES_17.jpg',
         model: '/models/Model_17.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
@@ -188,7 +188,7 @@ const products = [
             nameRus: 'Клетчатая рубашка',
             nameEng: 'checkered shirt',
         },
-        image: '/images/CLOTHES_18.png',
+        image: '/images/CLOTHES_18.jpg',
         model: '/models/Model_18.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
