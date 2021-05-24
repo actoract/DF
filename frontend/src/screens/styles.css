@@ -244,10 +244,11 @@ input[type="file"] {
   margin-left: 10px;
 }
 
-.MainImage{  
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
+.imageList{  
+  height: auto;
+  width: 400px;
+  margin: 30px;
+  padding-top: 50px;
 }
 .add:hover{
   width:22px;

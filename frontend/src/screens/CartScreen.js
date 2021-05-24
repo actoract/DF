@@ -85,19 +85,18 @@ const CartScreen = ({match, location, history}) => {
     }*/
    const handleCheckout = () => {
         cartItems.map(item => {
-            if(item.type == "dc" && !item.custImage){
+            if(item.type == "dc" && image==false){
                 setImage(false)
+                return
             }
             else{
                 setImage(true)
             }
         })
-        if(image){
+        if(image)
             history.push('/login?redirect=deliveryaddress')
-        }
-        else{
+        else
             message.error(t('Upload image.1'), 3)
-        }
    }
    const handleQtyChange = (e, item) => {
        if(item.maxQty < e.target.value){
@@ -208,7 +207,7 @@ const CartScreen = ({match, location, history}) => {
                                     <strong>{t('Upload Image.1')} </strong>
                                     <input type="file" accept="image/*"  onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
                                     </label>
-                                    {item.custImage ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
+                                    {image ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
                                 </Col>
                             }
                              <Col md = {2}>
