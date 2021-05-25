@@ -16,6 +16,7 @@ const Message = React.lazy(() => import('../components/message'));
 const UsersScreen = ({history, match}) => {
     const userId = match.params.id
     const [isAdmin, setAdmin] = useState(false);
+    const [idChange, setIdChange] = useState("");
     const dispatch = useDispatch()
     const allUsers = useSelector(state => state.allUsers)
     const { users, loading, error  } = allUsers
