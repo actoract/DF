@@ -1,5 +1,5 @@
 import React, {useEffect, Suspense} from 'react'
-import {Row, Col} from 'react-bootstrap'
+import { Popover, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import {productsListAction} from '../actions/productsActions'
 const Message = React.lazy(() => import('../components/message'));
@@ -15,19 +15,27 @@ const StoreScreen = () => {
         dispatch(productsListAction())
     }, [dispatch])
 
+    const style1= {
+        padding: '12px',
+        margin: '-60px',
+        marginTop: '0px',
+        boxSizing: 'border-box',
+        height: 'auto',
+        backgroundColor: '#F6f6f6',
+        zIndex:'0',
+        marginBottom: '100px',
+    }
     return (
-        <div className = "mainStore">
-            <Suspense fallback={<Loader/>}>
+        <div style = {style1}>
             {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
                 <Row>
                     {products.map((product, i) => (
-                        <Col sm={12} md={6} lg={4} xl={4} key={i}>
+                        <Col span={8} key={i}>
                             <Product product = {product} products = {products}/>
                         </Col>
                     ))}
                 </Row>
             }
-            </Suspense>
         </div>
     )
 }
