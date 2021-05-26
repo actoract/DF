@@ -1,7 +1,7 @@
 import React from 'react'
 import './message.css';
 import {Row, Col, ListGroup, Image, Form, Card, Container} from 'react-bootstrap'
-import smile from './smile.png';
+import smile from './smile.jpg';
 
 const Message = ({ children}) => {
     return (

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
 import { message } from 'antd';
-const smile = React.lazy(() => import('./smile.png'));
+const smile = React.lazy(() => import('./smile.jpg'));
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id

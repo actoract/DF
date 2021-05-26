@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import './header.css'
 import { useTranslation } from 'react-i18next';
 import i18next from '../../i18n';
-import weardrop from './weardrop.png';
+import weardrop from './weardrop.jpg';
 import { Menu, Dropdown, Button, Space } from 'antd';
 import {logoutAction} from '../../actions/userAction'
 

@@ -4,13 +4,6 @@
   left: 45%;
   color: #F6f6f6;
 }
-.imgErr{
-  position:absolute;
-  top:0px;
-  left: 0px;
-  background-image: url(MesErr.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
+.EmptyStore{
+  margin: 50px;
 }
