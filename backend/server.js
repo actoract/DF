@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import path from 'path'//nodejs module to work with files
 import dotenv from 'dotenv'
+import compression from 'compression'
 import connectDB from './config/db.js'
 //import products from './data/products.js'
 //import testproducts from './data/testproducts.js'
@@ -14,6 +15,8 @@ import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
 
 const app = express()
+
+app.use(compression)
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
@@ -23,10 +26,10 @@ app.use(express.urlencoded({limit: '100gb',extended: true, parameterLimit:100000
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
   }
-
 app.use(express.json())
 dotenv.config()
 connectDB()
+
 
 //HTTP GET "/"
 /*app.get('/', (req, res) => {
