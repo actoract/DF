@@ -16,7 +16,16 @@ import morgan from 'morgan'
 
 const app = express()
 
-app.use(compression)
+app.use(compression({
+    level: 5,
+    threshold: 100 * 100,
+    filter: (req, res) => {
+        if(req.header['x-no-compression']){
+            return false
+        }
+        return compression.filter(req, res)
+    },
+}))
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
