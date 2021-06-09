@@ -134,16 +134,18 @@
 .AddBut{
   justify-content: center;
   text-decoration: none;
-  height: 30px;
-  width: 70px;
-  height: 30px;
-  left: 50%;
+  height: 40px;
+  left: 45%;
   border-radius: 30px;
+  border: 2px solid white; 
   background-color: #FA460D;
   color:white;
   margin-top: 10px;
-  margin-left: 50%;
-  padding: 10px;
+  margin-left: 40%;
+  margin-right: 50%;
+  margin-bottom: 10px;
+  min-width: 100px;
+  padding: 5px;
 }
 .AddBut:hover{
   border-radius: 30px;

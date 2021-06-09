@@ -34,28 +34,27 @@ const CartScreen = ({match, location, history}) => {
     }
 
    const handleCheckout = () => {
-        cartItems.map(item => {
-            if(item.type == "dc" && image==false){
-                setImage(false)
+
+        cartItems.forEach(function(item, i, cartItems) {
+            if(item.custImage == ""){
+                message.error(t('Upload image.1'), 3)
                 return
             }
-            else{
-                setImage(true)
+            else if(item.custImage !== "" && i == cartItems.length - 1){
+                history.push('/login?redirect=deliveryaddress')
             }
         })
-        if(image)
-            history.push('/login?redirect=deliveryaddress')
-        else
-            message.error(t('Upload image.1'), 3)
    }
    const handleQtyChange = (e, item) => {
-       if(item.maxQty < e.target.value){
-            message.error(t('Count in stock is less fir this item.1'), 3);
+
+       if(Number(item.maxQty) < Number(e.target.value)){
+            message.error(t('Count in stock is less for this item.1'), 3);
             dispatch(changeCart(item.id, item.product, item.maxQty, item.type, item.size, item.maxQty, ""))
             setQty(item.maxQty)
        }
-       else if (e.target.value == 0 || !e.target.value){
-            dispatch(removeFromCart(item.id, Number(item.size), item.product, item.type))
+       else if (e.target.value < 1 && e.target.value){
+            dispatch(changeCart(item.id, item.product, 1, item.type, item.size, item.maxQty, ""))
+            setQty(1)
        }
        else{
             dispatch(changeCart(item.id, item.product, e.target.value, item.type, item.size, item.maxQty, ""))

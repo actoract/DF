@@ -42,9 +42,6 @@ const HomeScreen = () => {
                 <img src={image4} alt="this is image" className="imageList"/>
             </Col>
             <Col>
-                <img src={image4} alt="this is image" className="imageList"/>
-            </Col>
-            <Col>
                 <img src={image5} alt="this is image" className="imageList"/>
             </Col>
             <Col>

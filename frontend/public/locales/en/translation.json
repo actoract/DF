@@ -181,6 +181,10 @@
         "1": "post code", 
         "2": "enter post code"
     },
+    "email":{
+        "1": "email", 
+        "2": "enter email"
+    },
     "payment method":{
         "1": "payment method"
     },
@@ -389,6 +393,9 @@
     },
     "Gallery of digital clothes examples":{
         "1": "Gallery of digital clothes examples"
+    },
+    "register":{
+        "1": "register"
     }
 
 }

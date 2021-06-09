@@ -14,22 +14,43 @@ export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (di
             count = data.sizeStatus[key].countInStock
         }
     }*/
-    dispatch({
-        type: CART_ADD,
-        payload:{
-            id: stateNumber,
-            product:data._id,
-            name: data.name,
-            image: data.image,
-            price: type == "dc" ? data.price.priceDigital : data.price.priceReal * qty,
-            //sizeStatus: data.sizeStatus,
-            type,
-            qty: type == "dc" ? 1 :  qty,
-            size,
-            custImage:"",
-            //custImage
-        }
-    })
+    if(type == "dc"){
+        dispatch({
+            type: CART_ADD,
+            payload:{
+                id: stateNumber,
+                product:data._id,
+                name: data.name,
+                image: data.image,
+                price: data.price.priceDigital,
+                //sizeStatus: data.sizeStatus,
+                type,
+                qty: 1,
+                size,
+                custImage:"",
+                //custImage
+            }
+        })
+    }
+    else{
+        dispatch({
+            type: CART_ADD,
+            payload:{
+                id: stateNumber,
+                product:data._id,
+                name: data.name,
+                image: data.image,
+                price: data.price.priceReal * qty,
+                //sizeStatus: data.sizeStatus,
+                type,
+                qty: qty,
+                size,
+                custImage:"rc",
+                maxQty: maxQty
+                //custImage
+            }
+        })
+    }
     localStorage.setItem('cartItems', JSON.stringify(getState().userCart.cartItems))
 }
 

@@ -86,6 +86,9 @@ const ProductScreen = ({match}) => {
         message.error(t('Count in stock is less for this item.1'), 3);
         setQty(maxQty)
       }
+      else if(e.target.value < 1 && e.target.value){
+        setQty(1)
+      }
       else{
         setQty(e.target.value)
       }
@@ -165,7 +168,7 @@ const ProductScreen = ({match}) => {
                           {t('Quantity.1')}
                         </Col>
                           <Col>
-                          <Form.Control required type = "number" name="qty" placeholder = {t('Quantity.1')} value={qty} onChange = {(e) => handleQtyChange(e)}></Form.Control>
+                          <Form.Control required type = "number" name="qty" min={1} placeholder = {t('Quantity.1')} value={qty} onChange = {(e) => handleQtyChange(e)}></Form.Control>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -173,7 +176,7 @@ const ProductScreen = ({match}) => {
                   }
                 </ListGroup>
               </Card>
-              <div  className = 'AddBut' onClick = {addToCard}> {t('Add.1')}</div>
+              <button  className = 'AddBut' onClick = {addToCard}> {t('Add.1')}</button>
             </div>
             </Col>
           </Row>

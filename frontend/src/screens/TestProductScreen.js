@@ -89,11 +89,11 @@ const TestProductScreen = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(!rating || !comment){
-      message.error(t('Fill the form.1'), 3);
-    }
-    else if(userDet){
+    if(userDet){
       dispatch(reviewTestProductAction(match.params.id, {rating,comment}))
+    }
+    else if(!rating || !comment){
+      message.error(t('Fill the form.1'), 3);
     }
     else{
       message.error(t('Please login in order to submit review.1'), 3);
@@ -147,9 +147,9 @@ const TestProductScreen = ({match}) => {
               <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
               <div className = "text_details">3. {t('Step4.1')}</div>
               <TextArea rows={4} onChange={e => setComment(e.target.value)} />
-              <div className="AddBut" onClick={e => handleSubmit(e)}>
+              <button className="AddBut" onClick={e => handleSubmit(e)}>
                 {t('submit.1')}
-              </div>
+              </button>
               <br />
             </div>
           </Row>
