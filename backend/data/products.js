@@ -166,7 +166,7 @@ const products = [
             nameEng: 'Checkered skirt with slits',
         },
         image: '/images/CLOTHES_17.jpg',
-        model: '/models/Model_17.glb',
+        model: '/models/Model_17_2.glb',
         description: {
             care: "Машинная стирка согласно инструкции на этикетке",
             material: "100% полиэстер",
