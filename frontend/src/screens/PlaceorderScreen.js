@@ -16,6 +16,8 @@ const PlaceorderScreen = ({history}) => {
     const dispatch = useDispatch();
     const { t } = useTranslation(); 
     const userCart = useSelector(state => state.userCart)
+    var dcItem = userCart.cartItems.find(item => item.type == "dc");
+    var rcItem = userCart.cartItems.find(item => item.type == "rc");
     const [uploading, setUploading] = useState(false)
     const [image, setImage] = useState('')
     const userLogin = useSelector(state => state.userLogin)
@@ -73,11 +75,28 @@ const PlaceorderScreen = ({history}) => {
         <div> 
           <Row >
             <Col md={8} className = "CardDetails cart">
-                <div className = "text_details" key="testdecs1"><strong>{t('Shipping address.1')}: </strong> 
-                  {userCart.deliveryAddress.address},
-                    {userCart.deliveryAddress.city},
-                    {userCart.deliveryAddress.postCode},
-                    {userCart.deliveryAddress.country}</div>
+                {rcItem && !dcItem &&
+                    <div className = "text_details" key="testdecs1"><strong>{t('Shipping address.1')}: </strong> 
+                        {userCart.deliveryAddress.address},
+                        {userCart.deliveryAddress.city},
+                        {userCart.deliveryAddress.postCode},
+                        {userCart.deliveryAddress.country}
+                    </div>
+                }
+                {!rcItem && dcItem &&
+                    <div className = "text_details" key="testdecs1"><strong>{t('Shipping address.1')}: </strong> 
+                        {userCart.deliveryAddress.email}
+                    </div>
+                }
+                {rcItem && dcItem &&
+                    <div className = "text_details" key="testdecs1"><strong>{t('Shipping address.1')}: </strong> 
+                    {userCart.deliveryAddress.address},
+                        {userCart.deliveryAddress.city},
+                        {userCart.deliveryAddress.postCode},
+                        {userCart.deliveryAddress.country},
+                        {userCart.deliveryAddress.email}
+                    </div>
+                }
                 <div className = "text_details" key="testdecs2"><strong>{t('Payment method.1')}: </strong> {userCart.paymentMethod}</div>
                 <div className = "text_details" key="testdecs3"><strong>{t('Cart items.1')}: </strong></div>
                 <ListGroup.Item>

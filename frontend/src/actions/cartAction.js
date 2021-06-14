@@ -5,7 +5,7 @@ import {CART_ADD,
     CART_SAVE_ADDRESS,
     CART_SAVE_PAYMENT_METHOD} from '../constants/storeConst'
 
-export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (dispatch, getState) =>{
+export const addToCart = (stateNumber, id, qty, type, size, maxQty, custImage) => async (dispatch, getState) =>{
     const {data} = await axios.get(`/api/products/${id}`)
     let count
     /*const keys = Object.keys(data.sizeStatus); 
@@ -14,43 +14,22 @@ export const addToCart = (stateNumber, id, qty, type, size, maxQty) => async (di
             count = data.sizeStatus[key].countInStock
         }
     }*/
-    if(type == "dc"){
-        dispatch({
-            type: CART_ADD,
-            payload:{
-                id: stateNumber,
-                product:data._id,
-                name: data.name,
-                image: data.image,
-                price: data.price.priceDigital,
-                //sizeStatus: data.sizeStatus,
-                type,
-                qty: 1,
-                size,
-                custImage:"",
-                //custImage
-            }
-        })
-    }
-    else{
-        dispatch({
-            type: CART_ADD,
-            payload:{
-                id: stateNumber,
-                product:data._id,
-                name: data.name,
-                image: data.image,
-                price: data.price.priceReal * qty,
-                //sizeStatus: data.sizeStatus,
-                type,
-                qty: qty,
-                size,
-                custImage:"rc",
-                maxQty: maxQty
-                //custImage
-            }
-        })
-    }
+    dispatch({
+        type: CART_ADD,
+        payload:{
+            id: stateNumber,
+            product:data._id,
+            name: data.name,
+            image: data.image,
+            price: data.price.priceDigital,
+            //sizeStatus: data.sizeStatus,
+            type,
+            qty: 1,
+            size,
+            custImage:custImage,
+            //custImage
+        }
+    })
     localStorage.setItem('cartItems', JSON.stringify(getState().userCart.cartItems))
 }
 

@@ -23,40 +23,42 @@ function Header() {
     const menu = userDet && userDet.isAdmin ? (
         <Menu>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href={`/manageproducts`}>
+                <Link to = {`/manageproducts`}>
                     {t('manage store.1')}
-                </a>
+                </Link>
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href={`/managetestproducts`}>
+                <Link to = {`/managetestproducts`}>
                     {t('manage test products.1')}
-                </a>
+                </Link >
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href={`/ordersadmin`}>
+                <Link  to = {`/ordersadmin`}>
                     {t('orders.1')}
-                </a>
+                </Link >
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href={`/usersadmin`}>
+                <Link  to = {`/usersadmin`}>
                     {t('users.1')}
-                </a>
+                </Link >
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer"  onClick = {handleLogout}>
+                <Link  onClick = {handleLogout}>
                     {t('log out.1')}
-                </a>
+                </Link >
             </Menu.Item>
         </Menu>
       ) :(
         <Menu>
-            <Link to = {`/profile`} >
-                <Menu.Item>
+            <Menu.Item>
+                <Link  to = {`/profile`}>
                     {t('profile.1')}
-                </Menu.Item>
-            </Link>
-            <Menu.Item onClick = {handleLogout}>
+                </Link >
+            </Menu.Item>
+            <Menu.Item>
+                <Link onClick = {handleLogout}>
                 {t('log out.1')}
+                </Link >
             </Menu.Item>
         </Menu>
       );

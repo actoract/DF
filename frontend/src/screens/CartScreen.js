@@ -122,7 +122,7 @@ const CartScreen = ({match, location, history}) => {
                             {item.type == "rc" ?
                                 <Col md = {2}>
                                     <strong>{t('Quantity.1')}: </strong>
-                                    <Form.Control required type = "number" value={qtylimit} name="qty" placeholder = {item.qty} 
+                                    <Form.Control required type = "number" value={item.qty} name="qty"  
                                     onChange = {(e) => handleQtyChange(e, item)}></Form.Control>
                                 </Col > :
                                 <Col md = {2}>

@@ -26,10 +26,11 @@ const orderSchema = mongoose.Schema({
         custImage: {type: String},
     }],
     deliveryAddress:{
-        address: {type: String, require: true},
-        city: {type: String, require: true},
-        postCode: {type: String, require: true},
-        country: {type: String, require: true},
+        address: {type: String},
+        city: {type: String},
+        postCode: {type: String},
+        country: {type: String},
+        email: {type: String},
     },    
     email:{
         type: String,

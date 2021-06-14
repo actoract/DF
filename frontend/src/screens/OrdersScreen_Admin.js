@@ -49,7 +49,7 @@ const OrdersScreen_Admin = ({history}) => {
     return (
         <>
             <Row>
-                <h3>Orders</h3> 
+                <h3>{t('Orders.1')}</h3> 
             </Row>
             {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
             <>

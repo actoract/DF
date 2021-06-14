@@ -74,10 +74,10 @@ const TestProductScreen = ({match}) => {
   
   useEffect (() => {
     if(successReview){
-      message.success(t('Review is added.1'), 3);
+      message.success(t('Review is added.1'), 1);
     }
     else if(errorReview){
-      message.error(t('Error'), 3);
+      message.error(t('Error'), 1);
     }
     setRate(0)
     setComment('')
@@ -93,10 +93,10 @@ const TestProductScreen = ({match}) => {
       dispatch(reviewTestProductAction(match.params.id, {rating,comment}))
     }
     else if(!rating || !comment){
-      message.error(t('Fill the form.1'), 3);
+      message.error(t('Fill the form.1'), 1);
     }
     else{
-      message.error(t('Please login in order to submit review.1'), 3);
+      message.error(t('Please login in order to submit review.1'), 1);
     }
   }
   //const [testproduct, setTestProduct] = useState({});
@@ -142,7 +142,7 @@ const TestProductScreen = ({match}) => {
                     <ItemList text = "Material.1" list_item = {testproduct.description.material}/>
                 </ListGroup>
               </Card>
-              {errorReview && message.error(errorReview, 3)}
+              {errorReview && message.error(errorReview, 1)}
               <div className = "text_details">2. {t('Step3.1')}</div>
               <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
               <div className = "text_details">3. {t('Step4.1')}</div>

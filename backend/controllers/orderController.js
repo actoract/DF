@@ -92,7 +92,7 @@ const updateOrderStatus = expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id)
     if(order){
         order.isDelivered = true
-        order.deliveredAt = Date.now()
+        order.deliveredAt = Date.now().toString()
         const updatedOrder = await order.save()
         res.json(updatedOrder)
         return

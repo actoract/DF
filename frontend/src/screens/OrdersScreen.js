@@ -31,7 +31,7 @@ const OrdersScreen = ({match, history}) => {
             dispatch(getOrderById(orderId))
         }
         if(!order || successStatus){
-            dispatch({type: ORDER_UPDATE_STATUS_RESET})
+           // dispatch({type: ORDER_UPDATE_STATUS_RESET})
             dispatch(getOrderById(orderId))
         }
         /*if(!userInfo || !userInfo.isAdmin){//Из-за этого происходит переход при Placeorder
@@ -42,6 +42,7 @@ const OrdersScreen = ({match, history}) => {
     const changeStatusHandle = () => {
         dispatch(updateStatusAction(order))
     }
+    
     return (
         <>
         {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
@@ -50,12 +51,14 @@ const OrdersScreen = ({match, history}) => {
               
           <Col md={8}>
             <div className = "CardDetails2">
-                <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
-                    {order.deliveryAddress.address && order.deliveryAddress.address},
-                    {order.deliveryAddress.city && order.deliveryAddress.city},
-                    {order.deliveryAddress.postCode && order.deliveryAddress.postCode},
-                    {order.deliveryAddress.country && order.deliveryAddress.country}
-                </div>
+
+                
+                {
+                    <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
+                        {order.deliveryAddress.email && order.deliveryAddress.email}
+                    </div>
+                }
+
                 <div className = "text_details"><strong>{t('Payment method.1')}: </strong> {order.paymentMethod}</div>
                 <div className = "text_details"><strong>{t('Cart items.1')}: </strong></div>
                 <ListGroup.Item>

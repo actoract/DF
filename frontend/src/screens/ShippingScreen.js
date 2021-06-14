@@ -33,7 +33,15 @@ const ShippingScreen = ({history}) => {
 
     const handleCheckout = (e) => {
         e.preventDefault();
-        if(address && city && postCode && country){
+        if(!dcItem && rcItem){
+            dispatch(saveAddress({address, city, postCode, country}))
+            history.push('/payment')
+        }
+        else if(dcItem && !rcItem){
+            dispatch(saveAddress({email}))
+            history.push('/payment')
+        }
+        else if(dcItem && rcItem){
             dispatch(saveAddress({address, city, postCode, country, email}))
             history.push('/payment')
         }

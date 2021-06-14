@@ -48,22 +48,25 @@ const ProductScreen = ({match}) => {
     }, [dispatch, match])
 
     const addToCard = () => {
-      const exist = cartItems.find(item => item.product == product._id && item.size == size)
-      if(type == "" || (type == "rc" && (size == "" || qty == ""))){
-        message.error(t('Select product specifications.1'), 3)
+      const exist = cartItems.find(item => item.product === product._id && item.size === size)
+      if(type === "" || (type === "rc" && (size === "" || qty === ""))){
+        message.error(t('Select product specifications.1'), 1)
       }
       else if(!exist){
-        dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, maxQty))
-        message.success(t('Added.1'), 3)
+        if(type === "rc")
+          dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, maxQty, "none"))
+        else if(type === "dc")
+          dispatch(addToCart( cartItems.length + 1, match.params.id, Number(qty), type, size, maxQty, ""))
+        message.success(t('Added.1'), 1)
       }
       else if(exist){
-        message.error(t('Item is already added to the cart.1'), 3)
+        message.error(t('Item is already added to the cart.1'), 1)
       }
      
     }
 
     function handleChange(){
-      if (document.getElementById("1").value == "dc"){
+      if (document.getElementById("1").value === "dc"){
         setPrice(product.price.priceDigital)
         setType("dc")
       }
@@ -83,7 +86,7 @@ const ProductScreen = ({match}) => {
 
     const handleQtyChange = (e) => {
       if (maxQty < e.target.value){
-        message.error(t('Count in stock is less for this item.1'), 3);
+        message.error(t('Count in stock is less for this item.1'), 1);
         setQty(maxQty)
       }
       else if(e.target.value < 1 && e.target.value){

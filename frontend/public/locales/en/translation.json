@@ -278,6 +278,9 @@
     "TOTAL PRICE":{
         "1": "TOTAL PRICE"
     },
+    "USER":{
+        "1": "USER"
+    },
     "PAYMENT STATUS":{
         "1": "PAYMENT STATUS"
     },
@@ -396,6 +399,9 @@
     },
     "register":{
         "1": "register"
+    },
+    "profile":{
+        "1": "profile"
     }
 
 }
