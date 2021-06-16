@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { ORDER_ADD_RESET, USER_PROFILE_RESET } from '../constants/storeConst'
 import Message from '../components/message'
 
-const PlaceorderScreen = ({history}) => {
+const FinishOrderScreen = ({history}) => {
     const orderAdd = useSelector(state => state.orderAdd)
     const {loading, order, success, error} = orderAdd
     const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const PlaceorderScreen = ({history}) => {
             orderItems: userCart.cartItems,
             deliveryAddress: userCart.deliveryAddress,
             paymentMethod: userCart.paymentMethod,
-            totalPrice: userCart.cartItems.reduce((acc, current) => acc + Number(current.price), 0), 
+            totalPrice: userCart.cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0), 
             isDelivered: false,
             isPaid: true
         }))
@@ -150,7 +150,7 @@ const PlaceorderScreen = ({history}) => {
             <Col md={2} className = "CardDetails2 placeorder" >
                 <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
                 <p><strong>{t('Total number.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
-                <p><strong>{t('Total price.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
+                <p><strong>{t('Total price.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
                 <div className = 'nav-but2' onClick = {hadlePlaceOrder}>{t('place order.1')}</div> 
             </Col>
           </Row>
@@ -158,4 +158,4 @@ const PlaceorderScreen = ({history}) => {
         </>
     )
 }
-export default PlaceorderScreen
+export default FinishOrderScreen

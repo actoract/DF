@@ -20,7 +20,7 @@ import { Row, Col} from 'antd';
 import { useTranslation } from 'react-i18next'
 const Loader = React.lazy(() => import('../components/loader'));
 
-const HomeScreen = () => {
+const MainScreen = () => {
     const { t } = useTranslation()
     return (
     <div>
@@ -83,4 +83,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen
+export default MainScreen

@@ -8,7 +8,7 @@ import Loader from '../components/loader'
 const FormCont = React.lazy(() => import('../components/form'));
 const StepsComp = React.lazy(() => import('../components/steps'));
 
-const ShippingScreen = ({history}) => {
+const AddressScreen = ({history}) => {
     const userCart = useSelector(state => state.userCart)
     const {deliveryAddress, cartItems} = userCart
     var dcItem = cartItems.find(item => item.type == "dc");
@@ -124,4 +124,4 @@ const ShippingScreen = ({history}) => {
         </div>
     )
 }
-export default ShippingScreen
+export default AddressScreen

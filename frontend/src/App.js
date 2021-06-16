@@ -3,20 +3,20 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Container} from 'react-bootstrap'
 import './app.css'
 import Header from './components/header'
-import HomeScreen from './screens/HomeScreen'
+import MainScreen from './screens/MainScreen'
 import StoreScreen from './screens/StoreScreen'
 import AboutScreen from './screens/AboutScreen'
 import TestScreen from './screens/TestScreen'
 import ProductScreen from './screens/ProductScreen'
 import TestProductScreen from './screens/TestProductScreen'
-import CartScreen from './screens/CartScreen'
+import UserCartScreen from './screens/UserCartScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegScreen from './screens/RegScreen'
 import UserScreen from './screens/UserScreen'
 import UsersScreen from './screens/UsersScreen'
-import ShippingScreen from './screens/ShippingScreen'
-import PaymentScreen from './screens/PaymentScreen'
-import PlaceorderScreen from './screens/PlaceorderScreen'
+import AddressScreen from './screens/AddressScreen'
+import PaymentMethodScreen from './screens/PaymentMethodScreen'
+import FinishOrderScreen from './screens/FinishOrderScreen'
 import ManageProdScreen from './screens/ManageProdScreen'
 import ManageTestProdScreen from './screens/ManageTestProdScreen'
 import OrdersScreen from './screens/OrdersScreen'
@@ -32,12 +32,12 @@ function App() {
     <Header/>
       <main className = "py-3">
         <Container className="FormCont">
-          <Route path = '/' component = {HomeScreen} exact/>
-          <Route path = '/deliveryaddress' component = {ShippingScreen}/>
-          <Route path = '/payment' component = {PaymentScreen}/>
+          <Route path = '/' component = {MainScreen} exact/>
+          <Route path = '/deliveryaddress' component = {AddressScreen}/>
+          <Route path = '/payment' component = {PaymentMethodScreen}/>
           <Route path = '/order/:id' component = {OrdersScreen}/>
           <Route path = '/ordersadmin' component = {OrdersScreen_Admin}/>
-          <Route path = '/finishorder' component = {PlaceorderScreen}/>
+          <Route path = '/finishorder' component = {FinishOrderScreen}/>
           <Route path = '/product/:id/edit' component = {EditScreen} />
           <Route path = '/testproducts/:id' component = {TestProductScreen} />
           <Route path = '/testproduct/:id/edit' component = {EditTestScreen} />
@@ -51,7 +51,7 @@ function App() {
           <Route path = '/usersadmin' component = {UsersScreen} />
           <Route path = '/register' component = {RegScreen} />
           <Route path = '/profile' component = {UserScreen} />
-          <Route path = '/cart/:id?' component = {CartScreen} />
+          <Route path = '/cart/:id?' component = {UserCartScreen} />
         </Container>
       </main>
     </Router>

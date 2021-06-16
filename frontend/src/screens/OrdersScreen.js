@@ -55,7 +55,11 @@ const OrdersScreen = ({match, history}) => {
                 
                 {
                     <div className = "text_details"><strong>{t('Shipping address.1')}: </strong> 
-                        {order.deliveryAddress.email && order.deliveryAddress.email}
+                        {order.deliveryAddress.address && (order.deliveryAddress.address + ", ")}
+                        {order.deliveryAddress.city && (order.deliveryAddress.city + ", ")}
+                        {order.deliveryAddress.postCode && (order.deliveryAddress.postCode + ", ")}
+                        {order.deliveryAddress.country && (order.deliveryAddress.country + ", ")}
+                        {order.deliveryAddress.email && (order.deliveryAddress.email)}
                     </div>
                 }
 
@@ -95,7 +99,7 @@ const OrdersScreen = ({match, history}) => {
                 <div className = "CardDetails2">
                     <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
                     <p><strong>{t('Total number.1')}:</strong> {order.orderItems.reduce((acc, current) => acc + current.qty, 0)}</p>
-                    <p><strong>{t('Total price.1')}:</strong> {order.orderItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
+                    <p><strong>{t('Total price.1')}:</strong> {order.orderItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
                     <p><strong>{t('Payment status.1')}:</strong> {!order.isPaid ? t('Not paid.1') : t('Paid.1')}</p>
                     {order.isPaid ? <p><strong>{t('Paid at.1')}:</strong>  {order.paidAt} </p>: ""}
                     <p><strong>{t('Delivery status.1')}:</strong> {!order.isDelivered ? t('Not delivered.1') : t('Deliverd.1')}</p>

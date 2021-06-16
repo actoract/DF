@@ -96,7 +96,7 @@ const EditTestScreen = ({history, match}) => {
                     <Form.Label>{t("description:color.1")}</Form.Label>
                     <Form.Control required type = "text" placeholder = {!descColor ? t("enter.8") : descColor} onChange = {(e) => setColor(e.target.value)}></Form.Control>
                 </Form.Group>
-                <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
+                <div className = 'navbut2' onClick = {handleCheckout}>{t('Add product.1')}</div>
             </Col>
         </Row>
 

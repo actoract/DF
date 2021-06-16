@@ -40,7 +40,7 @@ const CameraControls = () => {
 
 function Loading() {
   return (
-    <mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]} scale={[2, 2, 2]}>
+    <mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]} scale={[1, 1, 1]}>
       <sphereGeometry attach="geometry" args={[1, 16, 16]} />
       <meshStandardMaterial
         attach="material"
@@ -103,7 +103,7 @@ const TestProductScreen = ({match}) => {
 
     return (
         <div> 
-          {successReview && message.success("Review is added.1")}
+          {successReview && message.success(t('Review is added.1'), 1)}
           {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
           <Row>
             <Col md = {6}>

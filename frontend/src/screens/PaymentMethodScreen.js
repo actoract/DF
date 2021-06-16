@@ -6,7 +6,7 @@ import Steps from '../components/steps'
 import { useTranslation } from 'react-i18next'
 import {savePaymentMethod} from '../actions/cartAction'
 
-const PaymentScreen = ({history}) => {
+const PaymentMethodScreen = ({history}) => {
     const userCart = useSelector(state => state.userCart)
     
     const userLogin = useSelector(state => state.userLogin)
@@ -46,4 +46,4 @@ const PaymentScreen = ({history}) => {
         </FormCont>
     )
 }
-export default PaymentScreen
+export default PaymentMethodScreen

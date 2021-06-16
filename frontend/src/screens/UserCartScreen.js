@@ -7,7 +7,7 @@ import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
 import { message } from 'antd';
 const smile = React.lazy(() => import('./smile.jpg'));
 
-const CartScreen = ({match, location, history}) => {
+const UserCartScreen = ({match, location, history}) => {
     const productId = match.params.id
     const { t } = useTranslation(); 
 
@@ -150,7 +150,7 @@ const CartScreen = ({match, location, history}) => {
                 <Col md={3}>
                     <div className = "CardDetails2">
                         <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.qty), 0)}</p>
-                        <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price), 0)}</p>
+                        <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
                         <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
                     </div>
                 </Col>
@@ -160,4 +160,4 @@ const CartScreen = ({match, location, history}) => {
     )
 }
 
-export default CartScreen
+export default UserCartScreen

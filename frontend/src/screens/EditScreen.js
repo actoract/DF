@@ -163,7 +163,7 @@ const EditScreen = ({history, match}) => {
                     </Col>
                 </Row>
             </Form.Group>
-            <div className = 'nav-but2' onClick = {handleCheckout}>{t('Add product.1')}</div>
+            <div className = 'navbut2' onClick = {handleCheckout}>{t('Add product.1')}</div>
         </Col>
         </Row>
         </Suspense>

@@ -21,10 +21,10 @@ export const addToCart = (stateNumber, id, qty, type, size, maxQty, custImage) =
             product:data._id,
             name: data.name,
             image: data.image,
-            price: data.price.priceDigital,
+            price: type == "dc" ? data.price.priceDigital : data.price.priceReal,
             //sizeStatus: data.sizeStatus,
             type,
-            qty: 1,
+            qty: type == "dc" ? 1: qty,
             size,
             custImage:custImage,
             //custImage
