@@ -1,21 +1,31 @@
 .Card{
     justify-content: center;
     position: relative;
-    width: 320px;
+    width: 350px;
     height: auto;
     border-radius: 0px;
     background-color: white;
     box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
     position: relative;
-    top: 100px;
+    top: 50px;
+    padding-bottom: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 100px;
 }
 .Card:hover{
-    
   border-width: 10px;
   backdrop-filter: 1px;
   background-color: white;
   box-shadow: 0 6px 15px rgb(36 37 38 / 20%);
 }
+@media (max-width: 600px){ 
+    .Card{
+        width: auto;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+  }
 .img{
     border-radius: 16px;
     width: 100%;

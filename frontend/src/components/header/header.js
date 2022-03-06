@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './header.css'
+import {BrowserView, MobileView} from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
 import i18next from '../../i18n';
 import weardrop from './weardrop.jpg';
 import { Menu, Dropdown, Button, Space } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import {logoutAction} from '../../actions/userAction'
 
 
@@ -62,7 +64,104 @@ function Header() {
             </Menu.Item>
         </Menu>
       );
+
+      const menuMobile_NotUser = (<Menu>
+            <Menu.Item>
+                <Link to = {`/about`}>
+                    {t('About.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/store`}>
+                    {t('Store.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/test`}>
+                    {t('Test.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/login`}>
+                    {t('SignIn.1')}
+                </Link>
+            </Menu.Item>
+        </Menu>)
+
+      const menuMobile = userDet && userDet.isAdmin ? (
+        <Menu>
+            <Menu.Item>
+                <Link to = {`/about`}>
+                    {t('About.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/store`}>
+                    {t('Store.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/test`}>
+                    {t('Test.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/manageproducts`}>
+                    {t('manage store.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/managetestproducts`}>
+                    {t('manage test products.1')}
+                </Link >
+            </Menu.Item>
+            <Menu.Item>
+                <Link  to = {`/ordersadmin`}>
+                    {t('orders.1')}
+                </Link >
+            </Menu.Item>
+            <Menu.Item>
+                <Link  to = {`/usersadmin`}>
+                    {t('users.1')}
+                </Link >
+            </Menu.Item>
+            <Menu.Item>
+                <Link  onClick = {handleLogout}>
+                    {t('log out.1')}
+                </Link >
+            </Menu.Item>
+        </Menu>
+      ) :(
+        <Menu>
+            <Menu.Item>
+                <Link to = {`/about`}>
+                    {t('About.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/store`}>
+                    {t('Store.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to = {`/test`}>
+                    {t('Test.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link  to = {`/profile`}>
+                    {t('profile.1')}
+                </Link >
+            </Menu.Item>
+            <Menu.Item>
+                <Link onClick = {handleLogout}>
+                {t('log out.1')}
+                </Link >
+            </Menu.Item>
+        </Menu>
+      );
     return(
+        <>
         <nav className = 'NavbarItems navbar-expand-sm fixed-top ' data-spy="affix">
             <Link to = {`/`}><img src={weardrop} alt="this is image"  className = 'navbarlogo'/></Link>
             <ul className = 'nav-menu'>
@@ -80,6 +179,8 @@ function Header() {
             }
             <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
         </nav>
+       
+        </>
     )
 }
 export default Header;

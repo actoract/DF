@@ -22,6 +22,7 @@ export const productsListAction = () => async (dispatch) => {
     try{
         dispatch({type: PRODUCTS_LIST_REQ})
         const { data } = await axios.get('/api/products/')
+        console.log(data)
         dispatch({
             type: PRODUCTS_LIST_SUCC,
             payload: data

@@ -82,22 +82,22 @@ const UserCartScreen = ({match, location, history}) => {
         myFileItemReader.readAsDataURL(files[0])
     }
     return (
-        <div>
+        <div className="UserCardDetails">
             {cartItems.length === 0 ?  (
-                <Container>
-                <Row className="justify-content-md-center">
-                    <img src={smile}  className = "EmptyStore"/>
-                </Row>
-                <Row className="justify-content-md-center">
-                    <h5>
-                    {t('Your cart is empty.1')}
-                    <span>
-                    </span>
-                    </h5>
-                </Row>
-                <Row className="justify-content-md-center">
-                    <h5><Link to='/store' className = "linkStore"> {t('Go back to store.1')} </Link></h5>
-                </Row>
+                <Container className="UserCardDetails">
+                    <Row className="justify-content-md-center">
+                        <img src={smile}  className = "EmptyStore"/>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <h5>
+                        {t('Your cart is empty.1')}
+                        <span>
+                        </span>
+                        </h5>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <h5><Link to='/store' className = "linkStore"> {t('Go back to store.1')} </Link></h5>
+                    </Row>
                 </Container>) :
             (<Row>
                 <Col md={9}>
@@ -107,25 +107,25 @@ const UserCartScreen = ({match, location, history}) => {
                             ✕
                         </div>
                         <Row>
-                            <Col md={2}>
-                                <Image src = {item.image} alt={item.name} fluid rounded/>
+                            <Col  span={2}>
+                                <Image src = {item.image} alt={item.name} fluid rounded className="imageInCard"/>
                             </Col>
-                            <Col md = {2}>
+                            <Col  span={2}>
                                 <Link to = {`/products/${item.product}`}>{item.name.nameRus}/{item.name.nameEng}</Link>
                             </Col>
-                            <Col md = {2}>
+                            <Col  span={2}>
                                 <strong>{t('Price.1')}: </strong> {item.price}
                             </Col>
-                            <Col md = {2}>
+                            <Col  span={2}>
                                 <strong>{t('Type.1')}: </strong>{item.type == "rc" ? t('RC.1') :  t('DC.1')}
                             </Col>
                             {item.type == "rc" ?
-                                <Col md = {2}>
+                                <Col  span={2}>
                                     <strong>{t('Quantity.1')}: </strong>
                                     <Form.Control required type = "number" value={item.qty} name="qty"  
                                     onChange = {(e) => handleQtyChange(e, item)}></Form.Control>
                                 </Col > :
-                                <Col md = {2}>
+                                <Col  span={2}>
                                     <label className="Upload">
                                     <strong>{t('Upload Image.1')} </strong>
                                     <input type="file" accept="image/*"  onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
@@ -133,9 +133,9 @@ const UserCartScreen = ({match, location, history}) => {
                                     {image ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
                                 </Col>
                             }
-                             <Col md = {2}>
+                             <Col  span={2}>
                                 {item.type == "rc" ?
-                                    <Col md = {2}>
+                                    <Col>
                                         <strong>{t('Size.1')}: </strong>{item.size}
                                     </Col> :
                                     <Col>

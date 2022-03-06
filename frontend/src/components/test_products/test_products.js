@@ -9,13 +9,13 @@ const { Meta } = Card;
 const TestProduct = ({testproducts}) => {
     return (
         <Link to = {`/testproducts/${testproducts._id}`}>
-        <div className='Card'>
-            <img className='img'
-                alt="WEARDROP"
-                src={testproducts.image}
-            />
-            <div className='text'>{testproducts.name.nameRus}/{testproducts.name.nameEng}</div>
-        </div>
+            <div className='Card'>
+                <img className='img'
+                    alt="WEARDROP"
+                    src={testproducts.image}
+                />
+                <div className='text'>{testproducts.name.nameRus}/{testproducts.name.nameEng}</div>
+            </div>
         </Link>
     )
 }

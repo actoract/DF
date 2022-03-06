@@ -1,7 +1,19 @@
 main {
+  display: block;
     font-family: 'Recursive', sans-serif;
     background-color: #f6f6f6;
-    min-height: 100vh; 
-    height: 100%;
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-height: 100%;
+}
+.flexParent{
+  display: inline-block;
+  text-align: center;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.py-3{
+  width: 100vw;
+  height: 100vh;
 }

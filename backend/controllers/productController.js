@@ -6,6 +6,7 @@ import expressAsyncHandler from 'express-async-handler'
 //@access Public
 const getProducts = expressAsyncHandler(async (req, res) => {
     const products = await Product.find({})
+    //console.log(products)
     res.json(products)
     return
 })

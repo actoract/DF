@@ -102,8 +102,7 @@ const ProductScreen = ({match}) => {
     return (
         <div> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
-          <Row>
-            <Col md = {6}>
+        <>
               <div className = "canvasP">
               <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
@@ -117,17 +116,15 @@ const ProductScreen = ({match}) => {
                 </Suspense>
               </Canvas>
             </div>
-            </Col>
-            <Col md={6}>
-          <div className = "CardDetails">
+            <div className = "CardDetails">
             <h5><strong >{product.name.nameRus}/{product.name.nameEng}</strong></h5>              
             <Form.Label>1. {t('Step1.1')}</Form.Label>
               <Form.Control as='select' id ="1" defaultValue="Choose..."   onChange = {handleChange}>  
                 <option value="default" key = "default">{t('Choose.1')}</option> 
                 <option value="dc" key = "dc">{t('DC.1')}</option>
                 <option value="rc" key = "rc">{t('RC.1')}</option>
-              </Form.Control>
-              <div className = "text_details">2. {t('Step2.1')}</div>
+            </Form.Control>
+            <div className = "text_details">2. {t('Step2.1')}</div>
               <Card>
                 <ListGroup variant = 'flush'>
                     <strong><ItemList text = "Price.1" list_item = {price}/></strong>
@@ -181,8 +178,7 @@ const ProductScreen = ({match}) => {
               </Card>
               <button  className = 'AddBut' onClick = {addToCard}> {t('Add.1')}</button>
             </div>
-            </Col>
-          </Row>
+          </>
         }
       </div>
     )

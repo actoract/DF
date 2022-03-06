@@ -1,7 +1,8 @@
 import React, {useState, useEffect, Suspense} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {testproductsListAction} from '../actions/testproductsActions'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col} from 'antd'
+import {BrowserView, MobileView} from 'react-device-detect';
 import Loader from '../components/loader'
 const Message = React.lazy(() => import('../components/message'));
 const TestProduct = React.lazy(() => import('../components/test_products'));
@@ -16,18 +17,33 @@ const TestScreen = () => {
     }, [dispatch])
 
     return (
-        <div className = "mainStore">
+        <div>
+        <BrowserView>
             <Suspense fallback={<Loader/>}>
             {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 
                 <Row>
                         {testproducts.map((testproducts, i) => (
-                            <Col sm={12} md={6} lg={4} xl={4} key = {i}>
+                            <Col span={8} key = {i}>
                                 <TestProduct testproducts = {testproducts}/>
                             </Col>
                         ))}
                 </Row>
             }
             </Suspense>
+            </BrowserView>
+            <MobileView>
+                <Suspense fallback={<Loader/>}>
+                {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 
+                    <Row>
+                            {testproducts.map((testproducts, i) => (
+                                <Col span={12} key = {i}>
+                                    <TestProduct testproducts = {testproducts}/>
+                                </Col>
+                            ))}
+                    </Row>
+                }
+                </Suspense>
+            </MobileView>
         </div>
     )
 }

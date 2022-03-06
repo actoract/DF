@@ -41,7 +41,7 @@ const LoginScreen = ({location, history}) => {
                 </Form.Group>
                 <Button className = "button_for_everything" type='submit' variant='primary'>{t('SignIn.1')}</Button>
             </Form>
-            <Row className = 'py-3'>
+            <Row className = ''>
                 <Col>
                 {t('New in store.1')} ? <Link to = {redirect ? `/register?redirect=${redirect}` : '/register'}>{t('register.1')}</Link>
                 </Col>

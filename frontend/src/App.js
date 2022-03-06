@@ -31,8 +31,8 @@ function App() {
     <Router>
     <Header/>
       <main className = "py-3">
-        <Container className="FormCont">
-          <Route path = '/' component = {MainScreen} exact/>
+        <Container className="flexParent">
+          <Route path = '/' component = {AboutScreen} exact/>
           <Route path = '/deliveryaddress' component = {AddressScreen}/>
           <Route path = '/payment' component = {PaymentMethodScreen}/>
           <Route path = '/order/:id' component = {OrdersScreen}/>

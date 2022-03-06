@@ -15,7 +15,7 @@ import image13 from '../images/13-min.jpg'
 import image14 from '../images/14-min.jpg'
 import image15 from '../images/15-min.jpg'
 import image16 from '../images/16-min.jpg'
-import "./styles.css"
+import styles from './styles.css'
 import { Row, Col} from 'antd';
 import { useTranslation } from 'react-i18next'
 const Loader = React.lazy(() => import('../components/loader'));
@@ -23,7 +23,7 @@ const Loader = React.lazy(() => import('../components/loader'));
 const MainScreen = () => {
     const { t } = useTranslation()
     return (
-    <div>
+    <div className="">
         <Suspense fallback={<Loader/>}>
         <Row>
             <h3>{t('Gallery of digital clothes examples.1')}</h3> 
