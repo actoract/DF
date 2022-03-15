@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Container} from 'react-bootstrap'
 import './app.css'
+import Footer from './components/footer'
 import Header from './components/header'
 import MainScreen from './screens/MainScreen'
 import StoreScreen from './screens/StoreScreen'
@@ -54,6 +55,7 @@ function App() {
           <Route path = '/cart/:id?' component = {UserCartScreen} />
         </Container>
       </main>
+      <Footer className="footer"/>
     </Router>
   );
 }

@@ -100,10 +100,10 @@ const ProductScreen = ({match}) => {
 
 
     return (
-        <div> 
+        <div className='centeredObj'> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
-        <>
-              <div className = "canvasP">
+            <>
+            <div className = "canvasP">
               <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
                 <hemisphereLight intensity={0.5} />
@@ -178,7 +178,7 @@ const ProductScreen = ({match}) => {
               </Card>
               <button  className = 'AddBut' onClick = {addToCard}> {t('Add.1')}</button>
             </div>
-          </>
+            </>
         }
       </div>
     )

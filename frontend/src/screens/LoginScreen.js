@@ -26,7 +26,8 @@ const LoginScreen = ({location, history}) => {
         dispatch(loginAction(email, password))
     }
     return (
-        <FormCont>
+        <>
+        <FormCont className="FormCont">
             <h1>{t('SignIn.1')}</h1>
             {loading && <Loader/>}
             {error && message.error(error, 3)}
@@ -41,12 +42,9 @@ const LoginScreen = ({location, history}) => {
                 </Form.Group>
                 <Button className = "button_for_everything" type='submit' variant='primary'>{t('SignIn.1')}</Button>
             </Form>
-            <Row className = ''>
-                <Col>
                 {t('New in store.1')} ? <Link to = {redirect ? `/register?redirect=${redirect}` : '/register'}>{t('register.1')}</Link>
-                </Col>
-            </Row>
         </FormCont>
+        </>
     )
 }
 export default LoginScreen

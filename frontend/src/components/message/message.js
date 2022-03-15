@@ -6,15 +6,11 @@ import smile from './smile.jpg';
 const Message = ({ children}) => {
     return (
         <>
-            <Container>
+            <Container  className = "EmptyStore">
                 <Row className="justify-content-md-center">
-                    <img src={smile}  className = "EmptyStore"/>
-                </Row>
-                <Row className="justify-content-md-center">
+                    <img src={smile} />
                     <h5>
                     {children}
-                    <span>
-                    </span>
                     </h5>
                 </Row>
                 </Container>

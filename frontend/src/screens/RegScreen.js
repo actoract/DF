@@ -69,7 +69,7 @@ const RegScreen = ({location, history}) => {
                 </Form.Group>
                 <Button className = "button_for_everything" type='submit' variant='primary'>{t('registrate.1')}</Button>
             </Form>
-            <Row className = 'py-3'>
+            <Row className = ''>
                 <Col>
                 {t('already have account.1')}? <Link to = {redirect ? `/login?redirect=${redirect}` : '/register'}>{t('SignIn.1')}</Link>
                 </Col>

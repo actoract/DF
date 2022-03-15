@@ -36,7 +36,7 @@ const TestScreen = () => {
                 {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 
                     <Row>
                             {testproducts.map((testproducts, i) => (
-                                <Col span={12} key = {i}>
+                                <Col key = {i}>
                                     <TestProduct testproducts = {testproducts}/>
                                 </Col>
                             ))}

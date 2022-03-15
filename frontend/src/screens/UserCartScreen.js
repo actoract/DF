@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom'
 import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
 import { message } from 'antd';
-const smile = React.lazy(() => import('./smile.jpg'));
+import smile from './smile.jpg';
+//const smile = React.lazy(() => import('./smile.jpg'));
 
 const UserCartScreen = ({match, location, history}) => {
     const productId = match.params.id
@@ -84,7 +85,7 @@ const UserCartScreen = ({match, location, history}) => {
     return (
         <div className="UserCardDetails">
             {cartItems.length === 0 ?  (
-                <Container className="UserCardDetails">
+                <Container className="EmptyCard">
                     <Row className="justify-content-md-center">
                         <img src={smile}  className = "EmptyStore"/>
                     </Row>

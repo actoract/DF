@@ -6,7 +6,8 @@ import {BrowserView, MobileView} from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
 import i18next from '../../i18n';
 import weardrop from './weardrop.jpg';
-import { Menu, Dropdown, Button, Space } from 'antd';
+import dropDownMenu from './DropDownMenu.png';
+import { Menu, Dropdown, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import {logoutAction} from '../../actions/userAction'
 
@@ -82,6 +83,11 @@ function Header() {
                 </Link>
             </Menu.Item>
             <Menu.Item>
+                <Link to = {`/cart`}>
+                    {t('Cart.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
                 <Link to = {`/login`}>
                     {t('SignIn.1')}
                 </Link>
@@ -126,6 +132,11 @@ function Header() {
                 </Link >
             </Menu.Item>
             <Menu.Item>
+                <Link to = {`/cart`}>
+                    {t('Cart.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
                 <Link  onClick = {handleLogout}>
                     {t('log out.1')}
                 </Link >
@@ -154,6 +165,11 @@ function Header() {
                 </Link >
             </Menu.Item>
             <Menu.Item>
+                <Link to = {`/cart`}>
+                    {t('Cart.1')}
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
                 <Link onClick = {handleLogout}>
                 {t('log out.1')}
                 </Link >
@@ -162,24 +178,44 @@ function Header() {
       );
     return(
         <>
-        <nav className = 'NavbarItems navbar-expand-sm fixed-top ' data-spy="affix">
-            <Link to = {`/`}><img src={weardrop} alt="this is image"  className = 'navbarlogo'/></Link>
-            <ul className = 'nav-menu'>
-                <Link to = {`/about`} className = 'nav-links'>{t('About.1')}</Link>
-                <Link to = {`/store`} className = 'nav-links'>{t('Store.1')}</Link>
-                <Link to = {`/test`} className = 'nav-links'>{t('Test.1')}</Link>
-            </ul>
-            <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
-            {userDet ? (
-                <Dropdown overlay={menu} placement="bottomRight">
-                <Link to = {`/login`} className = 'nav-but1'>{userDet.firstName}</Link>
-                </Dropdown>
-            ) : 
-                <Link to = {`/login`} className = 'nav-but2'>{t('SignIn.1')}</Link>
-            }
-            <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
-        </nav>
-       
+        <BrowserView>
+            <Row className = 'NavbarItems'  gutter={[16, 16]}>
+                <Col span={8} className = 'navbarlogo'>
+                    <Link to = {`/`}><img src={weardrop} alt="this is image"  className = 'navbarlogo'/></Link>
+                </Col>
+                <Col span={8} className = 'nav-menu'>
+                    <Link to = {`/about`} className = 'nav-links'>{t('About.1')}</Link>
+                    <Link to = {`/store`} className = 'nav-links'>{t('Store.1')}</Link>
+                    <Link to = {`/test`} className = 'nav-links'>{t('Test.1')}</Link>
+                </Col>
+                <Col  span={8} className = 'nav-menu'>
+                    <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
+                    {userDet ? (
+                        <Dropdown overlay={menu} placement="bottomRight">
+                        <Link to = {`/login`} className = 'nav-but1'>{userDet.firstName}</Link>
+                        </Dropdown>
+                    ) : 
+                        <Link to = {`/login`} className = 'nav-but2'>{t('SignIn.1')}</Link>
+                    }
+                    <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
+                </Col>
+            </Row>
+        </BrowserView>
+        <MobileView>
+            <div className = 'NavbarItems'  gutter={[16, 16]}>
+                    <Link to = {`/`}><img src={weardrop} alt="this is image"  className = 'navbarlogo'/></Link>
+                    {userDet ? (
+                        <Dropdown overlay={menuMobile} placement="bottomRight">
+                            <img src={dropDownMenu} alt="this is drop down menu" className="dropDownMenu_Header"/>
+                        </Dropdown>
+                    ) : 
+                        <Dropdown overlay={menuMobile_NotUser} placement="bottomRight" >
+                            <img src={dropDownMenu} alt="this is drop down menu"  className="dropDownMenu_Header"/>
+                        </Dropdown>
+                    }
+                    <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
+            </div>
+        </MobileView>
         </>
     )
 }

@@ -1,9 +1,11 @@
 .messErr{
   position:absolute;
-  top:50%;
+  top:10%;
   left: 45%;
   color: #F6f6f6;
 }
 .EmptyStore{
-  margin: 50px;
+  margin: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 100px;
 }

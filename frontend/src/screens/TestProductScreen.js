@@ -102,11 +102,10 @@ const TestProductScreen = ({match}) => {
   //const [testproduct, setTestProduct] = useState({});
 
     return (
-        <div> 
+        <div className='centeredObj'> 
           {successReview && message.success(t('Review is added.1'), 1)}
           {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
-          <Row>
-            <Col md = {6}>
+          <>
             <div className = "canvasP">
               <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
@@ -120,7 +119,6 @@ const TestProductScreen = ({match}) => {
                 </Suspense>
               </Canvas>
             </div>
-            </Col>
             <div className = "CardDetails">
               <h5><strong >{testproduct.name.nameRus}/{testproduct.name.nameEng}</strong></h5>
               <div className = "text_details">1. {t('Step2.1')}</div>
@@ -152,7 +150,7 @@ const TestProductScreen = ({match}) => {
               </button>
               <br />
             </div>
-          </Row>
+          </>
         }
         </div>
     )
