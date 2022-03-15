@@ -180,15 +180,15 @@ function Header() {
         <>
         <BrowserView>
             <Row className = 'NavbarItems'  gutter={[16, 16]}>
-                <Col span={8} className = 'navbarlogo'>
+                <div className = 'navbarlogo'>
                     <Link to = {`/`}><img src={weardrop} alt="this is image"  className = 'navbarlogo'/></Link>
-                </Col>
-                <Col span={8} className = 'nav-menu'>
+                </div>
+                <div className = 'nav-menu'>
                     <Link to = {`/about`} className = 'nav-links'>{t('About.1')}</Link>
                     <Link to = {`/store`} className = 'nav-links'>{t('Store.1')}</Link>
                     <Link to = {`/test`} className = 'nav-links'>{t('Test.1')}</Link>
-                </Col>
-                <Col  span={8} className = 'nav-menu'>
+                </div>
+                <div className = 'nav-menu-left'>
                     <Link to = {`/cart`} className = 'nav-but1'>{t('Cart.1')}</Link>
                     {userDet ? (
                         <Dropdown overlay={menu} placement="bottomRight">
@@ -198,7 +198,7 @@ function Header() {
                         <Link to = {`/login`} className = 'nav-but2'>{t('SignIn.1')}</Link>
                     }
                     <button   className = 'nav-lang' onClick={() => i18n.language=="en"? changeLanguage("rus") : changeLanguage("en") }><strong>{t('Lang.1')}</strong></button >
-                </Col>
+                </div>
             </Row>
         </BrowserView>
         <MobileView>

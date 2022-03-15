@@ -33,6 +33,8 @@
   justify-content: start;
   cursor: pointer;
   width: 100px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .dropDownMenu_Header{
@@ -57,11 +59,18 @@
   font-size: 1.3rem;
 }
 .nav-menu{
+  position: absolute;
+  top:40%;
+  left: 40%;
   text-align: center;
   justify-content: center;
 }
 .nav-menu-left{
-  left: 700px;
+  position: absolute;
+  top:40%;
+  left: 80%;
+  text-align: center;
+  justify-content: center;
 }
 .nav-links{
   color: rgba(143, 150, 163, 1);
@@ -148,7 +157,6 @@
   background-color:rgba(0, 0, 0, 0);
   justify-content: center;
   text-decoration: none;
-  left: 80%;
 }
 .nav-lang:focus{
   outline: none;
