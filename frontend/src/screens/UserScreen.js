@@ -75,12 +75,6 @@ const UserScreen = ({location, history}) => {
                     </div>
                 </Col>
                 <Col md = {9}>
-                    <Row className = "text_details" key = "header">
-                        <Col md={6}>{t('ID.1')}</Col>
-                        <Col md={2}>{t('Total price.1')}</Col>
-                        <Col md={2}>{t('Paid.1')}</Col>
-                        <Col md={2}>{t('Delivered.1')}</Col>
-                    </Row>
                         
                     {loadingOrders ? <Loader loadingVal = {loadingOrders}/> : 
                     errorOrders ? <Message>{errorOrders}</Message> :
@@ -91,14 +85,14 @@ const UserScreen = ({location, history}) => {
                             <LinkContainer to={`/order/${item._id}`}>
                                 <Popover content={messageOnHover} title="How to view order details?" key={item._id}> 
                                 <Row key={item._id} className = "CardDetails2 details">
-                                    <Col md={4}>{item._id}</Col>
+                                    <Col md={4}>{t('ID.1')}: {item._id}</Col>
                                     <Col md={2}>{item.user && item.user.firstName} {item.user && item.user.lastName}</Col>
-                                    <Col md={2}>{item.totalPrice && item.totalPrice}</Col>
+                                    <Col md={2}>{t('Total price.1')}: {item.totalPrice && item.totalPrice}</Col>
                                     {
-                                        item.isPaid == false ? <Col md={2}> <strong>✕</strong></Col> : <Col md={2}> <strong> ✓ </strong></Col>
+                                        item.isPaid == false ? <Col md={2}> <strong>{t('Paid.1')}: ✕</strong></Col> : <Col md={2}> <strong>{t('Paid.1')}: ✓ </strong></Col>
                                     }
                                     {
-                                        item.isDelivered == false ? <Col md={2}> <strong>✕</strong></Col> : <Col md={2}> <strong> ✓ </strong></Col>
+                                        item.isDelivered == false ? <Col md={2}> <strong>{t('Delivered.1')}: ✕</strong></Col> : <Col md={2}> <strong> {t('Delivered.1')}: ✓ </strong></Col>
                                     }
                                 </Row>
                                 </Popover>

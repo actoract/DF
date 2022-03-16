@@ -4,6 +4,7 @@
   justify-content: flex-start;
   height: 100%;
   margin-bottom: 20vh;
+  margin-left: 10vw;
 }
 
 .imageList{  
@@ -20,11 +21,11 @@
   margin-top: 20vh;
 }
 .CardDetails{
-  position: relative;
+  position: absolute;
   width: 500px;
   height: auto;
   top: 20vh;
-  left: 40vw;
+  left: 20vw;
   max-height: 1000px;
   padding: 20px;
   border-radius: 5px;
@@ -71,22 +72,51 @@
 }
 .CardDetails2.placeorder{
   position: relative;
-  width: auto;
-  height: 250px;
-  top: 0;
+  width: 800px;
+  height: auto;
+  top: 130px;
+  left: 20%;
   max-height: 1000px;
   margin-top: 30px;
   margin-left: 30px;
 }
 .CardDetails2.details{
-  margin-top: 20px;
-  margin: 20px;
+  width: 50vw;
 }
 .CardDetails2.details:hover{
   box-shadow: 0 30px 30px rgb(36 37 38 / 8%);
 }
 .FormCont{
   background-color: #f6f6f6;
+  left: 20%;
+}
+.mainAbout{
+  position:absolute;
+  left:0px;
+  top:0;
+  /*background-image: url(Gradient3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;*/
+  width: 100vw;
+  height: auto;
+}
+.button_for_everything{
+  justify-content: center;
+  text-decoration: none;
+  height: 37px;
+  width: auto;
+  left: 2232px;
+  top: 2650px;
+  border-radius: 5px;
+  color:#FA460D;
+  border :1px solid #FA460D;
+  margin: 5px;
+  background-color:white;
+}
+.button_for_everything:hover{
+  color:white;
+  border :1px solid white;
+  background-color: #FA460D;
 }
 @media (max-width: 600px){ 
   .flexParent{ /* responsive layout for mobile */
@@ -95,6 +125,7 @@
       justify-content: flex-start;
       margin-top: 10px;
       width: 100%;
+      margin-left: 0;
   }
   .imageList{
     width: 50vw;
@@ -116,8 +147,8 @@
   .CardDetails2{
     position: relative;
     width: auto;
-    top: 0;
-    max-height: 200px;
+    top: 100;
+    max-height: auto;
     margin-bottom: 10px;
     border-radius: 5px;
     border-width: 10px;
@@ -137,6 +168,46 @@
     margin-bottom: 100px;
     height: 100vh;
   }
+  .mainAbout{
+    left:0px;
+    top:0;
+    /*background-image: url(Gradient3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    height: 100%;
+
+  }
+  .CardDetails2.placeorder{
+    position: relative;
+    width: 100vw;
+    height: 250px;
+    top: 0;
+    max-height: 1000px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  .FormCont{
+    background-color: #f6f6f6;
+    left: 0%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .CardDetails2.placeorder{
+    position: relative;
+    width: 800px;
+    height: auto;
+    top: 130px;
+    left: 0%;
+    max-height: 1000px;
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+  .CardDetails2.details{
+    width: 90vw;
+    margin-left: 5px;
+  }
 }
 .SelectBut2{
   width:150px;
@@ -145,6 +216,7 @@
   border-color: #DFDFDF;
 }
 .text_details{
+  top: 20%;
   text-align: left;
   font-size: 16px;
 }
@@ -167,18 +239,6 @@
   height: 100%;
   width: 100%;
 }*/
-.mainAbout{
-  position:absolute;
-  left:0px;
-  top:0;
-  /*background-image: url(Gradient3.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;*/
-  width: 100vw;
-  height: auto;
-
-
-}
 .mainContent{
   padding-top: 200px;
 }
@@ -298,24 +358,7 @@ linkStore:active {
 input[type="file"] {
   display: none;
 }
-.button_for_everything{
-  justify-content: center;
-  text-decoration: none;
-  height: 37px;
-  width: auto;
-  left: 2232px;
-  top: 2650px;
-  border-radius: 5px;
-  color:#FA460D;
-  border :1px solid #FA460D;
-  margin: 5px;
-  background-color:white;
-}
-.button_for_everything:hover{
-  color:white;
-  border :1px solid white;
-  background-color: #FA460D;
-}
+
 
 
 .FormCont2{
