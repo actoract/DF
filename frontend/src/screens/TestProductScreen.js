@@ -14,6 +14,7 @@ import {testproductDetAction, reviewTestProductAction} from '../actions/testprod
 import {TEST_PRODUCTS_REVIEW_RESET} from '../constants/storeConst'
 import { Input } from 'antd';
 import { message } from 'antd';
+import '../styles/product.css'
 
 const customIcons = {
   1: <FrownOutlined />,
@@ -102,11 +103,11 @@ const TestProductScreen = ({match}) => {
   //const [testproduct, setTestProduct] = useState({});
 
     return (
-        <div className='centeredObj'> 
+        <div className='product'> 
           {successReview && message.success(t('Review is added.1'), 1)}
           {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
           <>
-            <div className = "canvasP">
+            <div className = "canvas">
               <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
                 <hemisphereLight intensity={1} />
@@ -119,7 +120,7 @@ const TestProductScreen = ({match}) => {
                 </Suspense>
               </Canvas>
             </div>
-            <div className = "CardDetails">
+            <div className = "infoProduct">
               <h5><strong >{testproduct.name.nameRus}/{testproduct.name.nameEng}</strong></h5>
               <div className = "text_details">1. {t('Step2.1')}</div>
               <Card>
@@ -145,7 +146,7 @@ const TestProductScreen = ({match}) => {
               <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
               <div className = "text_details">3. {t('Step4.1')}</div>
               <TextArea rows={4} onChange={e => setComment(e.target.value)} />
-              <button className="AddBut" onClick={e => handleSubmit(e)}>
+              <button className="addButton" onClick={e => handleSubmit(e)}>
                 {t('submit.1')}
               </button>
               <br />

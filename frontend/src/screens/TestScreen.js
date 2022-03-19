@@ -4,6 +4,7 @@ import {testproductsListAction} from '../actions/testproductsActions'
 import {Row, Col} from 'antd'
 import {BrowserView, MobileView} from 'react-device-detect';
 import Loader from '../components/loader'
+import '../styles/test.css'
 const Message = React.lazy(() => import('../components/message'));
 const TestProduct = React.lazy(() => import('../components/test_products'));
 
@@ -17,7 +18,7 @@ const TestScreen = () => {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="test">
         <BrowserView>
             <Suspense fallback={<Loader/>}>
             {loadingVal ? <Loader/> : error ? <Message>{error}</Message> : 

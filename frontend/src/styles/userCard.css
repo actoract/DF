@@ -1,0 +1,187 @@
+.cardDetils{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    position: relative;
+    padding-top: 100px;
+    width: 100vw;
+    min-height: 100vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    column-gap: 30px;
+    margin-bottom: 100px;
+
+}
+/*.EmptyCard{
+    position: relative;
+    padding: 100px;
+    height: 100px;
+}
+.EmptyStore{
+    position: relative;
+    top: 50px;
+    max-width:30%;
+    height:auto;
+}
+.linkStore:visited {
+    color: #FA460D;
+}
+.linkStore:hover {
+    color: black;
+}
+linkStore:active {
+    color: #FA460D;
+} */
+
+.cardItem{
+    grid-column-start: 2;
+    width: auto;
+    height: 190px;
+    left: 20vw;
+    margin-top: 50px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border-width: 10px;
+    backdrop-filter: 1px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+    
+}
+.closeButton{
+    position: relative;
+    left: 98%;
+    top: 0; 
+    background: rgba(196, 196, 196, 0.6);
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    padding-left: 2px;
+    padding-top: 5px;
+    color: white;
+}
+.totalInfo{
+    margin-top: 50px;
+    height: 200px;
+    padding: 15%;
+    border-radius: 5px;
+    border-width: 10px;
+    backdrop-filter: 1px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+}
+.chechoutButton{
+    transition: .3s all ease-in-out;
+    width: auto;
+    min-height: 37px;
+    margin-top:10px;
+    border-radius: 30px;
+    background-color: #FA460D;
+    color:white;
+    padding: 10px;
+}
+.chechoutButton:hover{
+    transition: .3s all ease-in-out;
+    box-shadow: 0px 0px 10px 10px #FA460D;
+    color: white;
+}
+.productImage{
+    height: 150px;
+    left:0;
+}
+.uploadedImage{
+    height: 100px;
+}
+.cardItemRow{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 10px;
+    row-gap: 0.2em;
+}
+.uploadButton{
+    height: 10px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+input[type="file"] {
+    display: none;
+}
+.cardDetils_Mobile{
+    position: relative;
+    padding-top: 100px;
+    width: 100%;
+    min-height: 100vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 100px;
+}
+.EmptyCard{
+    width: 100vw;
+    height: 100vh;
+    padding-top: 10%;
+}
+.imageEmptyStore{
+    position: absolute;
+    width: 30%;
+    height: auto;
+    left: 35vw;
+}
+.textEmptyStore{
+    position: absolute;
+    width: 30%;
+    height: auto;
+    left: 35vw;
+    top: 70vh
+}
+.linkStore{
+    position: absolute;
+    top: 70vh;
+}
+@media (max-width: 600px){ 
+
+    .totalInfo{
+        width: 80vw;
+        height: auto;
+        margin-top: 50px;
+        padding: 15%;
+        border-radius: 5px;
+        border-width: 10px;
+        backdrop-filter: 1px;
+        background-color: white;
+        box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+    }
+    .cardItem{
+        padding-top: 20px;
+        position: relative;
+        left:0;
+        width: 80vw;
+        height: 190px;
+        border-radius: 5px;
+        border-width: 10px;
+        backdrop-filter: 1px;
+        background-color: white;
+        box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+    }
+    .EmptyCard{
+        width: 100vw;
+        height: 100vh;
+        padding-top: 30%;
+    }
+    .imageEmptyStore{
+        position: absolute;
+        width: 80%;
+        height: auto;
+        left: 15vw;
+    }
+    .textEmptyStore{
+        position: absolute;
+        width: 30%;
+        height: auto;
+        left: 40vw;
+        top: 50vh
+    }
+}

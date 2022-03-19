@@ -6,6 +6,7 @@ import {getOrderById, updateStatusAction} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import {ORDER_UPDATE_STATUS_RESET} from '../constants/storeConst'
 import { message } from 'antd'
+import '../styles/orders.css'
 const Message = React.lazy(() => import('../components/message'));
 const Loader = React.lazy(() => import('../components/loader'));
 
@@ -46,7 +47,7 @@ const OrdersScreen = ({match, history}) => {
     return (
         <>
         {loading ? <Loader loadingVal = {loading}/>: error ? <Message>{error}</Message>  : 
-        <div> 
+        <div className="placeOrder"> 
           <Row>
               
           <Col md={8}>

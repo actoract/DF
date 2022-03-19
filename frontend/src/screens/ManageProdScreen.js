@@ -8,6 +8,7 @@ import {productsListAction, deleteProductAction, createProductAction} from '../a
 import { Popconfirm} from 'antd';
 import { Suspense } from 'react'
 import add from './add.png';
+import '../styles/manageProduct.css'
 const Message = React.lazy(() => import('../components/message'));
 
 const ManageProdScreen = ({history, match}) => {

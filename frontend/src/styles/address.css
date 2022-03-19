@@ -1,0 +1,24 @@
+.FormCont{
+    background-color: #f6f6f6;
+    left: 20%;
+}
+.FormCont{
+    background-color: #f6f6f6;
+    left: 0%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.navbut2{
+    justify-content: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    padding-right: 10px;
+    min-height: 37px;
+    height: auto;
+    width: 100px;
+    margin-left:45%;
+    margin-top:10px;
+    border-radius: 30px;
+    background-color: #FA460D;
+    color:white;
+}

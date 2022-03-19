@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { message } from 'antd'
+import '../styles/finishOrder.css'
 import {Row, Col, ListGroup, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import StepsComp from '../components/steps'
@@ -67,12 +68,18 @@ const FinishOrderScreen = ({history}) => {
         }
     }*/
     return (
-        <>
+        <div className="finishOrder">
         {error && <Message>{error}</Message>}
         <Row className = 'justify-content-md-center'>
             <StepsComp step4/>
         </Row>
-        <div> 
+        <div>   
+            <Col md={2} className = "finishOrderTotal" >
+                <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
+                <p><strong>{t('Total number.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
+                <p><strong>{t('Total price.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
+                <div className = 'nav-but2' onClick = {hadlePlaceOrder}>{t('place order.1')}</div> 
+            </Col>
           <Row >
             <Col md={8} className = "CardDetails cart">
                 {rcItem && !dcItem &&
@@ -147,15 +154,9 @@ const FinishOrderScreen = ({history}) => {
                 )}
                 </ListGroup.Item>
             </Col>
-            <Col md={2} className = "CardDetails2 placeorder" >
-                <p><strong>{t('ORDER SUMMERY.1')}:</strong></p>
-                <p><strong>{t('Total number.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + current.qty, 0)}</p>
-                <p><strong>{t('Total price.1')}:</strong> {userCart.cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
-                <div className = 'nav-but2' onClick = {hadlePlaceOrder}>{t('place order.1')}</div> 
-            </Col>
           </Row>
         </div>
-        </>
+        </div>
     )
 }
 export default FinishOrderScreen

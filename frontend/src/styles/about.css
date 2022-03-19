@@ -1,0 +1,21 @@
+.mainContent{
+    padding-top: 200px;
+    width: 100vw;
+    height: 100vh;
+}
+.mainAbout{
+    position:absolute;
+    left:0px;
+    top:0;
+    /*background-image: url(Gradient3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    width: 100vw;
+    height: auto;
+}
+.infoAbout{
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+    font-size: 18px;
+}

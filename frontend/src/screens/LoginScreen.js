@@ -7,6 +7,7 @@ import FormCont from '../components/form'
 import {loginAction} from '../actions/userAction.js'
 import { message } from 'antd'
 import { useTranslation } from 'react-i18next'
+import '../styles/login.css'
 
 const LoginScreen = ({location, history}) => {
     const [email, setEmail] = useState('')
@@ -27,7 +28,7 @@ const LoginScreen = ({location, history}) => {
     }
     return (
         <>
-        <FormCont className="FormCont">
+        <FormCont className="login">
             <h1>{t('SignIn.1')}</h1>
             {loading && <Loader/>}
             {error && message.error(error, 3)}

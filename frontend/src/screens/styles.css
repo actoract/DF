@@ -1,4 +1,4 @@
-.flexParent{
+/* /* .flexParent{
   display:flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -7,20 +7,20 @@
   margin-left: 10vw;
 }
 
-.imageList{  
+/* .imageList{  
   height: auto;
   width: 400px;
   padding-top: 50px;
-}
+} */
 
-.centeredEmptyCard{
+/* .centeredEmptyCard{
   margin-top: 20vh;
   margin-left: 50%;
 }
 .centeredyCard{
   margin-top: 20vh;
-}
-.CardDetails{
+} */
+/* .CardDetails{
   position: absolute;
   width: 500px;
   height: auto;
@@ -38,15 +38,15 @@
 .CardDetails.cart{
   width: 650px; 
   margin-top: 30px; 
-}
-.canvasP{
+} */
+/* .canvasP{
   position:absolute;
   top: 0px;
   left: 0px;
   height: 100vh;
   width: 50%;
-}
-.UserCardDetails{
+} */
+/*.UserCardDetails{
   position: relative;
   padding-top: 100px;
   height: 100vh;
@@ -55,8 +55,8 @@
   position: relative;
   padding: 100px;
   height: 100px;
-}
-.CardDetails2{
+}*/
+/* .CardDetails2{
   position: relative;
   width: auto;
   height: auto;
@@ -69,8 +69,8 @@
   backdrop-filter: 1px;
   background-color: white;
   box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
-}
-.CardDetails2.placeorder{
+} */
+/* .CardDetails2.placeorder{
   position: relative;
   width: 800px;
   height: auto;
@@ -79,28 +79,28 @@
   max-height: 1000px;
   margin-top: 30px;
   margin-left: 30px;
-}
-.CardDetails2.details{
+} */
+/* .CardDetails2.details{
   width: 50vw;
 }
 .CardDetails2.details:hover{
   box-shadow: 0 30px 30px rgb(36 37 38 / 8%);
-}
-.FormCont{
+} */
+/* .FormCont{
   background-color: #f6f6f6;
   left: 20%;
-}
-.mainAbout{
+} */
+/* .mainAbout{
   position:absolute;
   left:0px;
   top:0;
   /*background-image: url(Gradient3.jpg);
   background-repeat: no-repeat;
-  background-size: cover;*/
+  background-size: cover;
   width: 100vw;
   height: auto;
-}
-.button_for_everything{
+} */
+/* .button_for_everything{
   justify-content: center;
   text-decoration: none;
   height: 37px;
@@ -117,8 +117,8 @@
   color:white;
   border :1px solid white;
   background-color: #FA460D;
-}
-@media (max-width: 600px){ 
+} */
+/* @media (max-width: 600px){ 
   .flexParent{ /* responsive layout for mobile */
       display:flex;
       flex-direction: column;
@@ -126,25 +126,25 @@
       margin-top: 10px;
       width: 100%;
       margin-left: 0;
-  }
-  .imageList{
+  } */
+  /* .imageList{
     width: 50vw;
-  }
-  .CardDetails{ 
+  } */
+  /* .CardDetails{ 
     position: relative;
     left: 0px;
     margin-top: 1px;
     width: auto;
     margin-bottom: 100px;
-  }
-  .canvasP{
+  } */
+  /* .canvasP{
     position:relative;
     top: 100px;
     left: 0px;
     height: 300px;
     width: auto;
-  }
-  .CardDetails2{
+  } */
+  /* .CardDetails2{
     position: relative;
     width: auto;
     top: 100;
@@ -156,13 +156,13 @@
     background-color: white;
     box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
     text-align: left;
-  }
-  .imageInCard{
+  } */
+  /* .imageInCard{
     position: absolute;
     height: 100px;
     left: 10px;
-  }
-  .centeredObj{
+  } */
+  /* .centeredObj{
     padding-right: 10px;
     padding-left: 10px;
     margin-bottom: 100px;
@@ -178,8 +178,8 @@
     background-size: 100% 100%; 
     height: 100%;
 
-  }
-  .CardDetails2.placeorder{
+  } */
+  /* .CardDetails2.placeorder{
     position: relative;
     width: 100vw;
     height: 250px;
@@ -187,14 +187,14 @@
     max-height: 1000px;
     margin-top: 10px;
     margin-left: 5px;
-  }
-  .FormCont{
+  } */
+  /* .FormCont{
     background-color: #f6f6f6;
     left: 0%;
     padding-left: 10px;
     padding-right: 10px;
-  }
-  .CardDetails2.placeorder{
+  } */
+  /* .CardDetails2.placeorder{
     position: relative;
     width: 800px;
     height: auto;
@@ -202,29 +202,29 @@
     left: 0%;
     max-height: 1000px;
     margin-top: 0px;
-    margin-left: 0px;
-  }
+    margin-left: 0px; */
+  /* }
   .CardDetails2.details{
     width: 90vw;
     margin-left: 5px;
-  }
+  } */
 }
-.SelectBut2{
+/* .SelectBut2{
   width:150px;
   height: 30px;
   border-radius: 3px;
   border-color: #DFDFDF;
-}
-.text_details{
+} */
+/* .text_details{
   top: 20%;
   text-align: left;
   font-size: 16px;
-}
+} */
 
-.Select{
+/* .Select{
   width: auto;
   height: auto;
-}
+} */
 /*.mainProduct{
   margin-top: 50px;
   position:absolute;
@@ -239,14 +239,14 @@
   height: 100%;
   width: 100%;
 }*/
-.mainContent{
+/*.mainContent{
   padding-top: 200px;
-}
-.main{
+}*/
+/* .main{
   width: 100vw;
   height: 100vh;
   background-color: #FA460D;
-}
+} */
 /*.but{
   position:relative;
   top: 10px;
@@ -265,7 +265,7 @@
   box-shadow: 0px 0px 10px 10px #FA460D;
   color: white;
 }*/
-.mainStore{
+/* .mainStore{
   padding: 12px;
   margin: -60px;
   margin-top: 0px;
@@ -288,8 +288,8 @@
   width: 50px;
   height: 50px;
   margin-top: 25%;
-}
-.AddBut{
+} */
+/* .AddBut{
   justify-content: center;
   text-decoration: none;
   height: 40px;
@@ -309,8 +309,8 @@
   border-radius: 30px;
   background-color: #FF3D00;
   color: white;
-}
-.CloseBut{
+} */
+/* .CloseBut{
   position: absolute;
     top: -10px;
     right: -10px;
@@ -325,14 +325,14 @@
 .CloseBut:hover{
     background: rgba(196, 196, 196, 0.2);
     color: #FA460D;
-}
-.EmptyStore{
+} */
+/* .EmptyStore{
   position: relative;
   top: 50px;
   max-width:30%;
   height:auto;
-}
-.linkStore:visited {
+} */
+/* .linkStore:visited {
   color: #FA460D;
 }
 
@@ -342,8 +342,8 @@
 
 linkStore:active {
   color: #FA460D;
-} 
-.Upload{
+}  */
+/* .Upload{
   height: 10px;
   width: auto;
   height: auto;
@@ -365,8 +365,8 @@ input[type="file"] {
   position: absolute;
   margin-top: 200px;
   background-color: #f6f6f6;
-}
-.add{
+} */
+/* .add{
   width:20px;
   height:20px;
   margin-left: 10px;
@@ -376,14 +376,14 @@ input[type="file"] {
   width:22px;
   height:22px;
   margin-left: 10px;
-}
-.info{
+} */
+/* .info{
   margin-left: 60px;
   margin-right: 60px;
   margin-bottom: 60px;
   font-size: 18px;
-}
-.navbut2{
+} */
+/* .navbut2{
   justify-content: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
@@ -396,4 +396,4 @@ input[type="file"] {
   border-radius: 30px;
   background-color: #FA460D;
   color:white;
-}
+} */  

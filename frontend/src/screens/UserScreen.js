@@ -7,6 +7,7 @@ import {getProfileAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Popover,  } from 'antd';
+import '../styles/user.css'
 import Message from '../components/message'
 
 const UserScreen = ({location, history}) => {
@@ -66,9 +67,9 @@ const UserScreen = ({location, history}) => {
     }*/
     return (
         <>{userDet &&
-            <Row>
+            <Row className="user">
                 <Col md={3}>
-                    <div className = "CardDetails2">
+                    <div className = "userInfo">
                         <p><strong>{t('First name.1')}:</strong> {userDet.firstName}</p>
                         <p><strong>{t('Last name.1')}:</strong> {userDet.lastName}</p>
                         <p><strong>{t('Email.1')}:</strong> {userDet.email}</p>

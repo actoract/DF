@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col, Form} from 'react-bootstrap'
 import { PRODUCTS_UPDATE_RESET } from '../constants/storeConst';
 import { message} from 'antd';
+import '../styles/edit.css'
 import {updateProductAction, productsListAction} from '../actions/productsActions'
 import Loader from '../components/loader'
 const Message = React.lazy(() => import('../components/message'));

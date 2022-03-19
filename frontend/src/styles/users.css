@@ -1,0 +1,44 @@
+.text_details{
+    top: 20%;
+    text-align: left;
+    font-size: 16px;
+}
+.CardDetails2{
+    position: relative;
+    width: auto;
+    height: auto;
+    top: 100px;
+    max-height: 1000px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-width: 10px;
+    backdrop-filter: 1px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+  }
+  .CardDetails2.details{
+    width: 50vw;
+  }
+  .CardDetails2.details:hover{
+    box-shadow: 0 30px 30px rgb(36 37 38 / 8%);
+  }
+  @media (max-width: 600px){ 
+    .CardDetails2{
+        position: relative;
+        width: auto;
+        top: 100;
+        max-height: auto;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border-width: 10px;
+        backdrop-filter: 1px;
+        background-color: white;
+        box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+        text-align: left;
+      }
+      .CardDetails2.details{
+        width: 90vw;
+        margin-left: 5px;
+      }
+  }

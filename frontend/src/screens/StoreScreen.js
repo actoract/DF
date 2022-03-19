@@ -1,6 +1,6 @@
 import React, {useEffect, Suspense} from 'react'
 import { Row, Col } from 'antd';
-import styles from './styles.css'
+import '../styles/store.css'
 import { useDispatch, useSelector } from 'react-redux'
 import {BrowserView, MobileView} from 'react-device-detect';
 import {productsListAction} from '../actions/productsActions'
@@ -29,7 +29,7 @@ const StoreScreen = () => {
     }*/
     console.log(products)
     return (
-        <div>
+        <div className="store">
             <BrowserView>
                 <Suspense fallback={<Loader/>}>
                 {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 

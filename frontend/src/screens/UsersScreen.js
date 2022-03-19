@@ -4,7 +4,7 @@ import Loader from '../components/loader'
 import { useTranslation } from 'react-i18next'
 import {Col, Row} from 'react-bootstrap'
 import { Popover, message } from 'antd';
-import './styles.css'
+import '../styles/users.css'
 import ModalMessage from "../components/modalMessage"
 import {USER_PROFILE_UPD_RESET} from '../constants/storeConst'
 import {getProfileAction, 

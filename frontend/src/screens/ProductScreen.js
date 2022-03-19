@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, useRef} from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from'react-redux'
 import {Row, Col, ListGroup, Card, Form } from 'react-bootstrap'
-import "./styles.css"
+import '../styles/product.css'
 import { Canvas, useFrame,extend, useThree } from 'react-three-fiber'
 import Loader from "../components/loader"
 import Loading from "../components/loading"
@@ -100,10 +100,10 @@ const ProductScreen = ({match}) => {
 
 
     return (
-        <div className='centeredObj'> 
+        <div className='product'> 
         {loadingVal ? <Loader loadingVal = {loadingVal}/>: error ? <Message>{error}</Message>  : 
             <>
-            <div className = "canvasP">
+            <div className = "canvas">
               <Canvas style={{ background: "#c3ab93" }} >
                 <CameraControls />
                 <hemisphereLight intensity={0.5} />
@@ -116,9 +116,9 @@ const ProductScreen = ({match}) => {
                 </Suspense>
               </Canvas>
             </div>
-            <div className = "CardDetails">
-            <h5><strong >{product.name.nameRus}/{product.name.nameEng}</strong></h5>              
-            <Form.Label>1. {t('Step1.1')}</Form.Label>
+            <div className = "infoProduct">
+            <h5><strong>{product.name.nameRus}/{product.name.nameEng}</strong></h5>              
+            <Form.Label><div  className = "text_details">1. {t('Step1.1')}</div></Form.Label>
               <Form.Control as='select' id ="1" defaultValue="Choose..."   onChange = {handleChange}>  
                 <option value="default" key = "default">{t('Choose.1')}</option> 
                 <option value="dc" key = "dc">{t('DC.1')}</option>
@@ -151,7 +151,7 @@ const ProductScreen = ({match}) => {
                           {t('Size.1')}
                         </Col>
                           <Col>
-                          <Form.Control as="select"   className = "SelectBut2" id = "2" onChange = {e => handleSizeChang(e)}>
+                          <Form.Control as="select"   className = "selectButton" id = "2" onChange = {e => handleSizeChang(e)}>
                               <option value="default" key = "default">{t('Choose.1')}</option> 
                               {Object.keys(product.sizeStatus).map(item => (
                               <option value={item} className="card-panel" key = {item}>
@@ -176,7 +176,7 @@ const ProductScreen = ({match}) => {
                   }
                 </ListGroup>
               </Card>
-              <button  className = 'AddBut' onClick = {addToCard}> {t('Add.1')}</button>
+              <button  className = 'addButton' onClick = {addToCard}> {t('Add.1')}</button>
             </div>
             </>
         }

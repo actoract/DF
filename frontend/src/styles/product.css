@@ -1,0 +1,150 @@
+/* .CardDetails{
+    position: absolute;
+    width: 500px;
+    height: auto;
+    top: 20vh;
+    left: 20vw;
+    max-height: 1000px;
+    padding: 20px;
+    border-radius: 5px;
+    border-width: 10px;
+    backdrop-filter: 1px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+}
+.text_details{
+    top: 20%;
+    text-align: left;
+    font-size: 16px;
+}
+.SelectBut2{
+    width:150px;
+    height: 30px;
+    border-radius: 3px;
+    border-color: #DFDFDF;
+}
+.AddBut{
+    justify-content: center;
+    text-decoration: none;
+    height: 40px;
+    left: 45%;
+    border-radius: 30px;
+    border: 2px solid white; 
+    background-color: #FA460D;
+    color:white;
+    margin-top: 10px;
+    margin-left: 40%;
+    margin-right: 50%;
+    margin-bottom: 10px;
+    min-width: 100px;
+    padding: 5px;
+  }
+  .AddBut:hover{
+    border-radius: 30px;
+    background-color: #FF3D00;
+    color: white;
+  }
+@media (max-width: 600px){ 
+    .canvasP{
+        position:relative;
+        top: 100px;
+        left: 0px;
+        height: 300px;
+        width: auto;
+    }
+    .centeredObj{
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-bottom: 100px;
+        height: 100vh;
+    }
+    .CardDetails{ 
+        position: relative;
+        left: 0px;
+        margin-top: 1px;
+        width: auto;
+        margin-bottom: 100px;
+    }
+} */
+
+.product{
+    width: 100vw;
+    height: 100vh;
+}
+.text_details{
+    top: 20%;
+    text-align: left;
+    font-size: 16px;
+}
+.canvas{
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+.selectButton{
+    width:150px;
+    height: 30px;
+    border-radius: 3px;
+    border-color: #DFDFDF;
+}
+.addButton{
+    justify-content: center;
+    text-decoration: none;
+    height: 40px;
+    left: 40%;
+    border-radius: 30px;
+    border: 2px solid white; 
+    background-color: #FA460D;
+    color:white;
+    margin-top: 10px;
+    margin-left: 40%;
+    margin-right: 50%;
+    margin-bottom: 10px;
+    min-width: 100px;
+    padding: 5px;
+  }
+.addButton:hover{
+    border-radius: 30px;
+    background-color: #FF3D00;
+    color: white;
+}
+.infoProduct{
+    position: absolute;
+    width: 30vw;
+    height: auto;
+    top: 18vh;
+    left: 55vw;
+    
+    padding: 20px;
+    border-radius: 5px;
+    border-width: 10px;
+    backdrop-filter: 1px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+    margin-bottom: 500px;
+}
+@media (max-width: 600px){ 
+    .product{
+        display: grid;
+        grid-template-rows: 1fr;
+        width: 100vw;
+        height: auto;
+    }
+    .canvas{
+        width: 100vw;
+        height: 50vh;
+        top: 10vh;
+        left: 0;
+        margin-bottom: 100px;
+    }
+    .infoProduct{
+        margin-top: 100px;
+        width: 80vw;
+        height: auto;
+        left: 10vw;
+        top: 55vh;
+        margin-bottom: 10vh;
+    }
+}

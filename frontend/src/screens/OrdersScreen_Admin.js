@@ -6,6 +6,7 @@ import Loader from '../components/loader'
 import {ordersAction} from '../actions/orderActions'
 import { useTranslation } from 'react-i18next'
 import { Popover } from 'antd';
+import '../styles/ordersAdmin.css'
 import { LinkContainer } from 'react-router-bootstrap'
 
 const OrdersScreen_Admin = ({history}) => {

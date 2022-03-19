@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col, Form} from 'react-bootstrap'
+import '../styles/editTest.css'
 import {testproductsListAction, updateTestProductAction} from '../actions/testproductsActions'
 import { message } from 'antd';
 import { TEST_PRODUCTS_UPDATE_RESET } from '../constants/storeConst';

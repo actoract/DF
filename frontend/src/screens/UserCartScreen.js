@@ -6,6 +6,7 @@ import {Row, Col, Image, Form, Container} from 'react-bootstrap'
 import {addToCart, removeFromCart, changeCart} from '../actions/cartAction'
 import { message } from 'antd';
 import smile from './smile.jpg';
+import '../styles/userCard.css'
 import {BrowserView, MobileView} from 'react-device-detect';
 //const smile = React.lazy(() => import('./smile.jpg'));
 
@@ -84,87 +85,82 @@ const UserCartScreen = ({match, location, history}) => {
         myFileItemReader.readAsDataURL(files[0])
     }
     return (
-        <div className="UserCardDetails">
+        <div>
             {cartItems.length === 0 ?  (
                 <Container className="EmptyCard">
                     <Row className="justify-content-md-center">
-                        <img src={smile}  className = "EmptyStore"/>
+                        <img src={smile}  className = "imageEmptyStore"/>
                     </Row>
                     <Row className="justify-content-md-center">
-                        <h5>
+                        <h5 className = "textEmptyStore">
                         {t('Your cart is empty.1')}
-                        <span>
-                        </span>
                         </h5>
-                    </Row>
-                    <Row className="justify-content-md-center">
-                        <h5><Link to='/store' className = "linkStore"> {t('Go back to store.1')} </Link></h5>
                     </Row>
                 </Container>) :
             (<>
-            <BrowserView>
-                <Row>
-                    <Col md={9}>
+            <BrowserView className="cardDetils">
+                    <div className = "totalInfo">
+                        <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.qty), 0)}</p>
+                        <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
+                        <div className = 'chechoutButton' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
+                    </div>
+                    <>
                     {cartItems.map(item => (
-                        <div className = "CardDetails2" key = {item.product + "/" + item.size}>
-                            <div className = "CloseBut" onClick = {() => handleRemove(item.product, item.size, item.type)}>
+                        <div className = "cardItem" key = {item.product + "/" + item.size}>
+                            <div className = "closeButton" onClick = {() => handleRemove(item.product, item.size, item.type)}>
                                 ✕
                             </div>
-                            <Row>
-                                <Col  span={2}>
-                                    <Image src = {item.image} alt={item.name} fluid rounded className="imageInCard"/>
-                                </Col>
-                                <Col  span={2}>
+                            <div className="cardItemRow">
+                                <div>
+                                    <img src = {item.image} alt={item.name}  className="productImage"/>
+                                </div>
+                                <div>
                                     <Link to = {`/products/${item.product}`}>{item.name.nameRus}/{item.name.nameEng}</Link>
-                                </Col>
-                                <Col  span={2}>
+                                </div>
+                                <div>
                                     <strong>{t('Price.1')}: </strong> {item.price}
-                                </Col>
-                                <Col  span={2}>
+                                </div>
+                                <div>
                                     <strong>{t('Type.1')}: </strong>{item.type == "rc" ? t('RC.1') :  t('DC.1')}
-                                </Col>
+                                </div>
                                 {item.type == "rc" ?
-                                    <Col  span={2}>
+                                    <div>
                                         <strong>{t('Quantity.1')}: </strong>
                                         <Form.Control required type = "number" value={item.qty} name="qty"  
                                         onChange = {(e) => handleQtyChange(e, item)}></Form.Control>
-                                    </Col > :
-                                    <Col  span={2}>
-                                        <label className="Upload">
+                                    </div > :
+                                    <div>
+                                        <label className="uploadButton">
                                         <strong>{t('Upload Image.1')} </strong>
                                         <input type="file" accept="image/*"  onChange={e => uploadImage(e, item)} className = 'button_for_everything'/>
                                         </label>
-                                        {image ? <Image src={item.custImage} alt={item.name.nameRus} fluid rounded></Image> : ""}
-                                    </Col>
+                                        {image ? <img src={item.custImage} alt={item.name.nameRus} className="uploadedImage"/>: ""}
+                                    </div>
                                 }
-                                <Col  span={2}>
+                                <div>
                                     {item.type == "rc" ?
-                                        <Col>
+                                        <div>
                                             <strong>{t('Size.1')}: </strong>{item.size}
-                                        </Col> :
-                                        <Col>
+                                        </div> :
+                                        <div>
                                             <strong>{t('Size.1')}: </strong> {t('unified.1')}
-                                        </Col>
+                                        </div>
                                     }
-                                </Col>
-                            </Row>
+                                </div>
+                            </div>
                         </div>
                     ))}
-                    </Col>
-                    <Col md={3}>
-                        <div className = "CardDetails2">
-                            <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.qty), 0)}</p>
-                            <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
-                            <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
-                        </div>
-                    </Col>
-                    </Row>
+                    </>
                 </BrowserView>
-                <MobileView>
-                    <Row>
-                    <Col md={9}>
+                <MobileView className="cardDetils_Mobile"> 
+                    <div className = "totalInfo">
+                        <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.qty), 0)}</p>
+                        <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
+                        <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
+                    </div>
+                    <>
                     {cartItems.map(item => (
-                        <div className = "CardDetails2" key = {item.product + "/" + item.size}>
+                        <div className = "cardItem" key = {item.product + "/" + item.size}>
                             <div className = "CloseBut" onClick = {() => handleRemove(item.product, item.size, item.type)}>
                                 ✕
                             </div>
@@ -204,15 +200,7 @@ const UserCartScreen = ({match, location, history}) => {
                             </Row>
                         </div>
                     ))}
-                    </Col>
-                    <Col md={3}>
-                        <div className = "CardDetails2">
-                            <p><strong>{t('Total number.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.qty), 0)}</p>
-                            <p><strong>{t('Total price.1')}:</strong> {cartItems.reduce((acc, current) => acc + Number(current.price) * Number(current.qty), 0)}</p>
-                            <div className = 'nav-but2' onClick = {handleCheckout}>{t('Continue checkout.1')}</div>  
-                        </div>
-                    </Col>
-                    </Row>
+                    </>
                 </MobileView>
                 </>
             )}

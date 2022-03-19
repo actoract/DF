@@ -1,0 +1,33 @@
+.FormCont{
+    background-color: #f6f6f6;
+    left: 0%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.FormCont{
+    background-color: #f6f6f6;
+    left: 20%;
+}
+.button_for_everything{
+    justify-content: center;
+    text-decoration: none;
+    height: 37px;
+    width: auto;
+    left: 2232px;
+    top: 2650px;
+    border-radius: 5px;
+    color:#FA460D;
+    border :1px solid #FA460D;
+    margin: 5px;
+    background-color:white;
+}
+.button_for_everything:hover{
+    color:white;
+    border :1px solid white;
+    background-color: #FA460D;
+} 
+.login{
+    width: 100vw;
+    height: 100vh;
+    background-color: #f6f6f6;
+}

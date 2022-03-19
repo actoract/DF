@@ -1,0 +1,10 @@
+.imageList{  
+    height: auto;
+    width: 400px;
+    padding-top: 50px;
+}
+@media (max-width: 600px){ 
+    .imageList{
+      width: 50vw;
+    }
+}

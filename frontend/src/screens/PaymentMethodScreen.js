@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import FormCont from '../components/form'
 import Steps from '../components/steps'
 import { useTranslation } from 'react-i18next'
+import '../styles/paymentMethod.css'
 import {savePaymentMethod} from '../actions/cartAction'
 
 const PaymentMethodScreen = ({history}) => {

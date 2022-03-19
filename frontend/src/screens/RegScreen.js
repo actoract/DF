@@ -7,6 +7,7 @@ import {regAction} from '../actions/userAction.js'
 import { useTranslation } from 'react-i18next'
 import Loader from '../components/loader'
 import { Suspense } from 'react'
+import '../styles/registration.css'
 const FormCont = React.lazy(() => import('../components/form'));
 const StepsComp = React.lazy(() => import('../components/steps'));
 

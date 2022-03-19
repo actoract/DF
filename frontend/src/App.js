@@ -55,7 +55,6 @@ function App() {
           <Route path = '/cart/:id?' component = {UserCartScreen} />
         </Container>
       </main>
-      <Footer className="footer"/>
     </Router>
   );
 }

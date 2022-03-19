@@ -6,6 +6,7 @@ import {Col, Row, Image} from 'react-bootstrap'
 import { Popconfirm } from 'antd';
 import {TEST_PRODUCTS_CREATE_RESET} from '../constants/storeConst'
 import add from './add.png'
+import '../styles/manageTestProduct.css'
 import {testproductsListAction, deleteTestProductAction, createTestProductAction} from '../actions/testproductsActions'
 const Message = React.lazy(() => import('../components/message'));
 

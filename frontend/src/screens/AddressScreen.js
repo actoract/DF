@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {saveAddress} from '../actions/cartAction'
 import Loader from '../components/loader'
+import '../styles/address.css'
 const FormCont = React.lazy(() => import('../components/form'));
 const StepsComp = React.lazy(() => import('../components/steps'));
 

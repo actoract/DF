@@ -1,0 +1,19 @@
+.user{
+    width: 100vw;
+    height: 100vh;
+    padding-top: 20vh;
+    padding-left: 20vh;
+}
+.userInfo{
+    width: auto;
+    height: auto;
+    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    border-width: 10px;
+    backdrop-filter: 1px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgb(36 37 38 / 8%);
+
+}
