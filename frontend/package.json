@@ -13,6 +13,7 @@
     "antd": "^4.13.0",
     "antd-button-color": "^1.0.3",
     "axios": "^0.21.1",
+    "concurrently": "^7.6.0",
     "history": "^4.10.1",
     "i18next": "^19.8.9",
     "i18next-browser-languagedetector": "^6.0.1",
