@@ -1,0 +1,410 @@
+{
+    "About":{
+        "1": "about digital clothes"
+    },
+    "Store":{
+        "1": "store"
+    },
+    "Test":{
+        "1": "test products"
+    },
+    "Lang":{
+        "1": "rus"
+    },
+    "DC":{
+        "1": "Digital clothes"
+    },
+    "RC":{
+        "1": "Real clothes"
+    },
+    "SelectFormat":{
+        "1": "Select format of clothes"
+    },
+    "SignIn":{
+        "1": "sign In",
+        "2": ""
+    },
+    "Cart":{
+        "1": "cart"
+    },
+    "Price":{
+        "1": "Price"
+    },
+    "Step1":{
+        "1": "Select clothes type"
+    },
+    "Step2":{
+        "1": "Discover details"
+    },
+    "Status":{
+        "1": "Status"
+    },
+    "Add":{
+        "1": "Add"
+    },
+    "Size":{
+        "1": "Size"
+    },
+    "Color":{
+        "1": "Color"
+    },
+    "Care":{
+        "1": "Care"
+    },
+    "Material":{
+        "1": "Material"
+    },
+    "material":{
+        "1": "material"
+    },
+    "color":{
+        "1": "color"
+    },
+    "care":{
+        "1": "care"
+    },
+    "Out of stock":{
+        "1": "Out of stock"
+    },
+    "In stock":{
+        "1": "In stock"
+    },
+    "Select clothes size":{
+        "1": "Select clothes size"
+    },
+    "Select clothes type":{
+        "1": "Select clothes type"
+    },
+    "Step3": {
+        "1": "Rate product"
+    },
+    "Step4": {
+        "1": "Write comment"
+    },
+    "Select quantity":{
+        "1": "Select quantity"
+    },
+    "Quantity":{
+        "1": "Quantity"
+    },
+    "Type":{
+        "1": "Type"
+    },
+    "Shopping cart":{
+        "1": "Shopping cart"
+    },
+    "Your cart is empty":{
+        "1": "Your cart is empty "
+    },
+    "Go back to store":{
+        "1": "Go back to store"
+    },
+    "unified":{
+        "1": "unified"
+    },
+    "Total number":{
+        "1": "Total number"
+    },
+    "Total price":{
+        "1": "Total price"
+    },
+    "Continue checkout":{
+        "1": "Continue checkout"
+    },
+    "Added":{
+        "1": "The product was successfully added to the cart!"
+    },
+    "Upload image":{
+        "1": "Upload image"
+    },
+    "Select":{
+        "1": "Select"
+    },
+    "Choose":{
+        "1": "Choose..."
+    },
+    "SignOut":{
+        "1": "sign out"
+    },
+    "ORDER SUMMERY":{
+        "1": "ORDER SUMMERY"
+    },
+    "Payment method":{
+        "1": "Payment method",
+        "2": "payment method",
+        "3": "choose payment method"
+    },
+    "Cart items":{
+        "1": "Cart items"
+    },
+    "Shipping address":{
+        "1": "Shipping address",
+        "2": "shipping address",
+        "3": "fill the shipping address form"
+    },
+    "place order":{
+        "1": "place order", 
+        "2": "finish your order application",
+        "3": "Place order"
+    },
+    "Payment status": {
+        "1": "Payment status"
+    },
+    "Paid at": {
+        "1": "Payment date"
+    },
+    "Paid": {
+        "1": "Paid"
+    },
+    "Delivery status": {
+        "1": "Delivery status"
+    },
+    "Not delivered": {
+        "1": "Not delivered"
+    },
+    "Delivered": {
+        "1": "Delivered"
+    },
+    "address":{
+        "1": "address", 
+        "2": "enter address"
+    },
+    "city":{
+        "1": "city", 
+        "2": "enter city"
+    },
+    "country":{
+        "1": "country", 
+        "2": "enter country"
+    },
+    "post code":{
+        "1": "post code", 
+        "2": "enter post code"
+    },
+    "email":{
+        "1": "email", 
+        "2": "enter email"
+    },
+    "payment method":{
+        "1": "payment method"
+    },
+    "Customer image":{
+        "1": "Customer image"
+    },
+    "Name":{
+        "1": "Name"
+    },
+    "Image":{
+        "1": "Image"
+    },
+    "manage store":{
+        "1": "manage store"
+    },
+    "manage test products":{
+        "1": "manage test products"
+    },
+    "orders":{
+        "1": "orders"
+    },
+    "users":{
+        "1": "users"
+    },
+    "log out":{
+        "1": "log out"
+    },
+    "ID":{
+        "1": "ID"
+    },
+    "Digital price":{
+        "1": "Digital price"
+    },
+    "Real price":{
+        "1": "Real price"
+    },
+    "Products":{
+        "1": "Products"
+    },
+    "name(rus)":{
+        "1":"name(rus)"
+    },
+    "name(eng)":{
+        "1":"name(eng)"
+    },
+    "image":{
+        "1":"image"
+    },
+    "model":{
+        "1":"model"
+    },
+    "price for digital clothes":{
+        "1":"price for digital clothes"
+    },
+    "price for real clothes":{
+        "1":"price for real clothes"
+    },
+    "description: care":{
+        "1":"description: care"
+    },
+    "description: material":{
+        "1":"description: material"
+    },
+    "description: color":{
+        "1":"description: color"
+    },
+    "count in stock":{
+        "1":"count in stock"
+    },
+    "Add product":{
+        "1": "Add product"
+    },
+    "Add product data":{
+        "1": "Add product data"
+    },
+    "Number of reviews":{
+        "1": "Number of reviews"
+    },
+    "Total rating":{
+        "1": "Total rating"
+    },
+    "Test products":{
+        "1": "Test products"
+    },
+    "Orders":{
+        "1": "Orders"
+    },
+    "USERS":{
+        "1": "USERS"
+    },
+    "TOTAL PRICE":{
+        "1": "TOTAL PRICE"
+    },
+    "USER":{
+        "1": "USER"
+    },
+    "PAYMENT STATUS":{
+        "1": "PAYMENT STATUS"
+    },
+    "DELIVERY STATUS":{
+        "1": "DELIVERY STATUS"
+    },
+    "Mark as delivered":{
+        "1": "Mark as delivered"
+    },
+    "Users":{
+        "1": "Users"
+    },
+    "First name":{
+        "1": "First name"
+    },
+    "Last name":{
+        "1": "Last name"
+    },
+    "Email":{
+        "1": "Email"
+    },
+    "Admin status":{
+        "1": "Admin status"
+    }, 
+    "Add test product data":{
+        "1": "Add test product data"
+    }, 
+    "Delivered at": {
+        "1": "Delivered at"
+    },
+    "Upload Image":{
+        "1": "Upload Image"
+    },
+    "enter":{
+        "1": "enter name(rus)",
+        "2": "enter name(eng)",
+        "3": "enter location to image",
+        "4": "enter location to 3D-model",
+        "5": "enter price",
+        "6": "enter care for product",
+        "7": "enter material of product",
+        "8": "enter color of product",
+        "9": "enter count in stock for size"
+    },
+    "Fill the form":{
+        "1": "Fill out the form"
+    },
+    "Select product specifications":{
+        "1": "Select product specifications"
+    },
+    "Item is already added to the cart":{
+        "1": "Item is already added to the cart"
+    },
+    "Are you sure to delete this product?":{
+        "1": "Are you sure to delete this product?"
+    },
+    "Yes":{
+        "1": "Yes"
+    },
+    "No":{
+        "1": "No"
+    },
+    "Please login in order to submit review":{
+        "1": "Please login in order to submit review"
+    },
+    "enter email":{
+        "1":"enter email"
+    },
+    "enter password":{
+        "1":"enter password"
+    },
+    "registration":{
+        "1": "registration"
+    },
+    "registrate":{
+        "1": "registrate"
+    },
+    "New in store":{
+        "1": "New store customer"
+    },
+    "password":{
+        "1": "password"
+    },
+    "first name":{
+        "1": "first name"
+    },
+    "last name":{
+        "1": "last name"
+    },
+    "confirmation password":{
+        "1": "confirmation password"
+    },
+    "enter confirmation password":{
+        "1": "enter confirmation password"
+    },
+    "already have account":{
+        "1": "already have account"
+    },
+    "enter last name":{
+        "1": "enter last name"
+    },
+    "enter first name":{
+        "1": "enter first name"
+    },
+    "Passwods dont match":{
+        "1":"Passwods dont match"
+    },
+    "Count in stock is less for this item":{
+        "1": "Count in stock is less fir this item"
+    },
+    "submit":{
+        "1": "submit"
+    },
+    "Gallery of digital clothes examples":{
+        "1": "Gallery of digital clothes examples"
+    },
+    "register":{
+        "1": "register"
+    },
+    "profile":{
+        "1": "profile"
+    },
+    "Review is added":{
+        "1": "Review is added"
+    }
+
+}
