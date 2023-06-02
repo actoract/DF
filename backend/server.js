@@ -11,7 +11,8 @@ import testproductRoutes from './routes/testproductRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import  uploadImageRoutes from './routes/uploadImageRoutes.js'
-import {notFound, errorHandler} from './middleware/errorMiddleware.js'
+import notFound from './middleware/errorMiddleware.js'
+import errorHandler from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
 
 const app = express()
