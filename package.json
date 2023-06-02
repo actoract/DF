@@ -1,15 +1,16 @@
 {
   "name": "df",
-  "homepage": "https://github.com/actoract/DF#readme",
+  "homepage": "https://weardrop.vercel.app/",
   "version": "1.0.0",
   "description": "Digital fashion",
-  "main": "server.js", "proxy": {
+  "main": "server.js",
+  "proxy": {
     "/api": {
       "target": "http://0.0.0.0:5000",
       "secure": false
     }
   },
-  "secure":false,
+  "secure": false,
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -37,7 +38,6 @@
     "client": "npm start --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
