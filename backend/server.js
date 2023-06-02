@@ -13,8 +13,6 @@ import orderRoutes from './routes/orderRoutes.js'
 import  uploadImageRoutes from './routes/uploadImageRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
 
 const app = express()
 

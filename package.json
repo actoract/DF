@@ -3,7 +3,7 @@
   "homepage": "https://weardrop.vercel.app/",
   "version": "1.0.0",
   "description": "Digital fashion",
-  "type": "commonjs",
+  "type": "module",
   "main": "server.js",
   "proxy": {
     "/api": {
