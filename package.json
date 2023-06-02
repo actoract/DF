@@ -1,6 +1,7 @@
 {
   "name": "df",
   "homepage": "https://github.com/actoract/DF#readme",
+  "homepage": "https://weardrop-jt1w.vercel.app/",
   "version": "1.0.0",
   "description": "Digital fashion",
   "main": "server.js",
