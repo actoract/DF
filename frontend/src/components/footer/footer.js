@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Row, Col, message, Button} from 'antd'
 import './footer.css'
-import 'antd/dist/antd.css';
+import 'antd';
 import end from './End_5.png';
 import Behance from './Behance.png';
 import Linkedin from './Linkedin.png';
