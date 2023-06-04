@@ -28,6 +28,11 @@ import './i18n';
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
+  useEffect(() => {
+    fetch("https://weardropbackend.onrender.com")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  },[]);
   return (
     <Router>
     <Header/>
