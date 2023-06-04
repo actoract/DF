@@ -1,16 +1,9 @@
 {
   "name": "df",
-  "homepage": "https://weardrop.vercel.app/",
   "version": "1.0.0",
   "description": "Digital fashion",
   "type": "module",
   "main": "server.js",
-  "proxy": {
-    "/api": {
-      "target": "http://0.0.0.0:5000",
-      "secure": false
-    }
-  },
   "secure": false,
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
