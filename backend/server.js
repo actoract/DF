@@ -13,6 +13,7 @@ import orderRoutes from './routes/orderRoutes.js'
 import  uploadImageRoutes from './routes/uploadImageRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
+import cors from "cors"
 
 const app = express()
 
@@ -39,6 +40,10 @@ app.use(express.json())
 dotenv.config()
 connectDB()
 
+const corsOptions = {
+    origin: "https://weardropfront.onrender.com", // frontend URI (ReactJS)
+}
+app.use(cors(corsOptions));
 
 //HTTP GET "/"
 /*app.get('/', (req, res) => {
