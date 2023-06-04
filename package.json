@@ -31,9 +31,9 @@
     "install-server": "cd backend && npm install",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
     "server": "nodemon backend/server",
-    "client": "npm start --prefix frontend",
+    "client": "set PORT=3006 && npm start --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently  --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "dev": "concurrently  \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
