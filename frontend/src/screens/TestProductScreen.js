@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col, ListGroup, Card, Button } from 'react-bootstrap'
 import ItemList from '../components/itemList'
 import { Rate } from 'antd';
-import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
+// import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import { Canvas, useFrame,extend, useThree } from 'react-three-fiber'
 import DemoScene from "../components/demoScene"
 import Loader from "../components/loader"
@@ -16,13 +16,13 @@ import { Input } from 'antd';
 import { message } from 'antd';
 import '../styles/product.css'
 
-const customIcons = {
-  1: <FrownOutlined />,
-  2: <FrownOutlined />,
-  3: <MehOutlined />,
-  4: <SmileOutlined />,
-  5: <SmileOutlined />,
-};
+// const customIcons = {
+//   1: <FrownOutlined />,
+//   2: <FrownOutlined />,
+//   3: <MehOutlined />,
+//   4: <SmileOutlined />,
+//   5: <SmileOutlined />,
+// };
 
 extend({ OrbitControls }); 
 const CameraControls = () => {
@@ -143,7 +143,7 @@ const TestProductScreen = ({match}) => {
               </Card>
               {errorReview && message.error(errorReview, 1)}
               <div className = "text_details">2. {t('Step3.1')}</div>
-              <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/>
+              {/* <Rate className = "ratecomp" defaultValue={3} character={({ index }) => customIcons[index + 1]} onChange={value => setRate(value)}/> */}
               <div className = "text_details">3. {t('Step4.1')}</div>
               <TextArea rows={4} onChange={e => setComment(e.target.value)} />
               <button className="addButton" onClick={e => handleSubmit(e)}>
