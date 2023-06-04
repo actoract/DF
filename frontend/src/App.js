@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Container} from 'react-bootstrap'
 import './app.css'
@@ -28,6 +28,7 @@ import './i18n';
 import { Trans, useTranslation } from "react-i18next";
 
 function App() {
+  const [message, setMessage] = useState("");
   useEffect(() => {
     fetch("https://weardropbackend.onrender.com")
       .then((res) => res.json())
