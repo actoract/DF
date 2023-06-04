@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './header.css'
+import 'antd';
 import {BrowserView, MobileView} from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
 import i18next from '../../i18n';
 import weardrop from './weardrop.jpg';
 import dropDownMenu from './DropDownMenu.png';
 import { Menu, Dropdown, Row, Col } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+// import { DownOutlined } from '@ant-design/icons';
 import {logoutAction} from '../../actions/userAction'
 
 
